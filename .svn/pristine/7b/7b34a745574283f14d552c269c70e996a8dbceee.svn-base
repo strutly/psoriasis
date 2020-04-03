@@ -1,0 +1,58 @@
+Page({
+  data: {},
+  onLoad: function (options) {
+    // 页面初始化 options为页面跳转所带来的参数
+    this.tempData();
+  },
+  //测试临时数据
+  tempData: function () {
+    var list = [{
+      rank: "严重程度评分：",
+      txtStyle: "",
+      pace: "5",
+
+    },
+    {
+      rank: "银屑病关节炎得分:",
+      txtStyle: "",
+      pace: "5",
+    },
+    {
+      rank: "银屑病关节炎风险评估得分：",
+      txtStyle: "",
+      pace: "45",
+    },
+    {
+      rank: "评估建议",
+      txtStyle: "bold",
+      name: "",
+    },
+    {
+      rank: "1.您目前银屑病属于轻微",
+      txtStyle: "",
+      name: "",
+    },
+    {
+      rank: "2.您的病情对您没有什么影响",
+      txtStyle: "",
+      name: "",
+    },
+    {
+      rank: "3.建议您适当的治疗疾病",
+      txtStyle: "",
+      name: "",
+    },
+    {
+      rank: "4.您目前没有被专业医师诊断为银屑病关节炎",
+      txtStyle: "",
+      name: "",
+    }
+    ]
+
+    this.setData({
+      list: list
+    });
+  },
+
+
+})

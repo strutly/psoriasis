@@ -1,0 +1,81 @@
+page {
+  background:  #EFEFF4
+}
+.weui-title {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin: 15rpx auto
+}
+.history-table-wrap{
+  /* position: absolute;
+  width: 668rpx;
+  height: 578rpx; */
+  /* left: 50%; */
+  /* margin-left: -334rpx; */
+  top: 70rpx;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
+}
+/* 表格代码   */
+.table{
+  background:  #EFEFF4;
+  border:1px solid #dadada;
+  border-right:0;
+  border-bottom: 0;
+  /* width: 95%;
+  margin-left: 4%; */
+}
+.tr{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td{
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  text-align: center;
+  width: 100%;
+  line-height: 100%
+}
+
+.th1,.td1{
+  width:400%;
+}
+.th{
+  font-weight: 800;
+  background-color: #b66242;
+  font-size: 32rpx;
+  color: #330e0e;
+}
+.td{
+  font-size: 24rpx;
+  color: #ec9480;
+}
+.tds1{
+  border-bottom: 1px solid #fff
+
+}
+.tds2 {
+  border-top: 1px solid #fff
+}
+.td0 {
+  background: #dadada;
+  font-size: 28rpx;
+  color: #330e0e;
+  font-weight: 800
+}
+.keep {
+   margin-top: 50rpx;
+}
+.weui-btn {
+ 
+  width: 200rpx;
+  text-align: center;
+  height: 80rpx;
+  line-height:80rpx;
+  background: #743481;
+  color: #fff
+  }

@@ -1,0 +1,212 @@
+// pages/pages/EvaluationForm4.js
+var app = getApp()
+Page({
+  data: {
+    checkvalue1: app.globalData.checkvalue1,
+    time1: app.globalData.time1,
+    checkvalue2: app.globalData.checkvalue2,
+    time2: app.globalData.time2,
+    checked1: false,
+    checked2: false,
+    checked3: false,
+    checked4: false,
+    show: true,
+    show1: true,
+  },
+  onLoad: function (option) {
+    // console.log(option)
+    // this.setData({
+    //   checkvalue1: option.checkvalue1
+    // })
+    // this.setData({
+    //   time1: option.time1
+    // })
+    // this.setData({
+    //   checkvalue2: option.checkvalue2
+    // })
+    // this.setData({
+    //   time2: option.time2
+    // })
+    // console.log(option.checkvalue1)
+    // if (option.checkvalue1 == 1){
+    //   this.setData({
+    //     checked1: true
+    //   })
+    //   this.setData({
+    //     dis1: false
+    //   })
+    // } else if (option.checkvalue1 == 0){
+    //   this.setData({
+    //     checked3: true
+    //   })
+    //   this.setData({
+    //     dis1: true
+    //   })
+    // }
+    // if (option.checkvalue2 == 1) {
+    //   this.setData({
+    //     checked2: true
+    //   })
+    //   this.setData({
+    //     dis2: false
+    //   })
+    // } else if (option.checkvalue2 == 0) {
+    //   this.setData({
+    //     checked4: true
+    //   })
+    //   this.setData({
+    //     dis2: true
+    //   })
+    // }
+  },
+  
+  
+
+
+  bindPickerIs1: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.checkvalue1 = e.detail.value
+    this.setData({
+      checkvalue1: e.detail.value
+    })
+    if (e.detail.value==0){
+      app.globalData.time1 = ''
+      this.setData({
+        time1: ''
+      })
+      this.setData({
+        show: false
+      })
+    }else{
+      
+      this.setData({
+        show: true
+      })
+    }
+  },
+
+  bindPickerIs2: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.checkvalue2 = e.detail.value
+    this.setData({
+      checkvalue2: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      app.globalData.time2 = ''
+      this.setData({
+        time2: ''
+      })
+      this.setData({
+        show1: false
+      })
+    }else{
+      this.setData({
+        show1: true
+      })
+    }
+  },
+
+  
+  bindPickerDiagnosedTime: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.time1 = e.detail.value
+    this.setData({
+      time1: e.detail.value
+    })
+  },
+
+  bindPickerArthritisTime: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.time2 = e.detail.value
+    this.setData({
+      time2: e.detail.value
+    })
+  },
+  formSubmit: function () {
+    var warn = '';//弹框时提示的内容
+    var flag = '1';//判断信息输入是否完整
+    console.log("aaaa")
+    console.log("bbbb:" + this.data.checkvalue2)
+    if (this.data.checkvalue1 == '') {
+      warn = '请选择是否已经由皮肤科医生诊断为银屑病！'
+    } else if (this.data.checkvalue2 == '') {
+      warn = '请选择是否已经由皮肤科或风湿免疫科医生诊断为银屑病性关节炎（或关节型银屑病）！'
+    } else {
+      flag = '2'
+      try {
+        // if (this.data.isdiagnosed==1){
+        //   wx.setStorageSync('IsDiagnosed', this.data.isdiagnosed)
+        // }
+        wx.setStorageSync('IsDiagnosed', this.data.checkvalue1)
+        wx.setStorageSync('DiagnosedTime', this.data.time1)
+        // if (this.data.isarthritis==1){
+        //   wx.setStorageSync('IsArthritis', this.data.isarthritis)
+        // }
+        wx.setStorageSync('IsArthritis', this.data.checkvalue2)
+        wx.setStorageSync('ArthritisTime', this.data.time2)
+      } catch (e) {
+      }
+    }
+    // console.log(flag)
+    if (flag == '1') {
+      wx.showModal({
+        title: '提示',
+        content: warn,
+        showCancel: false,
+      })
+    } else {
+      console.log('没有表单错误，允许跳转111');
+      wx.navigateTo({
+        url: '/pages/pages/EvaluationForm1'
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

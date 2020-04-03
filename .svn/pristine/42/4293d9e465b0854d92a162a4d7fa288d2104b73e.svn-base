@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="container">
+<view wx:if="{{canIUse}}">
+    <view class='header'>
+        <image src='/pages/image/loginLog.jpg'></image>
+    </view>
+ 
+    <view class='content'>
+        <view>申请获取以下权限</view>
+        <text>获得你的公开信息(昵称，头像等)</text>
+    </view>
+ 
+    <button class='bottom' type='primary' bindtap='showbutton'>
+        授权登录<!--由于微信官方修改了 getUserInfo 接口，所以现在无法实现一进入微信小程序就弹出授权窗口，只能通过 button 去触发,并且button里必须要加open-type="getUserInfo"才能弹出授权窗口-->   </button>
+</view>
+ 
+<view wx:else>请升级微信版本</view>
+
+</view>
+<view class='mask' wx:if='{{show}}'>
+    <view class='modal-content' style='height:{{height}}'>
+      <view class='title1'>您还未登陆</view>
+      <text class='title2'>请先登录体验测试信息</text>
+      <image src='/pages/image/timg.jpg'></image>
+       <view class='modal-btn-wrapper'>
+        <button class='cancel-btn'  bindtap='cancel'>暂不登录</button>
+        <button class='confirm-btn' open-type="getUserInfo" bindgetuserinfo="getDatas">立即登录</button>
+      </view>
+    </view>
+  </view>

@@ -1,0 +1,77 @@
+
+const util = require('../../utils/util.js')
+// var getPinyin = require('../../utils/pinyinUtil.js');
+const app = getApp();
+var domain = app.globalData.host;
+Page({
+  data: {
+    focus: false,
+    val: '',
+    // list: [{ id: 2, title: 'A', list: [{ name: '张三', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', cue: '银屑病重患者', heart: 0 }, { name: '李四', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }] }, { id: 3, title: 'B', list: [{ name: '王五', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 1 }] }, { id: 4, title: 'C', list: [{ name: '李明', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }, { name: '如花', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }, { name: '如玉', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }, { name: '亚索', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }, { name: '石头人', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }, { name: '蛮王', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }, { name: '赵新', src: 'http://ku.90sjimg.com/element_origin_min_pic/18/07/12/2b2f554d82a59e369e9db4b56ea9534c.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true', heart: 0 }] }],//
+    // nav: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"],
+    toView: 1
+  },
+  onLoad: function () {
+    var unionid = app.globalData.unionid;
+    var that = this
+    wx.request({
+      url: domain +`/wxs/doctor/my_patient?unionid=${unionid}`,
+      method: "GET",
+      contentType: 'application/json;charset=UTF-8',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (result) {
+        console.log(result.data);
+        if (result.data.errcode == 0){
+          var results = result.data.data;
+          for (var i = 0; i < results.length; i++) {
+            if (results[i].sex == 1) {
+              results[i].sex = "男"
+            } else if (results[i].sex == 2) {
+              results[i].sex = "女"
+            } else {
+              results[i].sex = "未知"
+            }
+            that.setData({
+              list: results
+            })
+          }
+        } else if (result.data.errcode == -1) {
+          wx.showModal({
+            title: '提示',
+            content: result.data.errmsg,
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              }
+            }
+          })
+        }
+        
+       
+      }
+    })
+  },
+  toCase: function (e) {
+    console.log(e.target.dataset.pid);
+    var id = e.target.dataset.pid;
+    wx.navigateTo({
+      url: '/pages/pages/case?id=' + id,
+    })
+  
+  },
+  toView: function (e) {
+    let i = parseInt(e.currentTarget.dataset.i) + 2;
+    this.setData({
+      toView: i
+    })
+  },
+ 
+
+  onShow: function () {
+
+  },
+
+})

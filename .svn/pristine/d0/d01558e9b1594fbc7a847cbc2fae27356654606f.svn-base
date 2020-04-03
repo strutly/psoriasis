@@ -1,0 +1,106 @@
+//index.js
+//获取应用实例
+const app = getApp()
+var domain = app.globalData.host;
+Page({
+  //事件处理函数
+  bindViewTap: function() {
+    wx.navigateTo({
+      url: '../logs/logs'
+    })
+  },
+  onLoad: function(options) {
+    console.log("index.js----onload");
+  },
+  getUserInfo: function(e) {
+    console.log("index.js----getUserInfor");
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+  showbutton:function (){
+    if (app.globalData.unionid!=""){
+      
+    }
+
+    console.log("index.js----showbutton");
+    this.setData ({
+      show:true
+    })
+  },
+  getDatas: function(e) {
+    console.log(e);
+    //表示获取成功同意获取用户信息
+    if (e.detail.errMsg =="getUserInfo:ok"){
+      app.globalData.userInfo = e.detail.userInfo;
+      wx.getSetting({
+        success: res => {
+          console.log(res);
+          if (res.authSetting['scope.userInfo']) {
+            //获取用户信息
+            wx.getUserInfo({
+              success: res => {
+                console.log(res);
+                wx.login({
+                  success: function (date) {
+                    if (date.code) {
+                      //发起网络请求
+                      wx.request({
+                        url: domain + '/wxs/rest/sign',
+                        data: JSON.stringify({
+                          code: date.code,
+                          encryptedData: res.encryptedData,
+                          iv: res.iv,
+                          signature: res.signature,
+                          rawData: res.rawData
+                        }),
+                        method: 'POST',
+                        contentType: 'application/json;charset=UTF-8',
+                        header: {
+                          'content-type': 'application/json'
+                        },
+                        success: function (result) {
+                          console.log(result);
+                          console.log(result.data.if_doctor);
+                          console.log(result.data.if_information);
+                          //这里需要 if_information==true 的时候才会有返回
+                          app.globalData.unionid = result.data.unionid;
+                          var test = "您本次为授权自测";
+                        }
+                      })
+                    } else {
+                      console.log('登录失败！' + date.errMsg)
+                    }
+                  }
+                })
+                if (this.userInfoReadyCallback) {
+                  this.userInfoReadyCallback(res)
+                }
+              }
+            })
+          } else if (res.authSetting['scope.userInfo'] === false) { // 授权弹窗被拒绝
+            wx.clearStorage()
+          }
+        }
+      });
+    }else{
+      wx.showToast({
+        title: '您取消授权了',
+        image: '/pages/image/0.jpg',
+        duration: 2000
+      })
+
+    }
+  },
+  cancel:function(){
+    //拒绝直接进入自测
+    this.setData({
+      show: false
+    })
+    wx.navigateTo({
+      url: '/pages/pages/EvaluationForm4',
+    })
+  }
+})

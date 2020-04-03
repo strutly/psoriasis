@@ -1,0 +1,20 @@
+const app = getApp();
+var domain = app.globalData.host;
+Page({
+  data: {
+    tempFilePaths: '',
+    nickName: '',
+    userInfoAvatar: '',
+    sex: '',
+    height:150,
+    imgheight:200
+
+  },
+  onLoad: function () {
+    this.setData({
+      imgheight: wx.getSystemInfoSync().windowWidth * 0.62
+    }
+    )
+    
+  }
+})

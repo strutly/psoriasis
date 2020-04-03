@@ -1,0 +1,99 @@
+page{
+  /* background:#EFEFF4; */
+
+}
+.container{
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0rpx;
+  /* overflow-y: scroll; */
+  font-size: 36rpx;
+}
+.header {
+    width: 300rpx;
+    height: 300rpx;
+    margin: 100rpx auto;
+   
+}
+.header image {
+  width: 100%;
+  height: 100%
+}
+.content {
+  width: 100%;
+  /* margin-left: 10%; */
+  border-top: 1px solid rgb(133, 126, 126)
+}
+.content view {
+  margin-top: 100rpx;
+  font-size: 36rpx;
+  font-family: "微软雅黑";
+  margin-bottom: 20rpx;
+}
+.content text {
+  color: rgb(121, 118, 118);
+  font-size: 36rpx;
+}
+.bottom {
+  margin-top: 50rpx;
+
+}
+.mask{
+ position: absolute;
+ left: 0;
+ right: 0;
+ top: 0;
+ bottom: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: rgba(0,0,0,0.4);
+ z-index: 9999;
+}
+.modal-content{
+ display: flex;
+ flex-direction: column;
+ width: 70%;
+ height: 60%;
+ background-color: #fff;
+ border-radius: 10rpx;
+}
+.modal-content image {
+  width: 200px;
+  margin: 0 auto
+}
+.modal-btn-wrapper{
+ display: flex;
+ flex-direction: row;
+ height: 130rpx;
+ line-height: 100rpx;
+ border-top: 2rpx solid rgba(7,17,27,0.1);
+}
+.cancel-btn, .confirm-btn{
+ width: 200rpx;
+ height: 70rpx;
+ border-radius: 40rpx;
+ border: 1px solid rgb(124, 144, 236);
+ line-height: 70rpx;
+ text-align: center;
+ font-size: 32rpx;
+ margin-left: 40rpx;
+ margin-top: 10rpx;
+color: rgb(124, 144, 236)
+}
+.confirm-btn {
+  background:  rgb(124, 144, 236);
+  color: #ffffff
+}
+.title1 {
+  text-align: center;
+  font-size: 36rpx;
+  margin-top: 50rpx;
+}
+.title2 {
+  text-align: center;
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  color: #ccc
+}

@@ -1,0 +1,100 @@
+const app = getApp();
+var domain = app.globalData.host;
+Page({
+  data: {
+    imgheight: 200,
+    headImgHeight: '190rpx',
+    topMargin: '80rpx',
+    top: 350,
+    height: '100%',
+    nickName: '您的昵称',
+    headImg: 'http://pic.tsing-tec.com/eplus/images/a2805c15b6c84b17a21c886e6a6c3441.png',
+    show:false,
+    modalheight: '30%',
+    codeHeight:'100%'
+  },
+  onLoad: function () {
+    var width = wx.getSystemInfoSync().windowWidth;
+    this.setData({
+      codeHeight: width * 0.8 * 0.8 + "px"
+    })
+    console.log(width);
+    var userInfo = app.globalData.userInfo;
+    this.setData({
+      imgheight: width * 0.62,
+      nickName: userInfo.nickname ? userInfo.nickname : "您的昵称",
+      headImg: userInfo.headimgurl ? userInfo.headimgurl : "http://pic.tsing-tec.com/eplus/images/a2805c15b6c84b17a21c886e6a6c3441.png",
+      headImgHeight: width * 0.24,
+      topMargin: width * 0.12,
+    }) 
+  },
+  onReady: function () {
+    var that = this;
+    console.log("i`m ready");
+    var query = wx.createSelectorQuery();
+    query.select('.main').boundingClientRect();
+    query.exec(function (res) {
+      //res就是 所有标签为myText的元素的信息 的数组
+      console.log(res);
+      //取高度      
+      var width = wx.getSystemInfoSync().windowWidth;
+      var w_h = wx.getSystemInfoSync().windowHeight;
+      var height = res[0].height;
+      if (w_h > height) {
+        that.setData({
+          height: (w_h - width * 0.62) + "px"
+        })
+      }
+      height = height > w_h ? height : w_h;
+      that.setData({
+        top: height - width * 0.75
+      })
+    });
+  },
+  shar_result:function(){
+    console.log(app.globalData.evaluationResult);    
+    //未提交个人信息需要先提交个人信息
+    if (app.globalData.if_information){
+      this.setData({
+        show1: true,
+        base64ImgUrl: "data:image/png;base64," + app.globalData.evaluationResult.code.replace(/[\r\n]/g, "")
+      })
+    }else{
+      this.setData({
+        show: true
+      })      
+    }   
+  },
+  info: function () {
+    wx.navigateTo({
+      url: '/pages/pages/personal/info'
+    })
+  },
+  cancel:function(){
+    this.setData({
+      show:false
+    })
+  },
+  onUnload:function(){
+    wx.reLaunch({
+      url: '/pages/pages/personal/index'
+    })
+  },
+  cancel1:function(){
+    this.setData({
+      show1:false
+    })
+  },
+  home:function(){
+    wx.reLaunch({
+      url: '/pages/pages/personal/index'
+    })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '银屑病智能风险管理',
+      imageUrl: '/pages/image/share_img.png',
+      path: '/pages/index/index',
+    }
+  }
+})

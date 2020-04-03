@@ -1,0 +1,226 @@
+const app = getApp();
+var domain = "https://tty.tsing-care.com/";
+Page({
+  data: {
+    tempFilePaths: '',
+    nickName: '',
+    userInfoAvatar: '',
+    sex: '',
+    
+  },
+
+  onLoad: function () {
+    var that = this;
+    wx.getUserInfo({
+      success: function (res) {
+        // success
+        that.setData({
+          nickName: res.userInfo.nickName,
+          userInfoAvatar: res.userInfo.avatarUrl,
+          province: res.userInfo.province,
+          city: res.userInfo.city
+        })
+
+        switch (res.userInfo.gender) {
+          case 0:
+            that.setData({
+              sex: '未知'
+            })
+            break;
+          case 1:
+            that.setData({
+              sex: '男'
+            })
+            break;
+          case 2:
+            that.setData({
+              sex: '女'
+            })
+            break;
+        };
+        var unionid = app.globalData.unionid;
+       
+      },
+     
+      fail: function () {
+        // fail
+        console.log("获取失败！")
+      },
+      complete: function () {
+        // complete
+        console.log("获取用户信息完成！")
+        // console.log(this.province)
+      }
+    })
+  },
+  getpersonnal: function () {
+    var unionid = app.globalData.unionid;
+    wx.request({
+      url: domain + `/wxs/information/detail?unionid=${unionid}`,
+      method: "GET",
+      contentType: 'application/json;charset=UTF-8',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (result) {
+        console.log(result.data);
+        var information = result.data.data;
+        if (result.data.errcode==0){
+          wx.navigateTo({
+            url: '/pages/pages/UserInfo3?name=' + information.name + '&wx=' + information.wx + '&nickname=' + app.globalData.NickName + '&idnum=' + information.idnum + '&sex=' + information.sex + '&birthday=' + information.birthday + '&height=' + information.height + '&weight=' + information.weight + '&incidencetime=' + information.incidenceTime + '&education=' + information.education + '&phone=' + information.phoneNum
+          })
+        } else if(result.data.errcode ==-1) {
+          //在这里要进行重新授权处理。
+          console.log(result.data.errmsg);
+          wx.showModal({
+            title: '提示',
+            content: result.data.errmsg,
+            showCancel: false,
+            success(res) {
+              wx.navigateTo({
+                url: '/pages/pages/UserInfo',
+              })
+            }
+          })
+
+        }
+      }
+    })
+  },
+  pageload: function () {
+    var result = false
+    //生成loading框
+    // wx.showLoading({
+    //   title: '数据请求中',
+    // })
+    this.httprequst();
+  },
+
+  httprequst: function () {
+    var that = this;
+    console.log('发送请求')
+    var result = false;
+    var unionid = app.globalData.unionid;
+    wx.request({
+      url: domain + `/wxs/evaluation/list?unionid=${unionid}`,
+      method: 'GET',
+      data: {
+        // 'IDNum': app.globalData.IDNum,//IDNum
+        'Name': app.globalData.Name,//Name
+        'id': 1,
+      },
+
+      complete: function (res) {
+        console.log(res.data);
+        if (res.data.errcode == -1) {
+          //在这里要进行重新授权处理。
+          console.log(res.data.errmsg);
+          wx.showModal({
+            title: '提示',
+            content: res.data.errmsg,
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              }
+            }
+          })
+
+        }else if(res.data.errcode ==-2){
+          wx.showModal({
+            title: '提示',
+            content: '请先完善个人信息',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/pages/UserInfo',
+                })
+              }
+            }
+          })
+        }else{
+          var str = res.data.data;
+          var str1 = JSON.stringify(str)
+          if (res.data.data.length > 0) {
+            console.log('结果返回，跳转到下一个页面');
+            wx.navigateTo({
+              url: '/pages/pages/EvaluationForm6'
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '没有查询到历史记录！'
+            })
+          }
+        }
+       
+      },
+    })
+  },
+
+  gethistory: function () {
+    var warn = '';//弹框时提示的内容
+    var flag = '1';//判断信息输入是否完整
+    // console.log(this.data.birthday)
+    //     else if(!this.checkIDNum(this.data.idnum)) {
+    //   warn = '请填写正确的身份证号码！'
+    // }
+    // console.log(this.data.incidencetime)
+    if (this.data.name == '') {
+      warn = '请填写正确的姓名！'
+    } else {
+      flag = '2'
+      try {
+        // wx.setStorageSync('IDNum', this.data.idnum)
+        wx.setStorageSync('Name', this.data.name)
+      } catch (e) {
+      }
+    }
+    // console.log(flag)
+    if (flag == '1') {
+      wx.showModal({
+        title: '提示',
+        content: warn
+      })
+    } else {
+      console.log('没有表单错误，允许发送请求');
+      this.pageload()
+    }
+  },
+  getDatas: function (e) {
+    var unionid = app.globalData.unionid;
+    wx.request({
+      url: domain + `/wxs/information/detail?unionid=${unionid}`,
+      method: "GET",
+      contentType: 'application/json;charset=UTF-8',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (result) {
+        console.log(result.data);
+        var information = result.data.data;
+        if (result.data.errcode == !0) {
+          wx.showModal({
+            title: '提示',
+            content: '您还未填写个人信息',
+            showCancel:false,
+            success(res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/pages/UserInfo',
+                })
+              } 
+            }
+          })
+         
+        } else{
+              wx.reLaunch({
+                url: '/pages/pages/EvaluationForm4',
+              })
+        }
+      }
+    })
+   
+  },
+})

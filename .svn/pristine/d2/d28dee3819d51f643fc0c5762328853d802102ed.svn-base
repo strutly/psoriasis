@@ -1,0 +1,39 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+page{
+  width: 100%;
+}
+.weui-media-box_appmsg .weui-media-box__hd {
+  margin-right: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+}
+.weui-media-box__thumb{
+  width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+.weui-media-box__desc {
+  -webkit-line-clamp: 1;
+  line-height: 1.5;
+  font-size: 24rpx;
+}
+.weui-badge {  
+  min-width: 18px;
+  border-radius: 18rpx;
+  position: absolute;
+  right: 30rpx;
+  display: block;
+  top: 30%;
+  
+}

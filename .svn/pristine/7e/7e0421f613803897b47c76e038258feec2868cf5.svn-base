@@ -1,0 +1,107 @@
+<view class='weui-title'>自测详情</view>
+<view class="item-box">
+  <view class="items">
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">是否已经由皮肤科医生诊断为银屑病</i>
+        <span class="item-data">
+          <i class="rankpace">{{checkvalue1}}</i>
+        </span>
+      </view>
+       <view class="inner txt">
+        <i class="{{item.txtStyle}}">诊断银屑病的时间</i>
+        <span class="item-data" wx:if="{{show1}}">
+          <i class="rankpace"> {{time1}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">是否已经由皮肤科或风湿免疫科医生诊断为银屑病性关节炎</i>
+        <span class="item-data">
+          <i class="rankpace">{{checkvalue2}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">诊断银屑病性关节炎（或关节型银屑病）的时间</i>
+        <span class="item-data"  wx:if="{{show2}}">
+          <i class="rankpace"> {{time2}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">面 积 (A)</i>
+        <span class="item-data">
+          <i class="rankpace">{{datet1}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">红 斑 (E)</i>
+        <span class="item-data">
+          <i class="rankpace">{{datet2}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">鳞 屑 (S)</i>
+        <span class="item-data">
+          <i class="rankpace">{{datet3}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">厚 度 (T)</i>
+        <span class="item-data">
+          <i class="rankpace">{{datet4}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">近一周银屑病对您的生活影响</i>
+        <span class="item-data">
+          <i class="rankpace">{{level}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">您曾经有过一个或多个关节肿胀</i>
+        <span class="item-data">
+          <i class="rankpace">{{if_1}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">有医生告诉过您您有关节炎</i>
+        <span class="item-data">
+          <i class="rankpace">{{if_2}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">您的指(趾)甲上有凹点</i>
+        <span class="item-data">
+          <i class="rankpace">{{if_3}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">您的足后跟疼</i>
+        <span class="item-data">
+          <i class="rankpace">{{if_4}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">您有一个手指(足趾)不明原因肿痛</i>
+        <span class="item-data">
+          <i class="rankpace">{{if_5}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">口服阿维A、他扎罗汀等维A酸类药物</i>
+        <span class="item-data">
+          <i class="rankpace">{{if_6}}</i>
+        </span>
+      </view>
+      <view class="inner txt">
+        <i class="{{item.txtStyle}}">患有虹膜炎、睫状体炎或脉络膜炎</i>
+        <span class="item-data">
+          <i class="rankpace">{{if_7}}</i>
+        </span>
+      </view>
+      
+    </view>
+  </view>
+  <view class="content2">
+      <button type='primary' class='primary' bindtap='toTable'>填写表格</button>
+  </view>
+
+

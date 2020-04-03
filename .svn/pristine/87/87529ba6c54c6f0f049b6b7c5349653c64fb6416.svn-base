@@ -1,0 +1,75 @@
+/* pages/EvaluationForm/EvaluationForm2.wxss */
+page {
+  width: 100%;
+  height: 100%;
+  display: fixed;
+   background-repeat:no-repeat;
+   background-size:200% 200%;
+   -moz-background-size:200% 200%;
+   background-image: url(http://1.qingke.applinzi.com/%E6%99%BA%E6%85%A7%E7%A4%BE%E5%8C%BA/bg5.jpg);
+   font-family: "微软雅黑"
+}
+.section{
+  font-size: 34rpx;
+  margin-left: 35rpx;
+  width: 90%;
+  position: relative;
+  margin-bottom: 20rpx
+}
+.textset1{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 33rpx;
+  /* background-color: red;   */
+  width: 90%;
+  line-height: 100%
+}
+.textset2{
+  display: inline-block;
+  text-align: left; 
+  vertical-align: middle;
+  font-size: 33rpx;
+  /* background-color: green;   */
+  width: 27.5%;
+}
+.remind{
+  justify-content: center;
+  text-align: center;
+}
+
+.title2{
+  justify-content: center;
+  text-align: center;
+  /* background-color: #E6F3F9;   */
+  font-size: 40rpx;
+  height: 60rpx;
+  font-weight: bold;
+}
+
+.content{
+    /* height:700rpx; */
+  /* background-color:red; */
+}
+.white, .blue {
+  background: none
+}
+.lbs {
+  width: 10rpx;
+  height: 25rpx;
+  background:#743481;
+  display: inline-block;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+}
+.pick {
+  margin-left: 50rpx;
+}
+/* 未选中的 背景样式 */
+.buttonNext {
+  margin-bottom: 50rpx;
+  text-align: center;
+  margin-top: 50rpx
+}
+.weui-cells__title {
+  font-size: 16px!important
+}

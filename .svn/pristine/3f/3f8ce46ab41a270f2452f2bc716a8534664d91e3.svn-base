@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <view class='btn'>
+      <button class='btncolor' bindtap='showbutton'> 开始测试 </button>
+    </view>
+  </view>
+</view>
+<view class='mask' wx:if='{{show}}'>
+  <view class='modal-content' style='height:{{height}}'>
+    <view class='title1'>您还未授权</view>
+    <text class='title2'>请问您是否开始授权进行测试?</text>
+    <image src='/pages/image/timg.jpg'></image>
+    <view class='modal-btn-wrapper'>
+        <button class='cancel-btn'  bindtap='cancel'>否</button>
+        <button class='confirm-btn' open-type="getUserInfo" bindgetuserinfo="getDatas">是</button>
+    </view>
+  </view>
+</view>

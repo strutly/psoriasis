@@ -1,0 +1,114 @@
+<!-- <view>
+  <view class="content">
+    <view class="title">
+      <text>风险评分结果</text>
+    </view>
+    <view class="blue">
+      <view class="section2">
+        <text class='textset' decode='emsp'>严重程度得分:&ensp;</text>
+        <text class='textset1' bindtap='bindtap1' decode='emsp'>{{result1}}</text>
+      </view>
+    </view>
+    <view class="white">
+      <view class="section2">
+        <text class='textset' decode='emsp'>银屑病关节炎得分:&ensp;</text>
+        <text class='textset1' decode='emsp'>{{result2}}</text>
+      </view>
+    </view>
+    <view class="blue">
+      <view class="section2">
+        <text class='textset' decode='emsp'>银屑病关节炎风险评估得分:&ensp;</text>
+        <text class='textset1' decode='emsp'>{{result3}}</text>
+      </view>
+    </view>
+    <view class="white">
+      <view class="section2">
+        <text class='textset' decode='emsp'>评估建议:&ensp;</text>
+      </view>
+    </view>
+    
+    <view class="white1" style="background:{{color1}};color:{{word1}};">
+      <view class="section3">
+        <text class='textset' decode='emsp'>{{data1}}</text>
+      </view>
+    </view>
+    <view class="white1" style="background:{{color2}};color:{{word2}};">
+      <view class="section3">
+        <text class='textset' decode='emsp'>{{data2}}</text>
+      </view>
+    </view>
+    <view class="white2">
+      <view class="section3">
+        <text class='textset' decode='emsp'>{{data3}}</text>
+      </view>
+    </view>
+    <view class="white2">
+      <view class="section3">
+        <text class='textset' decode='emsp'>{{data4}}</text>
+      </view>
+    </view>
+    <view class="white3" wx:if="{{data}}" style="background:{{color5}};color:{{word5}};">
+      <view class="section3">
+        <text class='textset' decode='emsp'>{{data5}}</text>
+      </view>
+    </view>
+    <view class="white3"  wx:if="{{data}}" style="background:{{color6}};color:{{word6}};">
+      <view class="section3">
+        <text class='textset' decode='emsp'>{{data6}}</text>
+      </view>
+    </view>
+  </view>
+ 
+  <view class="content2">
+    <view class="buttonNext1" bindtap='formSubmit1'>
+      <button type='primary' >我要留言</button>
+    </view>
+    <view class="buttonNext2" bindtap='formSubmit'>
+      <button type='primary' >退出评估</button>
+    </view>
+  </view>
+
+  <view class='mask' wx:if='{{show}}'>
+    <view class='modal-content' style='height:{{height}}'>
+      <textarea class='input' maxlength='200' value='{{content}}' bindinput='bindinput' auto-focus/>
+      <view class='modal-btn-wrapper'>
+        <view class='cancel-btn' style='color:rgba(7,17,27,0.6)' bindtap='cancel'>取消</view>
+        <view class='confirm-btn' style='color:#13b5f5' bindtap='confirm'>提交</view>
+      </view>
+    </view>
+  </view>
+</view> -->
+<view class='weui-title'>风险评分结果</view>
+<view class="item-box">
+  <view class="items">
+    <view wx:for="{{list}}" wx:key="{{index}}" class="item">
+      <view data-index="{{index}}" class="inner txt">
+        <i class="{{item.txtStyle}}">{{item.rank}}</i>
+        <image class="item-icon" mode="widthFix" src="{{item.icon}}"></image>
+        <i> {{item.name}}</i>
+        <span class="item-data">
+          <i class="rankpace"> {{item.pace}}</i>
+        </span>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="content2">
+    <view class="buttonNext1" bindtap='getBase64ImageUrl'>
+      <button type='primary' class='primary'>确定</button>
+    </view>
+   
+</view>
+
+  <view class='mask' wx:if='{{show}}'>
+    <view class='modal-content' style='height:{{height}}'>
+      <view style='width: 300px;margin:0 auto; height: 300px; background-size: 100% 100%; background-repeat: no-repeat; background-image: url({{base64ImgUrl}});'>  </view>
+      <view class='text'>将此二维码展示给医生进行扫描</view>
+       <view class='modal-btn-wrapper'>
+        <view class='cancel-btn' style='color:rgba(7,17,27,0.6)' bindtap='cancel'>隐藏二维码</view>
+        <view class='confirm-btn' style='color:#13b5f5' bindtap='confirm'>返回主页</view>
+      </view>
+    </view>
+  </view>
+<official-account class="infos"></official-account>
+

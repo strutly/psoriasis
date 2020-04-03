@@ -1,0 +1,144 @@
+page{
+  background-color: #f5f5f5;
+}
+.warn{
+  width: 100%;
+  position: fixed;
+  top:0;
+  background-color: red;
+  font-size: 24rpx;
+  color:#fff; 
+  z-index:9999;
+  text-align: center;
+}
+.info-main{
+  width: 100%;
+}
+.info-container{
+  width: 94%;
+  margin: 30rpx auto;
+  background-color: #fff;
+  border-radius: 30rpx;
+  padding: 0;
+}
+.info-title{
+  border-radius: 30rpx 30rpx 0 0;
+  height: 98rpx;
+  color:#fff;
+  font-size: 36rpx;
+  background-color: #5369fd;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  line-height: 98rpx;
+}
+.info-content{
+  width: 94%;
+  margin: 0 auto;
+  padding-top: 20rpx;
+}
+.info-item{
+  height: 88rpx;
+  width: 100%;
+  border-bottom: 2rpx solid #eee;
+  display: table;
+  box-sizing: border-box;
+}
+.info-item_lable{
+  font-size: 32rpx;
+  box-sizing: border-box;
+  color: #010101;
+	opacity: 0.8;
+  width:25%;
+  display: inline-block;
+  line-height: 88rpx;
+}
+.info-item_val{  
+  box-sizing: border-box;
+  height: 100%;
+  width: 70%;
+  margin-left: 4%;
+  display: inline-block;
+}
+.info-input{
+  width: 70%;
+  margin-left: 4%;
+  float:right;
+  height:88rpx;
+}
+.info-item_val input{
+  display: inline;
+  line-height: 88rpx;
+  font-size: 34rpx;
+}
+.info-placeholder{
+  font-size:24rpx;
+  color: #010101;
+	opacity: 0.3;
+}
+.info-text1{
+  line-height: 40rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 20rpx 0 0rpx 20rpx;
+}
+.info-input label{
+  margin: 0 40rpx 0 0;
+  font-size: 28rpx;
+}
+radio{ 
+  border-radius: 50%;
+  width: 40rpx;/* 最好是4的倍数，不然会不在中间 */
+  height: 40rpx;
+  border: 2rpx solid #7d96e0;/* 设置边框（外圆） */
+  font-size: 0;/* 让边框重合 */
+  
+}
+
+radio .wx-radio-input{
+vertical-align: middle;
+border-radius: 50%;
+width: 40rpx;
+height: 40rpx; 
+line-height: 88rpx;
+border: none;/* 替换边框（隐藏原有边框） */
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{ 
+  border-radius: 50%;/* 圆角 */
+  width: 30rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 30rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 88rpx;
+  text-align: center;
+  font-size:0; /* 对勾大小 30rpx */
+  color:#7d96e0; /* 对勾颜色 白色 */
+  background: #7d96e0;
+  transform:translate(-50%, -50%) scale(1);
+  -webkit-transform:translate(-50%, -50%) scale(1);
+}
+.info-btns{
+  box-sizing: border-box;
+  margin:40rpx 0;
+} 
+.info-cancel_btn{
+  width:30%;
+  display: inline-block;
+  margin-right:5%;
+  border: solid 2px #000000;
+	opacity: 0.4;
+  color:#000000;
+  border-radius: 40rpx;
+  margin-bottom: 30rpx;
+}
+.info-primary_btn{
+  width:65%;
+  display: inline-block;
+  background-color: #5369fd;
+	border-radius: 40rpx;
+  color:#fff;
+  border: solid 2px #5369fd;
+  margin-bottom: 30rpx;
+}
+.textarea-wrp textarea{
+  min-height:200rpx;
+}

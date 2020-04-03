@@ -1,0 +1,36 @@
+<view class="main" style="background-size:100% {{imgheight}}px">
+  <view class="personal" style="height:{{imgheight}}px">
+      <image class="headimg" src='http://pic.tsing-tec.com/eplus/images/2067c6f5232e4ac6ab1249754615962c.png'></image>
+      <view class="nickname">您的昵称</view>
+    </view>
+  <view class="container">    
+    <view class="result_box">
+      <view class="result">
+        <view class="num">5</view>
+        <text class="text">严重程度\n评分</text>
+      </view>
+      <view class="result">
+        <view class="num">5</view>
+        <text class="text">银屑病关节炎\n风险评估得分</text>
+      </view>
+      <view class="result">
+        <view class="num">5</view>
+        <text class="text">银屑病关节炎\n得分</text>
+      </view>
+    </view>
+    <view class="suggest_box">
+      <text class="h3">评估建议:</text>
+      <text class="suggest">1:您目前银屑病属于轻微</text>
+      <text class="suggest">2:您的病情对您没有什么影响</text>
+      <text class="suggest">3:建议您进行适当的药物治疗</text>
+      <text class="suggest">4:此建议为长度比较长的建议应该需要很多字才能看到是什么效果.</text>
+     
+    </view>
+    <view class="report_box">
+      <image src="/pages/image/report.png" class="report"></image>
+    </view>
+    <view class='btn'>
+      <button class='btncolor' bindtap='showbutton'> 分享结果给医生</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,36 @@
+const app = getApp()
+var domain = "https://tty.tsing-care.com/";
+Page({
+  data: {
+    
+  },
+  onLoad: function () {
+
+    　　wx.checkSession({
+
+      　　　　success: function (res) {
+
+        　　　　　　console.log("处于登录态");
+
+      　　　　},
+
+      　　　　fail: function (res) {
+
+        　　　　　　console.log("需要重新登录");
+
+        　　　　　　wx.login({})
+
+      　　　　}
+
+    　　})
+
+  },
+  getDatas: function (e) {
+    var test = "本次为未授权自测";
+    app.globalData.test = test;
+    console.log(app.globalData.test)
+     wx.reLaunch({
+     url: '/pages/pages/EvaluationForm4',
+   })
+  },
+})

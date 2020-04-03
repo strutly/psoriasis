@@ -1,0 +1,221 @@
+.main{
+  width:100%;
+  height: 100%;  
+  background:url('http://pic.tsing-tec.com/eplus/images/57a0a03105794dd6a536877b958a0a9b.png') no-repeat;  
+  background-color: #ffffff;
+}
+.personal{
+  width: 100%;
+  display: inline-block;
+}
+.headimg{
+  width:150rpx;
+  height: 150rpx;
+  display: block;
+  border-radius: 50%;  
+  margin: 100rpx auto 0;
+  border: 6rpx #5369fd solid;
+}
+.nickname{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  font-size: 36rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 50rpx;
+	letter-spacing: 0px;
+	color: #ffffff;
+	opacity: 0.8;
+}
+.container {
+  height: 100%;
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.result_box{
+  width: 90%;
+  text-align: center;
+  border-bottom: 2rpx dashed #ababab;
+  padding-bottom: 30rpx;
+  margin: 0 auto;
+}
+.result{
+  width: 33%;
+  display: inline-block;
+  line-height: 28rpx;
+}
+.num{
+  width: 100%;
+	height: 100rpx;
+	font-size: 80rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	color: #febf07;
+  line-height: 100rpx; 
+}
+.text{
+  font-size: 24rpx;
+  color: #000000;
+  opacity: 0.7;
+}
+.suggest_box{
+  width: 90%;
+  margin: 30rpx auto;
+  padding-bottom: 150rpx;
+  position: relative;
+}
+.h3{
+  display: block;
+  font-size: 32rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 40rpx;
+	color: #000000;
+	opacity: 0.9;
+}
+.suggest{
+  font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 50rpx;
+	display: block;
+	color: #000000;
+	opacity: 0.7;
+}
+.btn {
+  color: #fff; 
+  position: absolute;
+  bottom: 0;
+  width: 70%;
+  left: 15%;
+}
+
+.btncolor {  
+  background: #5369fd;
+  color: #fff;
+  border-radius: 55rpx;
+}
+.report_box{
+  position: absolute;
+  right: 0;
+  width: 250rpx;
+  height: 250rpx;
+  bottom: 150rpx;
+}
+.report{
+  width:100%;
+  height: 100%;
+}
+
+
+/* 弹出框*/
+.mask{
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content{
+  position: fixed;
+  z-index: 5000;
+  top: 50%;
+  left: 0;
+  right: 0;
+  width:80%;
+  margin:0 auto;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  background-color: #FFFFFF;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  max-height: 90%;
+  border-radius: 30rpx;
+}
+.logo-box{
+  position: absolute;
+  top: -85rpx;
+  width: 100%;
+  display: block;
+  z-index:5001;
+}
+.logo{  
+  border-radius: 50%;
+  width:170rpx;
+  height:170rpx;
+  margin: 0 auto;
+  display: block;
+  z-index:5001;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-btn-wrapper{  
+  display: flex;
+  margin: 25rpx 0;
+}
+.img_box{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;   
+}
+.img_box image{
+  width: 100%;
+}
+.cancel-btn, .confirm-btn{
+  width: 35%;
+  height: 70rpx; 
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #000000;
+  border-radius: 35rpx;
+	border: solid 3rpx #000000;
+	opacity: 0.4;
+}
+.confirm-btn {
+  background-color: #5369fd;
+  color: #ffffff;  
+  border: none;
+  opacity: 1;
+}
+.title1 {  
+  margin-top: 95rpx;
+  font-weight: bolder;
+  text-align: center;  
+  font-size: 40rpx;	
+	font-stretch: normal;
+	line-height: 40rpx;	
+	color: #000000;
+	opacity: 0.8;
+}
+.title2{ 
+  text-align: center;  
+  font-size: 34rpx;	
+	font-stretch: normal;
+	line-height: 34rpx;	
+	color: #000000;
+	opacity: 0.6;
+  margin: 15rpx auto;
+  padding: 0 25rpx;
+}
+

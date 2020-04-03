@@ -1,0 +1,45 @@
+<wxs src="../../../utils/TimeUtil.wxs" module="tutil"/>
+<include src ="../template/error.wxml"/>
+<view class="main">
+  <view class="container">
+    <view class="lists">      
+      <block wx:for-items="{{lists}}" wx:key="{{item.id}}">
+        <view class="item_box">
+          <view class="item title">{{tutil.formatDate(item.cdt ,'yyyy年MM月DD日')}}<view class="title_val">{{tutil.formatDate(item.cdt,'HH:mm')}}</view></view>
+          <view class="item item_lable">严重程度评分：<view class="item_val">{{item.result1}}</view></view>
+          <view class="item item_lable">银屑病关节炎评分：<view class="item_val">{{item.result2}}</view></view>
+          <view class="item item_lable">银屑病关节炎风险评估评分：<view class="item_val">{{item.result3}}</view></view>
+          <view class="item more" id="{{item.id}}" bindtap="detail">查看详情</view>
+        </view>
+      </block>
+      <view class="page msg_success js_show" wx:if="{{pro}}">
+        <view class="weui-msg">
+          <view class="weui-msg__icon-area">
+            <image src="/pages/image/no-data.png" style="width:300rpx;height:300rpx;margin:0 auto;"></image>
+          </view>
+          <view class="weui-msg__text-area">
+            <view class="weui-msg__desc">您暂未提交任何测试病历</view>
+          </view>
+          <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+              <button bindtap="cancel" class="weui-btn weui-btn_default" style="border-radius: 25px;width: 120px;height:45px;">返回</button>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+</view>
+<view class='mask' wx:if='{{show}}'>
+  <view class='modal-content'>
+    <view class="logo-box">
+      <image class="logo" src="/pages/image/logo.png"></image>
+    </view>
+    <view class='title1'>温馨提示</view>
+    <text class='title2'>您尚未提交个人信息,是否现在填写?</text>    
+    <view class='modal-btn-wrapper'>
+        <button class='cancel-btn'  bindtap='cancel'>否</button>
+        <button class='confirm-btn' bindtap="info">是</button>
+    </view>
+  </view>
+</view>

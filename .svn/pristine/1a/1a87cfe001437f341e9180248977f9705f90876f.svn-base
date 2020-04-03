@@ -1,0 +1,35 @@
+{
+  "pages": [ 
+    "pages/index/index",
+    "pages/index/main",
+    "pages/logs/logs",
+    "pages/pages/doctor/evaluation_detail",
+    "pages/pages/doctor/index",
+    "pages/pages/doctor/list",
+    "pages/pages/doctor/patient",
+    "pages/pages/doctor/info",
+    "pages/pages/evaluation/form1",
+    "pages/pages/evaluation/form2",
+    "pages/pages/evaluation/form3",
+    "pages/pages/evaluation/form4",
+    "pages/pages/evaluation/result",
+    "pages/pages/personal/evaluation_detail",
+    "pages/pages/personal/history",
+    "pages/pages/personal/index",
+    "pages/pages/personal/info",
+    "pages/pages/test/result" 
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "银屑病智能风险管理",
+    "navigationBarTextStyle": "black"
+  },  
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "sitemapLocation": "sitemap.json"
+}

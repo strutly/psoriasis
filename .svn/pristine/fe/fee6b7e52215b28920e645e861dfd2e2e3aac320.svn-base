@@ -1,0 +1,74 @@
+var app = getApp()
+var domain = app.globalData.host;
+Page({
+  data: {
+    lists: [],
+    show:false,
+    pro: false
+  },
+  onLoad: function (option) {
+    var unionid = app.globalData.unionid;
+    console.log('info.js onload');
+    var that = this;
+    var if_information = app.globalData.if_information;
+    //获取历史记录判断是否填写个人信息
+    if (if_information){
+      wx.request({
+        url: domain + `/wxs/evaluation/list?unionid=` + unionid,
+        method: 'get',
+        success: function (result) {
+          console.log(result);
+          if (result.data.errcode == 0) {
+            var lists = result.data.data;
+            if (lists != null && lists.length > 0) {
+              that.setData({
+                lists: lists,
+                pro: false
+              })
+            } else {
+              that.setData({
+                pro: true
+              })
+            }
+          }else {
+            wx.navigateTo({
+              url: '/pages/pages/error/error?errmsg=' + result.data.errmsg
+            })
+          }
+        },
+        error: function (res) {
+          wx.navigateTo({
+            url: '/pages/pages/error/error?errmsg=' + JSON.stringify(res)
+          })
+        }
+      })
+    }else{
+      that.setData({
+        show: true
+      })
+    }    
+  },  
+  detail:function(e){
+    const id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/pages/personal/evaluation_detail?id='+id
+    })
+  },
+  info: function () {
+    wx.navigateTo({
+      url: '/pages/pages/personal/info'
+    })
+  },
+  cancel: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '银屑病智能风险管理',
+      imageUrl: '/pages/image/share_img.png',
+      path: '/pages/index/index',
+    }
+  }
+})

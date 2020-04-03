@@ -1,0 +1,17 @@
+<include src ="../template/error.wxml"/>
+<view>  
+  <view>
+    <view class='content-text' wx:if='{{mob.content}}'>
+      <text>{{mob.content}}</text>
+    </view>
+    <view class='image-container'>
+      <block wx:for="{{mob.imgList}}" wx:for-item="image" wx:for-index="idx">
+        <view class='image-container' bindtap='previewImage' data-src="{{image}}">
+          <image class='image-item' src="{{image}}" mode='widthFix'></image>
+        </view>
+      </block>
+    </view>    
+    <view><text class='type-date'>暴徒数量：{{mob.num}}</text></view>
+    <view><text class='url-text'>暴徒位置：{{mob.address}}</text></view>
+  </view>
+</view>

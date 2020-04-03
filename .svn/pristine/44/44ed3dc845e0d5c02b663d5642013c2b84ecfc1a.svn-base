@@ -1,0 +1,176 @@
+//main.js
+//获取应用实例
+const app = getApp();
+Page({
+  data:{
+    height:'30%',
+    show: false,
+    warnmsg: ''
+  },
+  prompt: function (msg) {
+    this.setData({
+      show: true,
+      warnmsg: msg
+    })
+    var that = this;
+    setTimeout(function () {
+      that.setData({
+        show: false,
+        warnmsg: ""
+      })
+    }, 1500);
+  },
+  //事件处理函数
+  bindViewTap: function() {
+    wx.navigateTo({
+      url: '../logs/logs'
+    })
+  },
+  onLoad: function(options) {
+    console.log("main.js----onload");
+    var unionid = app.globalData.unionid;
+    if (unionid!=''){
+      
+      var that = app;
+      var domain = that.globalData.host;
+      //根据code获取openid等信息
+      wx.login({
+        success: function (res) {
+          console.log(res);
+          var code = res.code; //返回code
+          wx.request({
+            url: domain + '/wxs/rest/code2Session?code=' + code,
+            method: 'get',
+            dataType: 'json',
+            success: function (response) {
+              console.log(response);
+              var s = new Date();
+              var obj = that.globalData.data
+              console.log(obj)
+              console.log(new Date().getTime() - s.getTime())
+              console.log(that.globalData.data)
+
+              var result = response.data;
+              if (result.errcode == 0) {
+                that.globalData.unionid = result.unionid;
+                that.globalData.userInfo = result.userInfo;
+                console.log(app.globalData)
+                //是否医生
+                if (result.if_doctor) {
+                  that.getStorageSync.if_doctor = true;
+                  wx.reLaunch({
+                    url: '/pages/pages/doctor/index',
+                  })
+                } else {
+                  wx.reLaunch({
+                    url: '/pages/pages/personal/index'
+                  })
+                }
+              }
+            },
+            fail: function (e) {
+              console.log(e);
+            }
+          })
+        }, fail: function () {
+          console.log("失败");
+        }
+      })
+    }    
+  },  
+  showAuthorize:function (){
+    this.setData ({
+      show:true
+    })
+  },  
+  getDatas: function(e) {
+    var that = app;
+    var domain = app.globalData.host;
+    this.setData({
+      show: false
+    });
+    console.log(e);
+    //表示获取成功同意获取用户信息
+    if (e.detail.errMsg =="getUserInfo:ok"){      
+      app.globalData.userInfo = e.detail.userInfo;
+      wx.getSetting({
+        success: res => {
+          console.log(res);
+          if (res.authSetting['scope.userInfo']) {
+            //获取用户信息
+            wx.getUserInfo({
+              success: res => {
+                console.log(res);
+                wx.login({
+                  success: function (date) {
+                    if (date.code) {
+                      //发起网络请求
+                      wx.request({
+                        url: domain + '/wxs/rest/sign',
+                        data: JSON.stringify({
+                          code: date.code,
+                          encryptedData: res.encryptedData,
+                          iv: res.iv,
+                          signature: res.signature,
+                          rawData: res.rawData
+                        }),
+                        method: 'POST',
+                        contentType: 'application/json;charset=UTF-8',
+                        header: {
+                          'content-type': 'application/json'
+                        },
+                        success: function (response) {
+                          console.log(response);
+                          console.log(response.data.if_doctor);
+                          console.log(response.data.if_information);
+                          //这里需要 if_information==true 的时候才会有返回
+                          
+
+                          var result = response.data;
+                          if (result.errcode == 0) {
+                            that.globalData.unionid = result.unionid;
+                            that.globalData.userInfo = result.userInfo;
+                            console.log(app.globalData)
+                            //是否医生
+                            if (result.if_doctor) {
+                              that.getStorageSync.if_doctor = true;
+                              wx.reLaunch({
+                                url: '/pages/pages/doctor/index',
+                              })
+                            } else {
+                              wx.reLaunch({
+                                url: '/pages/pages/personal/index'
+                              })
+                            }
+                          }
+                        }
+                      })  
+                    } else {
+                      console.log('登录失败！' + date.errMsg)
+                    }
+                  }
+                })
+                if (this.userInfoReadyCallback) {
+                  this.userInfoReadyCallback(res)
+                }
+              }
+            })
+          } else if (res.authSetting['scope.userInfo'] === false) { // 授权弹窗被拒绝
+            wx.clearStorage()
+          }
+        }
+      });
+    }else{
+      this.prompt("您取消授权了");      
+    }
+  },
+  cancel:function(){
+    //拒绝直接进入自测
+    this.setData({
+      show: false
+    });
+    wx.navigateTo({
+      url: '/pages/pages/evaluation/form1',
+    })
+  }
+})

@@ -1,0 +1,129 @@
+/**index.wxss**/
+page {
+ overflow: hidden;
+ position: relative
+}
+.logo-box{
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  display: block;
+
+}
+.logo{  
+  border-radius: 50%;
+  width:170rpx;
+  height:170rpx;
+  margin: 0 auto;
+  display: block;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  background-image: url('http://pic.tsing-tec.com/eplus/images/4c4a577d758f4ef6b8b73ce7d242f0c6.png');
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  -moz-background-size:100% 100%;
+} 
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.btn {
+  position: absolute;
+  top: 78%;  
+  color: #fff
+  
+}
+.btnleft{
+  position: relative;
+  border: 2px 0 2px 2px;
+  border-style: solid;
+  border-radius: 50%;
+}
+.btncolor {
+  width: 150px;
+  background: #5369fd;
+  color: #fff;
+  border: 1px solid #5369fd;
+  border-radius: 35px; 
+}
+.mask{
+ position: absolute;
+ left: 0;
+ right: 0;
+ top: 0;
+ bottom: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: rgba(0,0,0,0.4);
+ z-index: 9999;
+}
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 420rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+
+}
+
+.modal-btn-wrapper{
+  display: flex;
+  flex-direction: row;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: absolute;
+  top: 56%;
+}
+.cancel-btn, .confirm-btn{
+  width: 200rpx;
+  height: 70rpx; 
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 32rpx;
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+  color: #000000;
+  border-radius: 35rpx;
+	border: solid 3rpx #000000;
+	opacity: 0.4;
+}
+.confirm-btn {
+  background-color: #5369fd;
+  color: #ffffff;
+  
+  border: none;
+  opacity: 1;
+
+}
+.title1 {
+  
+  margin-top: 120rpx;
+  font-weight: bolder;
+
+  text-align: center;
+  
+  font-size: 40rpx;
+	
+	font-stretch: normal;
+	line-height: 60rpx;
+	
+	color: #000000;
+	opacity: 0.9;
+}
+.title2 {
+  text-align: center;
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  color: #ccc
+}

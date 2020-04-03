@@ -1,0 +1,122 @@
+// pages/pages/details.js
+const app = getApp();
+var domain = app.globalData.host;
+Page({
+  data: {
+    opens:[false,false,false,false,false],
+    evaluation:null,
+    code:'',
+    doctor:null,
+    arraylife: ['毫无影响', '有轻微影响', '有相当程度影响', '有十分严重的影响', '有极度影响，几乎病痛不欲生'],
+    show:false,
+    tab:0
+  },
+  changeTab:function(e){
+    const index = e.currentTarget.dataset.index;
+    this.setData({
+      tab:index
+    })    
+  },
+  kindToggle(e) {
+    const index = e.currentTarget.dataset.index;
+    const opens = this.data.opens;
+    const set_val = 'opens['+index+']';
+    this.setData({
+      [set_val]:!opens[index]
+    });    
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log('evaluation_detail.js onload');
+    var id = options.id;    
+    var unionid = app.globalData.unionid;    
+    var that = this;
+    wx.request({
+      url: domain + `/wxs/personal/evaluation_detail/` + id + `?unionid=` + unionid,
+      method: 'get',
+      success: function (result) {
+        console.log(result);
+        if (result.data.errcode == 0) {
+            that.setData({
+              evaluation: result.data.data,
+              code: "data:image/png;base64," + result.data.code.replace(/[\r\n]/g, ""),
+            })
+          if (result.data.doctor){
+            that.setData({
+              doctor: result.data.doctor
+            })
+            }
+        } else {
+          console.log(result.data.errmsg)
+        }
+      }
+    })   
+    console.log(options);
+  },
+  share_result:function(){
+    this.setData({
+      show: true,      
+    })
+  },
+  cancle:function(){
+    this.setData({
+      show: false,
+    })
+  },
+  home:function(){
+    wx.navigateTo({
+      url: '/pages/pages/personal/index'
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

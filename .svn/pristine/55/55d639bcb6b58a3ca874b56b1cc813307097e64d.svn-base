@@ -1,0 +1,101 @@
+page {
+  width: 100%;
+  height: 100%;
+   background-repeat:no-repeat;
+   background-size:100% 100%;
+   -moz-background-size:100% 100%;
+   background-color:  #EFEFF4;
+   font-family: "微软雅黑";
+   color:rgb(20, 20, 20)
+}
+view {
+  box-sizing: border-box;
+}
+
+.item-box {
+  width: 700rpx;
+  margin: 0 auto;
+  padding: 20rpx 0;
+  background: none;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+.items {
+  width: 100%;
+}
+
+.item {
+  position: relative;
+  border-top: 2rpx solid #eee;
+  height: 100rpx;
+  line-height: 100rpx;
+  overflow: hidden;
+}
+
+.item:last-child {
+  border-bottom: 2rpx solid #eee;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+}
+.weui-title {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-top: 20rpx
+  
+}
+.inner.txt {
+  background-color:rgba(0,0,0,0.1);
+  width: 100%;
+  z-index: 5;
+  font-size: 28rpx;
+  padding: 0 25rpx;
+  transition: left 0.2s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-icon {
+  width: 64rpx;
+  height: 64rpx;
+  vertical-align: middle;
+  margin-right: 16rpx;
+  margin-left: 13px;
+  border-radius: 50%;
+}
+
+.item-data {
+  float: right;
+  margin-right: 2%;
+}
+
+.rankpace {
+  color: #fa7e04;
+}
+.bold {
+  font-size: 32rpx;
+  font-weight: bold
+}
+.usermotto {
+  position: absolute;
+  bottom: 30rpx
+}

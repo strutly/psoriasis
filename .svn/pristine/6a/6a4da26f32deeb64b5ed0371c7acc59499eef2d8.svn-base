@@ -1,0 +1,57 @@
+<view class="warn" wx:if='{{show}}'>{{warnmsg}}</view>
+<view class="info-main">
+  <view class="info-container">
+    <view class="info-content">
+      <view class="info-item">
+        <view class="info-item_lable"><text  decode='true'>您的姓名:</text></view>
+        <input class='info-input' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="name" data-index="0" auto-focus placeholder="请输入您的真实姓名" type='text' value="{{name}}"></input>
+      </view>      
+      <view class="info-item">
+        <view class="info-item_lable"><text  decode='true'>您的电话:</text></view>
+        <input class='info-input' bindblur="bindKeyInput" data-type="phone" data-index="2" placeholder-class='info-placeholder' placeholder="请输入您的电话号码" type='number' value="{{phone}}"></input>
+      </view>
+      <view class="info-item">
+        <view class="info-item_lable"><text  decode='true'>暴徒数量:</text></view>
+        <input class='info-input' bindblur="bindKeyInput" data-type="num" data-index="2" placeholder-class='info-placeholder' placeholder="请输入您的电话号码" type='number' value="{{num}}"></input>
+      </view>
+      <view class="info-item">        
+          <view class="navigator-box">
+            <view class="navigator">
+              <view class="navigator-text" bindtap="chooseLocation">暴徒位置:</view>
+              <view class="navigator-arrow">{{address}}</view>
+            </view>
+          </view>
+      </view>
+      <view class="info-item">
+        <view class="weui-cells">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                  <view class="weui-uploader__title">点击可预览选好的图片</view>
+                  <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
+                </view>
+                <view class="weui-uploader__bd">
+                  <view class="weui-uploader__files">
+                    <block wx:for="{{imageList}}" wx:for-item="image">
+                      <view class="weui-uploader__file">
+                        <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+                      </view>
+                    </block>
+                  </view>
+                  <view class="weui-uploader__input-box">
+                    <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>           
+      <view class='info-btns'>
+        <button class='info-cancel_btn' bindtap='cancel'>取消</button>
+        <button class='info-primary_btn' bindtap='formSubmit'>保存</button>
+      </view>      
+    </view>
+  </view>
+</view>

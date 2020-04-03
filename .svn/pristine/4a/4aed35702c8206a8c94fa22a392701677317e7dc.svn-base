@@ -1,0 +1,164 @@
+<view class='page'>
+  <view class="content">
+    <view class="weui-title">
+      <text>银屑病严重程度评分</text>
+    </view>
+      <view class="weui-cell">
+        <view class='weui-cell__hd'>
+        <text class='lbs'></text>
+        <text decode='emsp' class='weui-label'>面 积 (A) ：</text>
+        <text class='code'>{{index1}} 级</text>
+        </view>
+        <view class="weui-cell__hd b2">
+          <button size='mini' type='primary' bindtap='bindpic1' class='btn'>选择图例</button>
+        </view> 
+        
+      </view>
+
+
+     <view class="weui-cell">
+        <view class='weui-cell__hd'>
+        <text class='lbs'></text>
+          <text decode='emsp' class='weui-label'>红 斑 (E) ：</text>
+          <text class='code'>{{index2}} 级</text>
+           </view> 
+          <view class="weui-cell__hd b2">
+            <button size='mini' type='primary' bindtap='bindpic2' class='btn'>选择图例</button>
+          </view> 
+          
+        </view>
+
+
+       <view class="weui-cell">
+        <view class='weui-cell__hd'>
+        <text class='lbs'></text>
+        <text decode='emsp'>鳞 屑 (S) ：</text>
+        <text class='code'>{{index3}} 级</text>
+         </view> 
+        <view class="weui-cell__hd b2">
+          <button size='mini' type='primary' bindtap='bindpic3' class='btn'>选择图例</button>
+        </view> 
+        
+      </view>
+ <view class="weui-cell">
+        <view class='weui-cell__hd'>
+        <text class='lbs'></text>
+        <text decode='emsp'>厚 度 (T) ：</text>
+        <text class='code'>{{index4}} 级</text>
+         </view>
+        <view class="weui-cell__hd b2">
+          <button size='mini' type='primary' bindtap='bindpic4' class='btn'>选择图例</button>
+        </view> 
+        
+      </view>
+
+
+  </view>
+  <view class="content1">
+    <view class="weui-title class='t2'">
+      <text>生活质量评分</text>
+    </view>
+
+      <view class="section1">
+        <text class='textset4'>近一周银屑病对您的生活影响：</text>
+        <picker class='textset5' bindchange="bindPickerlife" value="{{life}}" range="{{arraylife}}">
+          <view>
+            <!-- {{arraylife[life]}} -->
+            <image class='image{{imageClass}} imgs' mode='aspectFit' src="{{image}}"></image>
+          </view>
+        </picker>
+      </view>
+ 
+  </view>
+  <view class="content2">
+    <view class="buttonNext" bindtap='formSubmit'>
+        <button type='primary' >下一步</button>
+    </view>
+  </view>
+  <!-- 显示图片1 -->
+  <view class="modal-mask" wx:if="{{pic1}}">
+    <text class='textset2'>点击选择最符合您病情的图片</text>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/0.jpg" bindtap='bindPickerChange1' id="0"></image>
+    </view>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/1.jpg" bindtap='bindPickerChange1' id="1"></image>
+    </view>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/2.jpg" bindtap='bindPickerChange1' id="2"></image>
+    </view>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/3.jpg" bindtap='bindPickerChange1' id="3"></image>
+    </view>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/4.jpg" bindtap='bindPickerChange1' id="4"></image>
+    </view>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/5.jpg" bindtap='bindPickerChange1' id="5"></image>
+    </view>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/6.jpg" bindtap='bindPickerChange1' id="6"></image>
+    </view>
+    <view class='modal-dialog1'>
+      <image class='image3' mode='aspectFit' src="/pages/image/7.jpg" bindtap='bindPickerChange1' id="7"></image>
+    </view>
+  </view>
+
+  <!-- 显示图片2 -->
+  <view class="modal-mask" wx:if="{{pic2}}">
+    <text class='textset2'>点击选择最符合您病情的图片</text>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/hb1.png" bindtap='bindPickerChange2' id="0"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/hb2.png" bindtap='bindPickerChange2' id="1"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/hb3.png" bindtap='bindPickerChange2' id="2"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/hb4.png" bindtap='bindPickerChange2' id="3"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/hb5.png" bindtap='bindPickerChange2' id="4"></image>
+    </view>
+  </view>
+<!-- 显示图片3 -->
+  <view class="modal-mask" wx:if="{{pic3}}">
+    <text class='textset2'>点击选择最符合您病情的图片</text>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/tx1.png" bindtap='bindPickerChange3' id="0"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/tx2.png" bindtap='bindPickerChange3' id="1"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/tx3.png" bindtap='bindPickerChange3' id="2"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/tx4.png" bindtap='bindPickerChange3' id="3"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/tx5.png" bindtap='bindPickerChange3' id="4"></image>
+    </view>
+  </view>
+    <!-- 显示图片4 -->
+  <view class="modal-mask" wx:if="{{pic4}}">
+    <text class='textset2'>点击选择最符合您病情的图片</text>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/jr1.png" bindtap='bindPickerChange4' id="0"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/jr2.png" bindtap='bindPickerChange4' id="1"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/jr3.png" bindtap='bindPickerChange4' id="2"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/jr4.png" bindtap='bindPickerChange4' id="3"></image>
+    </view>
+    <view class='modal-dialog'>
+      <image class='image3' mode='aspectFit' src="/pages/image/jr5.png" bindtap='bindPickerChange4' id="4"></image>
+    </view>
+  </view>
+</view>

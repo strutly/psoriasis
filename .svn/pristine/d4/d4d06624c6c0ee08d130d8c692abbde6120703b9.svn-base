@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/pages/begin",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/pages/UserInfo",
+    "pages/pages/EvaluationForm1",
+    "pages/pages/EvaluationForm2",
+    "pages/pages/EvaluationForm3",
+    "pages/pages/EvaluationForm4",
+    "pages/pages/EvaluationForm6",
+    "pages/pages/EvaluationForm5",
+    "pages/pages/login",
+    "pages/pages/doctory",
+    "pages/pages/personal",
+    "pages/pages/personal1",
+    "pages/pages/patient",
+    "pages/pages/case",
+    "pages/pages/incomplete",
+    "pages/pages/UserInfo3",
+    "pages/pages/details"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#743481",
+    "navigationBarTitleText": "银屑病智能风险管理",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+   "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "pages/image/c1.png",
+        "iconPath": "pages/image/c2.png",
+        "pagePath": "pages/pages/begin",
+        "text": "测试"
+      },
+      {
+        "selectedIconPath": "pages/image/d1.png",
+       "iconPath": "pages/image/d2.png",
+        "pagePath": "pages/index/index",
+        "text": "登录"
+      }
+      
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "sitemapLocation": "sitemap.json"
+}

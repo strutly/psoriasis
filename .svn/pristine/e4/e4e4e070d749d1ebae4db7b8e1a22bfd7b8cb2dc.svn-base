@@ -1,0 +1,110 @@
+<view>
+  <view class="content">
+    <view class="title">
+      <text>用户信息填写</text>
+    </view>
+    <view class='models'>
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='true'>姓&emsp;&emsp;名:&ensp;&ensp;</text>
+        <input class='input' type='text' value="{{name}}" bindinput='inputName' maxlength='4' confirm-type='done'></input>
+      </view>
+    </view>
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>昵&emsp;&emsp;称:&ensp;&ensp;</text>
+        <input class='input' type='text' value="{{nickname}}" bindinput='inputNickName' maxlength='15' confirm-type='done'></input>
+      </view>
+    </view>
+
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>微&ensp;信&ensp;号:&ensp;&ensp;</text>
+        <input class='input2' type='text' value="{{wx}}" bindinput='inputWX' maxlength='18' confirm-type='done'></input>
+      </view>
+    </view>
+
+    <!-- <view class="">
+      <view class="section2">
+        <text class='textset' decode='emsp'>手&ensp;机&ensp;号:&ensp;&ensp;</text>
+        <input class='input2' type='text' value="{{phone}}" bindinput='inputPhone' maxlength='11' confirm-type='done'></input>
+      </view>
+    </view> -->
+<!-- 
+    <view class="">
+      <view class="section2">
+        <text class='textset' decode='emsp'>身份证号:&ensp;&ensp;</text>
+        <input class='input2' type='text' value="{{idnum}}" bindinput='inputIDNum' maxlength='18' confirm-type='done'></input>
+      </view>
+    </view> -->
+
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>性&emsp;&emsp;别:&ensp;&ensp;</text>
+        <picker class='picker' bindchange="bindPickerSex" value="{{sex}}" range="{{arraysex}}">
+          <view>{{arraysex[sex]}}
+            <image class='image1' mode='aspectFit' src="/pages/image/xlk.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>生&emsp;&emsp;日:&ensp;&ensp;</text>
+        <picker class='picker' mode="date" start="1915-01-01" end="2025-12-31" bindchange="bindPickerBirthday" value="{{birthday}}">
+          <view>
+            {{birthday}}
+            <image class='image1' mode='aspectFit' src="/pages/image/xlk.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>身&emsp;&emsp;高:&ensp;&ensp;</text>
+        <input class='input1' type='number' value="{{height}}" bindinput='inputHeight' maxlength='6' confirm-type='done'></input>
+        <text> cm</text>
+      </view>
+    </view>
+
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>体&emsp;&emsp;重:&ensp;&ensp;</text>
+        <input class='input1' type='number' value="{{weight}}" bindinput='inputWeight' maxlength='6' confirm-type='done'></input>
+        <text> kg</text>
+      </view>
+    </view>
+
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>发病时间:&ensp;&ensp;</text>
+        <picker class='picker' mode="date"  start="1915-01-01" end="2025-12-01" bindchange="bindPickerIncidenceTime" value="{{incidencetime}}">
+          <view>
+            {{incidencetime}}
+            <image class='image1' mode='aspectFit' src="/pages/image/xlk.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="less">
+      <view class="section2">
+        <text class='textset' decode='emsp'>教育程度:&ensp;&ensp;</text>
+        <picker class='picker' bindchange="bindPickerEducation" value="{{education}}" range="{{arrayeducation}}">
+          <view>
+            {{arrayeducation[education]}}
+            <image class='image1' mode='aspectFit' src="/pages/image/xlk.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    </view>
+  </view>
+  <view class="content2">
+    <view class="buttonNext2" bindtap='formSubmit'>
+        <button type='primary' >保 存</button>
+    </view>
+  </view>
+</view>

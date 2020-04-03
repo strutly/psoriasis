@@ -1,0 +1,96 @@
+/* pages/pages/EvaluationForm6.wxss */
+page {
+    background: #EFEFF4
+}
+.textset{
+  display: inline-block;
+  text-align: center; 
+  vertical-align: middle;
+  font-size: 30rpx;
+  width: 20%;
+}
+
+.textset1{
+  display: inline-block;
+  text-align: center; 
+  vertical-align: middle;
+  font-size: 30rpx;
+  width: 20%;
+
+  /* background-color: green */
+}
+
+.textset2{
+  display: inline-block;
+  text-align: center; 
+  vertical-align: middle;
+  font-size: 30rpx;
+  width: 20%;
+
+  /* background-color: green */
+}
+
+.blue{
+  background-color: #E6F3F9;
+  height: 100rpx;
+  
+}
+.livs {
+border-bottom: 1px solid #E6F3F9
+}
+.white{
+  height: 100rpx;
+  background-color: #FFFAFA;
+}
+.button{
+  font-size: 30rpx;
+}
+
+.mask{
+ position: absolute;
+ left: 0;
+ right: 0;
+ top: 0;
+ bottom: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: rgba(0,0,0,0.4);
+ z-index: 9999;
+}
+
+.modal-content{
+ display: flex;
+ flex-direction: column;
+ width: 90%;
+ height: 50%;
+ background-color: #fff;
+ border-radius: 10rpx;
+}
+
+.modal-btn-wrapper{
+ display: flex;
+ flex-direction: row;
+ height: 130rpx;
+ line-height: 100rpx;
+ border-top: 2rpx solid rgba(7,17,27,0.1);
+}
+.cancel-btn, .confirm-btn{
+ flex: 1;
+ height: 120rpx;
+ line-height: 100rpx;
+ text-align: center;
+ font-size: 40rpx;
+}
+
+.cancel-btn{
+ border-right: 2rpx solid rgba(7,17,27,0.1);
+}
+
+.input{
+  height: 80%;
+  /* background-color: red; */
+  margin-left: 33rpx;
+  margin-top: 33rpx;
+  font-size: 40rpx;
+}

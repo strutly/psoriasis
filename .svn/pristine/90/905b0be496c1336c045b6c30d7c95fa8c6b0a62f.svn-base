@@ -1,0 +1,7 @@
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location='true' style="width: 100%; height: {{height}};">    
+      <cover-view class="flex-wrp" style="flex-direction:row;position:relative;top:20px;left:20px;">
+        <cover-view class="flex-item demo" bindtap="add"></cover-view>
+      </cover-view>
+    
+  
+</map>

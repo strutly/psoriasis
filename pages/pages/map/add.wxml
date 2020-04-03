@@ -1,0 +1,72 @@
+<include src ="../template/error.wxml"/>
+<view class="info-main">
+  <view class="info-container">
+    <view class="page__bd">
+      <view class="weui-cells weui-cells_form  weui-cell_access">
+        <view class="weui-cell">
+          <view class="weui-cell__hd"><text class="weui-text">您的姓名:</text></view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="name" data-index="0" auto-focus placeholder="请输入您的真实姓名" type='text' value="{{name}}"></input>
+          </view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__hd"><text class="weui-text">您的电话:</text></view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindblur="bindKeyInput" data-type="phone" data-index="2" placeholder-class='info-placeholder' placeholder="请输入您的电话号码" type='number' value="{{phone}}"></input>
+          </view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__hd"><text class="weui-text">暴徒数量:</text></view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindblur="bindKeyInput" data-type="num" data-index="2" placeholder-class='info-placeholder' placeholder="请输入区域内的暴徒数量" type='number' value="{{num}}"></input>
+          </view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__hd"><text class="weui-text">暴徒位置:</text></view>
+          <view class="weui-cell__bd" bindtap="chooseLocation">
+            <view class="weui-input">{{address}}</view><view class="weui-cell__ft"></view>
+          </view>
+        </view>
+            
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">点击可预览选好的图片</view>
+                <view class="weui-uploader__info">{{imageList.length}}/8</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files">
+                  <block wx:for="{{imageList}}" wx:for-item="image">
+                    <view class="weui-uploader__file">
+                      <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+                      <icon class="cancel" type="cancel" bindtap="move" data-index="{{index}}" size="20"/>
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box" wx:if="{{imageList.length<8}}">
+                  <view class="weui-uploader__input" bindtap="chooseImage">
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>        
+      </view>
+      
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea bindblur="bindTextAreaBlur" auto-height style="min-height:200px" placeholder="请输入文字说明" />
+        </view>
+      </view>               
+    </view>
+  </view>
+
+
+    <view class="info-content">                
+      <view class='info-btns'>
+        <button class='info-cancel_btn' bindtap='cancel'>取消</button>
+        <button class='info-primary_btn' bindtap='formSubmit'>保存</button>
+      </view>      
+    </view>
+  </view>
+</view>

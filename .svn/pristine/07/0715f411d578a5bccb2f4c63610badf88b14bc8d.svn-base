@@ -1,0 +1,60 @@
+var app = getApp();
+Page({
+  data: {
+    imgheight:150,
+    nickName: '',
+    headImg: '/pages/image/headimg.png',
+    headImgHeight:'190rpx',
+    topMargin:'80rpx',
+    show:false
+  },
+  prompt: function (msg) {
+    this.setData({
+      show: true,
+      warnmsg: msg
+    })
+    var that = this;
+    setTimeout(function () {
+      that.setData({
+        show: false,
+        warnmsg: ""
+      })
+    }, 1500);
+  },
+  onLoad: function () {
+    console.log("persion-index.js----onload");
+    console.log(new Date().getTime() - app.globalData.time)
+    var width = wx.getSystemInfoSync().windowWidth;
+    console.log(width);
+    var userInfo = app.globalData.userInfo;
+    this.setData({
+      imgheight: width * 0.62,
+      nickName: userInfo.nickname ? userInfo.nickname :"",
+      headImg: userInfo.headimgurl ? userInfo.headimgurl : "/pages/image/headimg.png",
+      headImgHeight: width * 0.24,
+      topMargin: width*0.12,
+    })    
+  },
+  info:function(){    
+    wx.navigateTo({
+      url: '/pages/pages/personal/info'
+    })
+  },
+  history:function(){
+    wx.navigateTo({
+      url: '/pages/pages/personal/history'
+    })
+  },
+  go_test:function(){
+    wx.navigateTo({
+      url: '/pages/pages/evaluation/form1'
+    })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '银屑病智能风险管理',
+      imageUrl: '/pages/image/share_img.png',
+      path: '/pages/index/index',
+    }
+  }  
+})

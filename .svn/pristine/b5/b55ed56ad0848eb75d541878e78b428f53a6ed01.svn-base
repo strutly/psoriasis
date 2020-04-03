@@ -1,0 +1,14 @@
+page{
+  background-color: #f5f5f5;
+}
+.weui-msg {
+  padding-top: 136px;
+  text-align: center;
+}
+.weui-btn{
+  border-radius: 24px;
+  width: 60%;
+  background-color: #f5f5f5;
+  border: 1px solid #999999;
+  color: #999999;
+}

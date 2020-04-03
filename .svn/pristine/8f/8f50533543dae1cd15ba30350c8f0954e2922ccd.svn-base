@@ -1,0 +1,98 @@
+page {
+  width: 100%;
+  height: 100%;
+   background-repeat:no-repeat;
+   background-size:100% 100%;
+   -moz-background-size:100% 100%;
+   background-image: url(http://a.vpimg3.com/upload/merchandise/201940/PAULFRANK-PF20009Q7-15.jpg);
+   
+   color: rgb(68, 63, 63);
+   overflow: hidden
+}
+.models {
+  width: 86%;
+  margin-left: 7%;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff
+}
+.section2{
+  font-size: 36rpx;
+  margin-left: 30rpx;
+  width: 100%;
+  height: 100%;
+  /* background-color: red;    */
+  display: inline-block;
+}
+
+.input{
+  text-align: center;  
+  /* height: 50rpx; */
+  width: 300rpx;
+  /* 外框加色 */
+  /* border: 1px solid #fff; */
+  /* 圆滑 */
+  border-radius: 4px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.input1{
+  text-align: center;  
+  /* height: 50rpx; */
+  width: 140rpx;
+  /* 外框加色 */
+  /* border: 1px solid #fff; */
+  /* 圆滑 */
+  border-radius: 4px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.input2{
+  text-align: center;  
+  /* height: 50rpx; */
+  width: 300rpx;
+  /* 外框加色 */
+  /* border: 1px solid #fff; */
+  /* 圆滑 */
+  border-radius: 4px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.picker {
+  width: 50%;
+  text-align: center
+}
+.textset{
+  display: inline-block;
+  text-align: center; 
+  vertical-align: middle;
+}
+
+.buttonNext1{
+  margin-left: 30%;
+  margin-right: 50rpx;
+  display: inline-block;
+  background: #743481
+}
+
+.buttonNext2{
+  /* margin-left: 65%; */
+  margin-right: 20rpx;
+  display: inline-block;
+  background: #743481
+}
+.buttonNext1 button, .buttonNext2 button {
+  background: #743481
+}
+.less{
+  width: 100%;
+  height: 80rpx;
+  padding-top: 10rpx;
+  border-bottom: .01rem solid #c5c5ca;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  
+}
+
+.content2 {
+  margin-top: 50rpx
+}

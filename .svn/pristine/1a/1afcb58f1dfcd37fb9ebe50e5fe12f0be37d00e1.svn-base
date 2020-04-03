@@ -1,0 +1,167 @@
+const app = getApp()
+var domain = "https://tty.tsing-care.com/";
+Page({
+  data: {
+    arrSelect1: ["是", "否"],
+    arrSelect2: ["是", "否"],
+    arrSelect3: ["是", "否"],
+    arrSelect4: ["是", "否"],
+    arrSelect5: ["是", "否"],
+    arrSelect6: ["是", "否"],
+    arrSelect7: ["是", "否"]
+  },
+  onLoad: function (option) {
+    var id = option.id;
+    var that=this;
+    console.log(id);
+    that.setData({
+      id:id
+    })
+  },
+  bindPickerSelect1: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // app.globalData.Sex = e.detail.value
+    this.setData({
+      select1: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      this.setData({
+        part1: 1
+      })
+    } else {
+      this.setData({
+        part1: 0
+      })
+    }
+  },
+  bindPickerSelect2: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // app.globalData.Sex = e.detail.value
+    this.setData({
+      select2: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      this.setData({
+        part2: 1
+      })
+    } else {
+      this.setData({
+        part2: 0
+      })
+    }
+  },
+  bindPickerSelect3: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // app.globalData.Sex = e.detail.value
+    this.setData({
+      select3: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      this.setData({
+        part3: 1
+      })
+    } else {
+      this.setData({
+        part3: 0
+      })
+    }
+  },
+  bindPickerSelect4: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // app.globalData.Sex = e.detail.value
+    this.setData({
+      select4: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      this.setData({
+        part4: 1
+      })
+    } else {
+      this.setData({
+        part4: 0
+      })
+    }
+  },
+  bindPickerSelect5: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // app.globalData.Sex = e.detail.value
+    this.setData({
+      select5: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      this.setData({
+        part5: 1
+      })
+    } else {
+      this.setData({
+        part5: 0
+      })
+    }
+  },
+  bindPickerSelect6: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // app.globalData.Sex = e.detail.value
+    this.setData({
+      select6: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      this.setData({
+        part6: 1
+      })
+    } else {
+      this.setData({
+        part6: 0
+      })
+    }
+  },
+  bindPickerSelect7: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // app.globalData.Sex = e.detail.value
+    this.setData({
+      select7: e.detail.value
+    })
+    if (e.detail.value == 0) {
+      this.setData({
+        part7: 1
+      })
+    } else {
+      this.setData({
+        part7: 0
+      })
+    }
+  },
+  keep:function(){
+    wx.showToast({
+      title: '保存成功',
+      icon: 'success',
+      duration: 2000
+    })
+    var unionid = app.globalData.unionid;
+    var data = {
+      id:this.data.id,
+      num1:this.data.part1,
+      num2: this.data.part2,
+      num3: this.data.part3,
+      num4: this.data.part4,
+      num5: this.data.part5,
+      num6: this.data.part6,
+    }
+    console.log(data)
+    wx.request({
+      url:domain+ `/wxs/doctor/process?unionid=${unionid}`,
+      data: data,
+      method: "POST",
+      contentType: 'application/json;charset=UTF-8',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (result) {
+        console.log(result);
+        wx.navigateBack({
+          delta: 3
+        })
+
+      }
+    })
+  }
+})

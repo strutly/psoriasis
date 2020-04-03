@@ -1,0 +1,44 @@
+<include src ="../template/error.wxml"/>
+<view class="main" style="background-size:100% {{imgheight}}px">
+  <view wx:if='{{if_doctor}}' bindtap="go" style="position:fixed;top:20rpx;right:20rpx;"><image style="width:20px;height:30rpx;" src="http://gridpic.tsing-tec.com/fde94337eb874f5ab755c539988d4259"></image></view>
+  <view class="personal" style="height:{{imgheight}}px">
+    <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;" src='{{headImg}}'></image>
+    <view class="nickname">{{nickName}}</view>
+  </view>
+  <view class="container">    
+    <view class="grid_box">
+      <view class="grid" bindtap='info' style="border-right:2rpx dashed #ababab;">
+        <image class="icon" src="/pages/image/information.png"></image>
+        <text class="text">个人信息</text>
+      </view>
+      <view class="grid" bindtap='history'>
+        <image  class="icon"  src="/pages/image/history.png"></image>
+        <text class="text">历史记录</text>
+      </view>
+
+      <!-- <view class="grid" bindtap='map'style="float:left;">
+        <icon type="info" size="80" style="display:block;"/>
+        <text class="text">事件上报</text>
+      </view> -->
+    </view>
+    <view class='btn'>
+      <button class='btncolor' bindtap='go_test'>继续测试</button>
+    </view>
+  </view>
+</view>
+<view class="copyright">技术支持：清华大学网络行为研究所</view>
+<view class='mask' wx:if='{{show}}'>
+  <view class='modal-content'>
+    <view class="logo-box">
+      <image class="logo" src="/pages/image/logo.png"></image>
+    </view>
+    <view class='title1'>温馨提示</view>
+    <text class='title2'>您尚未提交个人信息,是否现在填写?</text>    
+    <view class='modal-btn-wrapper'>
+        <button class='cancel-btn'  bindtap='cancel'>否</button>
+        <button class='confirm-btn' bindtap="info">是</button>
+    </view>
+  </view>
+</view>
+
+

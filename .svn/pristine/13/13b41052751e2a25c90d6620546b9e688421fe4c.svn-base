@@ -1,0 +1,147 @@
+<view class="main">
+  <view class="navbar">
+    <view class="navbar_item navbar_item_active">测试详细</view>
+    <view class="navbar_item">医生信息</view>
+  </view>
+  <view class="content">
+    <view class="index-bd">
+      <view class="kind-list">
+        <view class="kind-list-item">
+            <view  class="kind-list-item-hd {{opens[0]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="0">
+              <view class="kind-list-text">就诊记录</view>
+              <view class="kind-list-img"></view>              
+            </view>
+            <view class="kind-list-item-bd {{opens[0]?'kind-list-item-bd-show':''}}">
+              <view class="navigator-box {{opens[0]?'navigator-box-show':''}}">                
+                  <view class="navigator">
+                    <view class="navigator-text">是否已经由皮肤科医生诊断为银屑病</view>
+                    <view class="navigator-arrow">是</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">诊断银屑病的时间</view>
+                    <view class="navigator-arrow">2019-09-11</view>
+                  </view>
+                  
+                  <view class="navigator">
+                    <view class="navigator-text">是否已经由皮肤科或者风湿免疫科医生诊断为银屑病关节炎(或关节型银屑病)</view>
+                    <view class="navigator-arrow">是</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">诊断银屑病性关节炎或关节型银屑病的时间</view>
+                    <view class="navigator-arrow">2019-09-11</view>
+                  </view>
+              </view>
+            </view>
+          </view>
+          
+        <view class="kind-list-item">
+            <view  class="kind-list-item-hd {{opens[1]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="1">
+              <view class="kind-list-text">程度评分</view>
+              <view class="kind-list-img"></view>              
+            </view>
+            <view class="kind-list-item-bd {{opens[1]?'kind-list-item-bd-show':''}}">
+              <view class="navigator-box {{opens[1]?'navigator-box-show':''}}">                
+                  <view class="navigator">
+                    <view class="navigator-text">面积(A)</view>
+                    <view class="navigator-arrow">1级</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">红斑(E)</view>
+                    <view class="navigator-arrow">1级</view>
+                  </view>
+                  
+                  <view class="navigator">
+                    <view class="navigator-text">鳞屑(S)</view>
+                    <view class="navigator-arrow">2级</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">厚度(T)</view>
+                    <view class="navigator-arrow">3级</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">鳞屑(S)</view>
+                    <view class="navigator-arrow">2级</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">近一周对生活影响</view>
+                    <view class="navigator-arrow">毫无影响</view>
+                  </view>
+              </view>
+            </view>
+          </view>
+          
+        <view class="kind-list-item">
+            <view  class="kind-list-item-hd {{opens[2]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="2">
+              <view class="kind-list-text">关节炎情况</view>
+              <view class="kind-list-img"></view>              
+            </view>
+            <view class="kind-list-item-bd {{opens[2]?'kind-list-item-bd-show':''}}">
+              <view class="navigator-box {{opens[2]?'navigator-box-show':''}}">                
+                  <view class="navigator">
+                    <view class="navigator-text">曾经有过一个或多个关节肿胀</view>
+                    <view class="navigator-arrow">是</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">有医生告诉过有关节炎</view>
+                    <view class="navigator-arrow">是</view>
+                  </view>
+                  
+                  <view class="navigator">
+                    <view class="navigator-text">是否已经由皮肤科或者风湿免疫科医生诊断为银屑病关节炎(或关节型银屑病)</view>
+                    <view class="navigator-arrow">是</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">指(趾)甲上有凹点</view>
+                    <view class="navigator-arrow">否</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">后脚跟疼</view>
+                    <view class="navigator-arrow">否</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">有一个手指(足趾)不明原因肿痛</view>
+                    <view class="navigator-arrow">否</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">口服阿维A,他扎罗汀等维A酸类药物</view>
+                    <view class="navigator-arrow">否</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">患有虹膜炎,睫状体炎或脉络膜炎</view>
+                    <view class="navigator-arrow">否</view>
+                  </view>                  
+              </view>
+            </view>
+          </view>
+          
+        <view class="kind-list-item">
+            <view  class="kind-list-item-hd {{opens[3]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="3">
+              <view class="kind-list-text">测评结果</view>
+              <view class="kind-list-img"></view>              
+            </view>
+            <view class="kind-list-item-bd {{opens[3]?'kind-list-item-bd-show':''}}">
+              <view class="navigator-box {{opens[3]?'navigator-box-show':''}}">                
+                  <view class="navigator">
+                    <view class="navigator-text">严重程度评分</view>
+                    <view class="navigator-arrow">5</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">银屑病关节炎得分</view>
+                    <view class="navigator-arrow">5</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">银屑病关节炎风险评估得分</view>
+                    <view class="navigator-arrow">3</view>
+                  </view>
+                  
+  
+              </view>
+            </view>
+          </view>
+          
+      </view>
+    </view>
+  
+  </view>
+  <view class="footer">分享结果给医生</view>
+</view>

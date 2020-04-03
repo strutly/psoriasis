@@ -1,0 +1,151 @@
+page{
+  background:#EFEFF4;
+
+}
+.container{
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0rpx;
+  /* overflow-y: scroll; */
+  font-size: 36rpx;
+}
+.avatar{
+  width: 100%;
+  height: 300rpx;
+  margin-top: 20rpx;
+  background: #71b6d3;
+  position: relative;
+}
+
+.avatar::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleY(.5);
+  background-color: #9D9D9D;
+}
+
+.nickName{
+  width: 100%;
+  height: 150rpx;
+  line-height: 150rpx;
+  vertical-align: middle;
+  position:relative;
+}
+.nickName::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleY(.5);
+  background-color: #9D9D9D;
+}
+.sex{
+  width: 100%;
+  height: 150rpx;
+  line-height: 150rpx;
+  position: relative;
+}
+.sex::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleY(.5);
+  background-color: #9D9D9D;
+}
+.area{
+  width: 100%;
+  height: 150rpx;
+  line-height: 150rpx;
+  position: relative;
+}
+.area::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleY(.5);
+  background-color: #9D9D9D;
+}
+.signature{
+  width: 100%;
+  height: 300rpx;
+  line-height: 150rpx;
+  position: relative;
+}
+.signature::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleY(.5);
+  /* background-color: #9D9D9D; */
+}
+.container text{
+  float: left;
+  color: #7B7B7B;
+  vertical-align: middle;
+  margin-left: 20rpx;
+}
+.container .real{
+  float: left;
+  margin-left: 20rpx;
+  vertical-align: middle;
+}
+.a{
+  float: left;
+  width: 130rpx;
+  height: 130rpx;
+  margin-top:40rpx;
+  margin-left: 30rpx;
+  border-radius: 50%;
+}
+.n{
+  float: right;
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 80rpx;
+  vertical-align: middle;
+}
+.avatar text {
+  width: 60%;
+  display: block;
+  color: #ffffff;
+  font-family: "微软雅黑"
+}
+.avatar view {
+  width: 60%;
+  display: block;
+  color: #ffffff;
+  font-family: "微软雅黑"
+}
+.txt {
+  position: absolute;
+  top: 30rpx;
+  left: 200rpx;
+}
+.p1 {
+  font-size: 42rpx;
+}
+.p2 {
+  font-size: 36rpx;
+}
+.p3 {
+  font-size: 32rpx;
+}
+.p4 {
+  font-size: 24rpx
+}

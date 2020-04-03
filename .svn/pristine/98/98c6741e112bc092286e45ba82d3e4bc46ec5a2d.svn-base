@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="avatar">
+
+    <image class="a" src="{{userInfoAvatar}}" bindtap="chooseimage" />
+    <view class="real">{{nickName}}</view>
+
+  </view>
+
+  <view class="sex" bindtap='getpersonnal'>
+    <view class='t1'>个人信息</view>
+    <view class='peson'>
+      <image src='/pages/image/right.png' class='img1'></image>
+    </view>
+  </view>
+  <view class="area" bindtap='gethistory'>
+    <view class='t2'>历史记录</view>
+    <view class='hist'>
+      <image src='/pages/image/right.png' class='img2'></image>
+    </view>
+  </view>
+  <view class='btn'>
+    <button class='btncolor' bindtap='getDatas'> 继续测试 </button> 
+  </view>
+</view>

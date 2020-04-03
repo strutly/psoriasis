@@ -1,0 +1,27 @@
+<view class="warn" wx:if='{{show}}'>{{warnmsg}}</view>
+<view class="main" style="background-size:100% {{imgheight}}px">
+  <view class="personal" style="height:{{imgheight}}px">
+      <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;" src='{{headImg}}'></image>
+      <view class="nickname">{{nickName}}</view>
+    </view>
+  <view class="container">    
+    <view class="grid_box">
+      <view class="grid" bindtap='info' style="border-right:2rpx dashed #ababab;">
+        <image class="icon" src="/pages/image/information.png"></image>
+        <text class="text">个人信息</text>
+      </view>
+      <view class="grid" bindtap='history'>
+        <image  class="icon"  src="/pages/image/history.png"></image>
+        <text class="text">历史记录</text>
+      </view>
+      <view class="grid" style="height:100px;">
+        <button  open-type="contact" bindcontact="handleContact">联系客服</button>
+      </view>      
+    </view>
+    <view class='btn'>
+      <button class='btncolor' bindtap='go_test'>继续测试</button>
+    </view>
+  </view>
+</view>
+
+

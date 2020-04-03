@@ -1,0 +1,385 @@
+// pages/EvaluationForm/EvaluationForm2.js
+const app = getApp();
+var domain = app.globalData.host;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    gjy1: '',
+    gjy2: '',
+    gjy3: '',
+    gjy4: '',
+    gjy5: '',
+    // arrayTF: ['否','是' ],
+
+    // url: app.globalData.host + '/Alldata',
+    url: app.globalData.host,
+    gjy6: '',
+    gjy7: '',
+    gjy8: '',
+    gjy9: '',
+    arrayTF: ['否', '是'],
+    arrayNH: ['无', '有'],
+    saPASI5: '',
+    PEST: '',
+    PsARisk: '',
+    ID: '',
+    result: [],
+  },
+
+  bindPickergjy1: function(e){
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.if_1 = e.detail.value
+    this.setData({
+      gjy1: e.detail.value
+    })
+  },
+  bindPickergjy2: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.if_2 = e.detail.value
+    this.setData({
+      gjy2: e.detail.value
+    })
+  },
+  bindPickergjy3: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.if_3 = e.detail.value
+    app.globalData.PR2 = e.detail.value
+    this.setData({
+      gjy3: e.detail.value
+    })
+  },
+  bindPickergjy4: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.if_4 = e.detail.value
+    this.setData({
+      gjy4: e.detail.value
+    })
+  },
+  bindPickergjy5: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.if_5 = e.detail.value
+    this.setData({
+      gjy5: e.detail.value
+    })
+  },
+  // bindPickergjy6: function (e) {
+  //   console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   app.globalData.PR2 = e.detail.value
+  //   this.setData({
+  //     gjy6: e.detail.value
+  //   })
+  // },
+  bindPickergjy7: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.if_6 = e.detail.value
+    this.setData({
+      gjy7: e.detail.value
+    })
+  },
+  bindPickergjy8: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.if_7 = e.detail.value
+    this.setData({
+      gjy8: e.detail.value
+    })
+  },
+  bindPickergjy9: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    app.globalData.PR6 = e.detail.value
+    this.setData({
+      gjy9: e.detail.value
+    })
+  },
+  formSubmit: function () {
+    var warn = '';//弹框时提示的内容
+    var flag = '1';//判断信息输入是否完整
+    if (this.data.gjy1 == '' || this.data.gjy2 == '' || this.data.gjy3 == '' || this.data.gjy4 == '' || this.data.gjy5 == '') {
+      warn = '请完整填写关节炎相关选项！'
+    } else {
+      flag = '2'
+    }
+    if (flag == '1') {
+      wx.showModal({
+        title: '提示',
+        content: warn,
+        showCancel: false,
+      })
+    } else {
+      // var unionid1 = wx.getStorageSync('unionid')
+      // console.log(unionid1);
+      var test = app.globalData.test;
+      if (test == "本次为未授权自测"){
+        var datas = {
+          'datet1': app.globalData.datet1,//面积
+          'datet2': app.globalData.datet2,//红斑
+          'datet3': app.globalData.datet3,//鳞屑
+          'datet4': app.globalData.datet4,//厚度
+
+          'level': app.globalData.level,//生活质量评分
+
+          'if_1': app.globalData.if_1,//关节炎相关情况1
+          'if_2': app.globalData.if_2,//2
+          'if_3': app.globalData.if_3,//3
+          'if_4': app.globalData.if_4,//4
+          'if_5': app.globalData.if_5,//5
+          'if_6': app.globalData.if_6,//6
+          'if_7': app.globalData.if_7,//7
+          //新表
+          'checkvalue1': app.globalData.checkvalue1,//是否诊断银屑病
+          'time1': app.globalData.time1,//诊断银屑病时间
+          'checkvalue2': app.globalData.checkvalue2,//是否诊断银屑病关节炎
+          'time2': app.globalData.time2,//诊断银屑病关节炎时间
+
+        };
+        wx.setStorage({
+          key: 'datas',
+          data: datas,
+        })
+        console.log(datas)
+        wx.reLaunch({
+          url: '/pages/pages/EvaluationForm3',
+        })
+      }else{
+        var unionid = app.globalData.unionid;
+        const data = JSON.stringify({
+          'unionid': unionid,
+          'datet1': app.globalData.datet1,//面积
+          'datet2': app.globalData.datet2,//红斑
+          'datet3': app.globalData.datet3,//鳞屑
+          'datet4': app.globalData.datet4,//厚度
+
+          'level': app.globalData.level,//生活质量评分
+
+          'if_1': app.globalData.if_1,//关节炎相关情况1
+          'if_2': app.globalData.if_2,//2
+          'if_3': app.globalData.if_3,//3
+          'if_4': app.globalData.if_4,//4
+          'if_5': app.globalData.if_5,//5
+          'if_6': app.globalData.if_6,//6
+          'if_7': app.globalData.if_7,//7
+          //新表
+          'checkvalue1': app.globalData.checkvalue1,//是否诊断银屑病
+          'time1': app.globalData.time1,//诊断银屑病时间
+          'checkvalue2': app.globalData.checkvalue2,//是否诊断银屑病关节炎
+          'time2': app.globalData.time2,//诊断银屑病关节炎时间
+
+        })
+        console.log(data);
+
+        wx.request({
+          url: domain + '/wxs/evaluation/form',
+          data: data,
+          method: 'POST',
+          contentType: 'application/json;charset=UTF-8',
+          success: function (data) {
+            console.log(data);
+            console.log(data.data.errcode);
+
+            if (data.data.errcode == 0) {
+              var code = data.data.data.code;
+              wx.reLaunch({
+                url: '/pages/pages/EvaluationForm3?code=' + code
+              })
+            } else if (data.data.errcode == -1) {
+              wx.showModal({
+                title: '提示',
+                content: data.data.errmsg,
+                showCancel: false,
+                success(res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                  }
+                }
+              })
+            }
+          }
+        })
+      }
+      
+    }
+    
+    
+  },
+  // pageload: function () {
+  //   var result = false
+  //   //生成loading框
+  //   wx.showLoading({
+  //     title: '数据计算中',
+  //   })
+  //   result = this.httprequst();
+  // },
+
+  // httprequst: function () {
+  //   var that = this;
+  //   var result = false;
+  //   console.log(JSON.stringify({
+  //     'datet1': app.globalData.datet1,//面积
+  //     'datet2': app.globalData.datet2,//红斑
+  //     'datet3': app.globalData.datet3,//鳞屑
+  //     'datet4': app.globalData.datet4,//厚度
+
+  //     'index': app.globalData.QualityOfLife,//生活质量评分
+
+  //     'if_1': app.globalData.if_1,//关节炎相关情况1
+  //     'if_2': app.globalData.if_2,//2
+  //     'if_3': app.globalData.if_3,//3
+  //     'if_4': app.globalData.if_4,//4
+  //     'if_5': app.globalData.if_5,//5
+  //     'if_6': app.globalData.if_6,//6
+  //     'if_7': app.globalData.if_7,//7
+  //     //新表
+  //     'checkvalue1': app.globalData.checkvalue1,//是否诊断银屑病
+  //     'time1': app.globalData.time1,//诊断银屑病时间
+  //     'checkvalue2': app.globalData.checkvalue2,//是否诊断银屑病关节炎
+  //     'time2': app.globalData.time2,//诊断银屑病关节炎时间
+
+  //   }))
+  //   wx.request({
+  //     url: "https://tty.tsing-care.com/wxs/evaluation/form",
+  //     method: 'POST',
+  //     data: {
+  //       'datet1': app.globalData.datet1,//面积
+  //       'datet2': app.globalData.datet2,//红斑
+  //       'datet3': app.globalData.datet3,//鳞屑
+  //       'datet4': app.globalData.datet4,//厚度
+
+  //       'index': app.globalData.QualityOfLife,//生活质量评分
+
+  //       'if_1': app.globalData.if_1,//关节炎相关情况1
+  //       'if_2': app.globalData.if_2,//2
+  //       'if_3': app.globalData.if_3,//3
+  //       'if_4': app.globalData.if_4,//4
+  //       'if_5': app.globalData.if_5,//5
+  //       'if_6': app.globalData.if_6,//6
+  //       'if_7': app.globalData.if_7,//7
+  //       //新表
+  //       'checkvalue1': app.globalData.checkvalue1,//是否诊断银屑病
+  //       'time1': app.globalData.time1,//诊断银屑病时间
+  //       'checkvalue2': app.globalData.checkvalue2,//是否诊断银屑病关节炎
+  //       'time2': app.globalData.time2,//诊断银屑病关节炎时间
+
+  //     },
+  //     contentType: 'application/json;charset=UTF-8',
+
+  //     complete: function (res) {
+  //       console.log(res.data)
+  //       // try {
+  //       //   if (res.data.Result && res.data.Result == 1) {
+  //       //     that.data.saPASI5 = res.data.saPASI5
+  //       //     that.data.PEST = res.data.Arthritis6
+  //       //     that.data.ID = res.data.ID
+  //       //     if (res.data.PR7) {
+  //       //       that.data.PsARisk = res.data.PR7
+  //       //     }
+
+  //       //     that.data.result = res.data.propose
+  //       //     result = true
+  //       //   }
+  //       //   that.pagedone(result)
+  //       // } catch (e) {
+  //       //   that.pagedone(result)
+  //       // }
+
+  //     },
+  //   })
+  // },
+
+  // pagedone: function (result) {
+  //   //下面的是操作
+    
+  //   wx.hideLoading()
+  //   console.log(result)
+  //   if (!result) {
+  //     console.log('结果返回，跳转到下一个页面');
+  //     wx.redirectTo({
+  //       // url: '/pages/pages/EvaluationForm3?saPASI5=' + this.data.saPASI5 + '&PEST=' + this.data.PEST + '&PsARisk=' + this.data.PsARisk + '&result=' + this.data.result + '&ID=' + this.data.ID
+  //       url: '/pages/pages/EvaluationForm3'
+  //     })
+  //   } else {
+  //     wx.showModal({
+  //       title: '错误',
+  //       content: '结果计算失败，请重试'
+  //     })
+  //   }
+  // },
+  
+  // formSubmit: function(e){
+  //   var warn = '';//弹框时提示的内容
+  //   var flag = '1';//判断信息输入是否完整
+   
+  //   var result = false;
+  //   if (this.data.gjy1 == '' || this.data.gjy2 == '' || this.data.gjy3 == '' || this.data.gjy4 == '' || this.data.gjy5 == '') {
+  //     warn = '请填写银屑病关节炎评分！'
+  //   } else {
+  //     flag = '2'
+  //   }
+  //   if (flag == '1') {
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: warn
+  //     })
+  //   } else {
+  //     this.pageload()
+  //   }
+  // },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    // console.log('onload')
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
+})

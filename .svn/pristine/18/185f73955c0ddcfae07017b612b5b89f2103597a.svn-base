@@ -1,0 +1,83 @@
+<!--pages/pages/EvaluationForm4.wxml-->
+<view>
+  <view class="page">
+    <view class="weui-title">
+      <text>就诊记录</text>
+    </view>
+    <view class='wrap'>
+
+      <view class="section">
+        <text class='lbs'></text>
+        <text class='titles'>是否已经由皮肤科医生诊断为银屑病：</text>
+        <view class='checkbox-con'>
+          <radio-group bindchange="bindPickerIs1" value='{{checkvalue1}}'>
+            <label class="{{checked1?'checkbox checked':'checkbox'}}">
+              <radio value="1" checked='{{checked1}}' />是
+            </label>
+            <label class="{{checked3?'checkbox checked':'checkbox'}}">
+              <radio value="0" checked='{{checked3}}' />否
+              </label>
+
+          </radio-group>
+        </view>
+      </view>
+
+
+
+      <view class="section" wx:if='{{show}}'>
+        <text class='lbs'></text>
+        <text class='titles'>诊断银屑病的时间：</text>
+        <view class="page__bd">
+          <view class="section">
+            <picker class='textset2' mode="date" start="1915-01-01" end="2025-12-31" bindchange="bindPickerDiagnosedTime" value="{{time1}}" >
+              <view>
+                {{time1}}
+                <image class='image1' mode='aspectFit' src="/pages/image/xlk.png"></image>
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="section">
+      <text class='lbs'></text>
+        <text class='titles'>是否已经由皮肤科或风湿免疫科医生诊断为银屑病性关节炎（或关节型银屑病）：</text>
+        <view class='checkbox-con'>
+          <radio-group bindchange="bindPickerIs2" value='{{checkvalue2}}'>
+            <label class="{{item.checked?'checkbox checked':'checkbox'}}">
+              <radio value="1" checked='{{checked2}}' />是
+            </label>
+            <label class="{{item.checked?'checkbox checked':'checkbox'}}">
+              <radio value="0" checked='{{checked4}}' />否
+            </label>
+
+          </radio-group>
+        </view>
+      </view>
+
+
+
+      <view class="section" wx:if='{{show1}}'>
+        <text class='lbs'></text>
+        <text class='titles'>诊断银屑病性关节炎（或关节型银屑病）的时间：</text>
+        <view class="page__bd">
+          <view class="section">
+            <picker class='textset2' mode="date" start="1915-01-01" end="2025-12-31" bindchange="bindPickerArthritisTime" value="{{time2}}" >
+              <view>
+                {{time2}}
+                <image class='image1' mode='aspectFit' src="/pages/image/xlk.png"></image>
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="weui-btn-area">
+    <view class="weui-btn" bindtap='formSubmit'>
+      <button type='primary'>下一步</button>
+    </view>
+  </view>
+
+</view>

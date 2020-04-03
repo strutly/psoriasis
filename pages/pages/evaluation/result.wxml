@@ -1,0 +1,90 @@
+<view class="main" style="background-size:100% {{imgheight}}px">
+  <view class="personal" style="height:{{imgheight}}px">
+      <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;" src='{{headImg}}'></image>
+      <view class="nickname">{{nickName}}</view>
+    </view>
+  <view class="container">    
+    <view class="result_box">
+      <view class="result">
+        <view class="num">
+          <image src="../../image/l{{result.spasi_i}}.png"></image>
+          <text class="text" style="color:{{colorList[result.spasi_i]}};">{{spasiList[result.spasi_i]}}</text>
+        </view>
+        <text class="text">严重程度\n等级</text>
+      </view>
+      <view class="result">
+        <view class="num">
+          <image src="../../image/l{{result.pest_i}}.png"></image>
+          <text class="text" style="color:{{colorList[result.pest_i]}};">{{pestList[result.pest_i]}}</text>
+        </view>
+        <text class="text">银屑病关节炎\n风险评估等级</text>
+      </view>
+      <view class="result">
+        <view class="num">
+          <image src="../../image/l{{result.psa_i}}.png"></image>
+          <text class="text" style="color:{{colorList[result.psa_i]}};">{{psaList[result.psa_i]}}</text>
+        </view>
+        <text class="text">银屑病关节炎\n等级</text>
+      </view>
+    </view>
+    <view class="suggest_box" style="padding-bottom: 0;">
+      <view class="h3">评估结果:</view>
+      <view class="suggest">
+        <view class="tag" style="background-color:{{colorList[result.spasi_i]}}"></view> {{result.spasi_s}}
+      </view>
+      <view class="suggest">
+        <view class="tag" style="background-color:{{colorList[result.psa_i]}}"></view>{{result.psa_s}}
+          <block wx:if="{{result.risks.length>0}}">
+            <view class="suggest_box" style="padding-bottom: 0;">
+              <view class="h4">风险点:</view>
+              <view class="suggest" wx:for="{{result.risks}}">{{item}}</view>
+            </view>  
+          </block>
+      </view>
+      <view class="suggest">
+        <view class="tag" style="background-color:{{colorList[result.pest_i]}}"></view>{{result.pest_s}}
+      </view>
+      <view class="suggest">
+        <view class="tag" style="background-color:{{colorList[result.qol_i]}}"></view>{{result.qol_s}}
+      </view>
+             
+    </view>
+    <view class="suggest_box" style="min-height:{{height}}">
+      <view class="h3">评估建议:</view>
+      <view class="suggest">{{result.suggest}}</view>
+    </view>
+      
+  </view>
+  <view class="report_box">
+      <image src="/pages/image/report.png" class="report"></image>
+    </view>    
+    <view class='btn'>
+      <button class='btncolor' bindtap='share_result'> 分享结果给医生</button>
+    </view> 
+</view>
+<official-account></official-account>
+<view class='mask' wx:if='{{show}}'>
+  <view class='modal-content'>
+    <view class="logo-box">
+      <image class="logo" src="/pages/image/logo.png"></image>
+    </view>
+    <view class='title1'>温馨提示</view>
+    <view class='title2'>您尚未提交个人信息,是否现在填写?</view>    
+    <view class='modal-btn-wrapper'>
+        <button class='cancel-btn'  bindtap='cancel'>否</button>
+        <button class='confirm-btn' bindtap="info">是</button>
+    </view>
+  </view>
+</view>
+<view class='mask' wx:if='{{show1}}'>
+  <view class='modal-content'>
+    <view class='title1' style="margin-top:25rpx;">请将此二维码出示给医生</view>
+    <view class="code-img"  style="width:80%;margin:0 auto;height:{{codeHeight}}">
+      <image style="width:80%;margin:10% auto;height:80%" src="{{base64ImgUrl}}"></image>
+    </view>
+    <view class='modal-btn-wrapper'style="margin-top:0;">
+        <button class='cancel-btn'  bindtap='cancel1'>取消</button>
+        <button class='confirm-btn' bindtap="home">主页</button>
+    </view>
+  </view>
+</view>

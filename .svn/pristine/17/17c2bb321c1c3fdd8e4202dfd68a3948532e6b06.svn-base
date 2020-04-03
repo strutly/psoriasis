@@ -1,0 +1,94 @@
+const util = require('../../../utils/util.js')
+const formatLocation = util.formatLocation;
+var app = getApp()
+var domain = app.globalData.host;
+Page({
+  data: {
+    hasLocation: false,
+    name:'',//用户姓名
+    phone:'',//用户电话
+    num :1,//暴徒数量
+    address:'',//暴徒地址
+    latitude : 0.00000000,//纬度
+    longitude : 0.00000000,//经度
+    show: false,
+  },
+  prompt: function (msg) {
+    this.setData({
+      show: true,
+      warnmsg: msg
+    })
+    var that = this;
+    setTimeout(function () {
+      that.setData({
+        show: false,
+        warnmsg: ""
+      })
+    }, 1500);
+  },
+  bindKeyInput: function (e) {
+    console.log("bindKeyInput");
+    var type = e.currentTarget.dataset.type;
+    var val = e.detail.value;
+    var set_type = '' + type + '';
+    this.setData({
+      [set_type]: val,
+    })
+    console.log(this.data)
+  }, 
+  chooseLocation() {
+    const that = this
+    wx.chooseLocation({
+      success(res) {
+        console.log(res)
+        that.setData({
+          hasLocation: true,
+          latitude: res.latitude,
+          longitude: res.longitude,
+          address: res.address
+        })
+      }
+    })
+  },
+  cancel: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  formSubmit:function(){
+    var that = this;
+    if(that.data.name==''){
+      that.prompt("请输入您的姓名");
+      return;
+    }
+    if (that.data.phone == '') {
+      that.prompt("请输入您的电话");
+      return;
+    }    
+    if (!that.data.hasLocation) {
+      that.prompt("请选择暴徒所在位置");
+      return;
+    }
+    var data = JSON.stringify({
+      unionid: app.globalData.unionid,
+      name: this.data.name,//用户姓名
+      phone: this.data.phone,//用户电话
+      num: this.data.num,//暴徒数量
+      address: this.data.address,//暴徒地址
+      latitude: this.data.latitude,//纬度
+      longitude: this.data.longitude,//经度
+    })
+    wx.request({
+      url: domain + `/wxs/mob/form?unionid=`+app.globalData.unionid,
+      data: data,
+      method: 'POST',
+      contentType: 'application/json;charset=UTF-8',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (result) {
+        console.log(result);
+      }
+    })
+  }
+})
