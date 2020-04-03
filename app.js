@@ -1,6 +1,6 @@
 //app.js
 //var domain = "http://17240k68p1.51mypc.cn";
-var domain = "https://tty.tsing-care.com";
+var domain = "https://tsing-care.com";
 App({
   globalData: {    
     if_doctor:false,//医生信息
