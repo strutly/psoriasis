@@ -7,6 +7,7 @@ Page({
     spasiList:['完全缓解','轻度','中度','重度','极重度'],
     pestList:['不太可能','可能性小','有些可能','很有可能','非常可能'],
     psaList:['无风险','低风险','中风险','高风险','极高风险'],
+    qolList:['无影响','轻微影响','相当影响','严重影响','极重影响'],
     imgheight: 200,
     headImgHeight: '190rpx',
     topMargin: '80rpx',
@@ -21,10 +22,8 @@ Page({
   onLoad: function (options) {
     that = this;
     var width = wx.getSystemInfoSync().windowWidth;
-    var height = wx.getSystemInfoSync().windowHeight;
     that.setData({
       codeHeight: width * 0.8 * 0.8 + "px",
-      height: (height - width * 1.2) + "px"
     })
     console.log(width);
     var userInfo = app.globalData.userInfo;

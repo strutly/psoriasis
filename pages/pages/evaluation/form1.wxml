@@ -4,9 +4,36 @@
   <view class="tag"></view>
   <view class="container">
     <view class="title">
-      <text>就诊记录</text>
+      <text>基本情况</text>
     </view>
     <view class='content'>
+      <view class="info-item">
+        <view class="info-item_lable">
+          <text class='lbs'></text>
+          <text class="titles">身高(CM):</text>
+        </view>
+        <input class='time setData' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="height" placeholder="请输入您的身高" type='text' value="{{height}}"></input>
+      </view>
+      
+      <view class="info-item">
+        <view class="info-item_lable">
+          <text class='lbs'></text>
+          <text class="titles">体重(KG):</text>
+        </view>
+        <input class='time setData' bindblur="bindKeyInput" data-type="weight" data-index="2" placeholder-class='info-placeholder' placeholder="请输入您的体重" type='number' value="{{weight}}"></input>
+      </view>
+      <view class="item">
+        <text class='lbs'></text>
+        <text class='titles'>银屑病首次发病日期</text>
+        <picker class='textset2' mode="date" start="1915-01-01" end="new Date()" bindchange="chooseIncidenceTime" value="{{incidenceTime}}">
+          <view class='time'>
+            <view wx:if="{{incidenceTime}}">{{incidenceTime}}<view class='chose_time'></view></view>
+            <view wx:else>首次发病日期<view class='chose_time'></view></view>                
+          </view>
+        </picker>
+
+      </view>
+
       <view class="item">
         <text class='lbs'></text>
         <text class='titles'>是否已经由皮肤科医生诊断为银屑病?</text>

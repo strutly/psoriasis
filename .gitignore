@@ -3,6 +3,7 @@
 Thumbs.db
 $RECYCLE.BIN/
 .svn
+.svn/
 # macOS
 .DS_Store
 .fseventsd

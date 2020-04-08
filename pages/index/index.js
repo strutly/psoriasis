@@ -37,6 +37,9 @@ Page({
               app.globalData.if_doctor = result.if_doctor;
               app.globalData.if_information = result.if_information;
               console.log(app.globalData);
+              if(result.if_information){
+                app.globalData.information = result.information;
+              }
               //是否医生
               if (result.if_doctor) {
                 app.globalData.doctor = result.doctor;
@@ -49,7 +52,6 @@ Page({
                 //   url: '/pages/pages/error/error'
                 // })
               } else {
-                app.globalData.doctor = result.information;
                 wx.reLaunch({
                   url: '/pages/pages/personal/index'
                 })
@@ -66,6 +68,9 @@ Page({
             wx.reLaunch({
               url: '/pages/index/main'
             })
+          },
+          complete:function(){
+            wx.hideLoading();
           }
         })
       }, fail: function () {
@@ -74,7 +79,6 @@ Page({
           url: '/pages/index/main'
         })
       }
-    })
-    
+    })    
   }
 })

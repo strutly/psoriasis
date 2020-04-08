@@ -1,6 +1,6 @@
 //app.js
 //var domain = "http://17240k68p1.51mypc.cn";
-var domain = "https://tsing-care.com";
+var domain = "https://tty.tsing-care.com";
 App({
   globalData: {    
     if_doctor:false,//医生信息
@@ -68,68 +68,69 @@ App({
         }
       })
     },
-    auth: function (e) {
-      var that = this;
-      console.log(this);
-      console.log(e);
-      //表示获取成功同意获取用户信息
-      if (e.detail.errMsg == "getUserInfo:ok") {        
-        wx.getSetting({
-          success: resp => {
-            console.log(resp);
-            if (resp.authSetting['scope.userInfo']) {
-              //获取用户信息
-              wx.login({
-                success: function (date) {
-                  if (date.code) {
-                    wx.getUserInfo({
-                      success: res => {
-                        console.log(res);
-                        //发起网络请求
-                        wx.request({
-                          url: domain + '/wxs/rest/sign',
-                          data: JSON.stringify({
-                            code: date.code,
-                            encryptedData: res.encryptedData,
-                            iv: res.iv,
-                            signature: res.signature,
-                            rawData: res.rawData
-                          }),
-                          method: 'POST',
-                          contentType: 'application/json;charset=UTF-8',
-                          header: {
-                            'content-type': 'application/json'
-                          },
-                          success: function (response) {
-                            console.log(response);
-                            console.log(response.data.status);
-                            console.log(response.data.status != undefined);                            
-                            console.log(response.data.if_doctor);
-                            console.log(response.data.if_information);
-                            //这里需要 if_information==true 的时候才会有返回                            
+    
+    // auth: function (e) {
+    //   var that = this;
+    //   console.log(this);
+    //   console.log(e);
+    //   //表示获取成功同意获取用户信息
+    //   if (e.detail.errMsg == "getUserInfo:ok") {        
+    //     wx.getSetting({
+    //       success: resp => {
+    //         console.log(resp);
+    //         if (resp.authSetting['scope.userInfo']) {
+    //           //获取用户信息
+    //           wx.login({
+    //             success: function (date) {
+    //               if (date.code) {
+    //                 wx.getUserInfo({
+    //                   success: res => {
+    //                     console.log(res);
+    //                     //发起网络请求
+    //                     wx.request({
+    //                       url: domain + '/wxs/rest/sign',
+    //                       data: JSON.stringify({
+    //                         code: date.code,
+    //                         encryptedData: res.encryptedData,
+    //                         iv: res.iv,
+    //                         signature: res.signature,
+    //                         rawData: res.rawData
+    //                       }),
+    //                       method: 'POST',
+    //                       contentType: 'application/json;charset=UTF-8',
+    //                       header: {
+    //                         'content-type': 'application/json'
+    //                       },
+    //                       success: function (response) {
+    //                         console.log(response);
+    //                         console.log(response.data.status);
+    //                         console.log(response.data.status != undefined);                            
+    //                         console.log(response.data.if_doctor);
+    //                         console.log(response.data.if_information);
+    //                         //这里需要 if_information==true 的时候才会有返回                            
 
                             
-                          }
-                        })
-                      }
-                    })
-                  } else {
-                    console.log('登录失败！' + date.errMsg)
-                  }
-                }
-              })
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            } else if (resp.authSetting['scope.userInfo'] === false) { // 授权弹窗被拒绝
-              wx.clearStorage()
-            }
-          }
-        });
-      } else {
-        this.prompt("您取消授权了");
-      }
-    },    
+    //                       }
+    //                     })
+    //                   }
+    //                 })
+    //               } else {
+    //                 console.log('登录失败！' + date.errMsg)
+    //               }
+    //             }
+    //           })
+    //           if (this.userInfoReadyCallback) {
+    //             this.userInfoReadyCallback(res)
+    //           }
+    //         } else if (resp.authSetting['scope.userInfo'] === false) { // 授权弹窗被拒绝
+    //           wx.clearStorage()
+    //         }
+    //       }
+    //     });
+    //   } else {
+    //     this.prompt("您取消授权了");
+    //   }
+    // },    
   },
   onLaunch: function() {
     console.log(new Date().getTime())

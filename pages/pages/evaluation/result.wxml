@@ -5,26 +5,26 @@
     </view>
   <view class="container">    
     <view class="result_box">
-      <view class="result">
+      <view class="result" style="color:{{colorList[result.spasi_i]}};">
         <view class="num">
           <image src="../../image/l{{result.spasi_i}}.png"></image>
-          <text class="text" style="color:{{colorList[result.spasi_i]}};">{{spasiList[result.spasi_i]}}</text>
+          <text class="text">{{spasiList[result.spasi_i]}}</text>
         </view>
-        <text class="text">严重程度\n等级</text>
+        <text class="text">严重程度\n评级</text>
       </view>
-      <view class="result">
+      <view class="result" style="color:{{colorList[result.qol_i]}};">
         <view class="num">
-          <image src="../../image/l{{result.pest_i}}.png"></image>
-          <text class="text" style="color:{{colorList[result.pest_i]}};">{{pestList[result.pest_i]}}</text>
+          <image src="../../image/l{{result.qol_i}}.png"></image>
+          <text class="text">{{qolList[result.qol_i]}}</text>
         </view>
-        <text class="text">银屑病关节炎\n风险评估等级</text>
+        <text class="text">生活质量\n评级</text>
       </view>
-      <view class="result">
+      <view class="result" style="color:{{colorList[result.psa_i]}};">
         <view class="num">
           <image src="../../image/l{{result.psa_i}}.png"></image>
-          <text class="text" style="color:{{colorList[result.psa_i]}};">{{psaList[result.psa_i]}}</text>
+          <text class="text">{{psaList[result.psa_i]}}</text>
         </view>
-        <text class="text">银屑病关节炎\n等级</text>
+        <text class="text">关节炎\n评估</text>
       </view>
     </view>
     <view class="suggest_box" style="padding-bottom: 0;">
@@ -32,6 +32,24 @@
       <view class="suggest">
         <view class="tag" style="background-color:{{colorList[result.spasi_i]}}"></view> {{result.spasi_s}}
       </view>
+      <view class="suggest">
+        <view class="tag" style="background-color:{{colorList[result.qol_i]}}"></view>{{result.qol_s}}
+      </view>
+      
+      <view class="suggest">
+        <view class="tag" style="background-color:{{colorList[result.pest_i]}}"></view>{{result.pest_s}}
+      </view>
+
+    </view>
+    
+    <view class="suggest_box" style="padding-bottom: 0;">
+      <view class="h3">防控建议:</view>
+      <view class="suggest">{{result.suggest}}</view>
+      <view class="suggest">{{result.pest_suggest}}</view>
+    </view>
+
+    <view class="suggest_box">
+      <view class="h3">风险提示:</view>
       <view class="suggest">
         <view class="tag" style="background-color:{{colorList[result.psa_i]}}"></view>{{result.psa_s}}
           <block wx:if="{{result.risks.length>0}}">
@@ -41,18 +59,13 @@
             </view>  
           </block>
       </view>
-      <view class="suggest">
-        <view class="tag" style="background-color:{{colorList[result.pest_i]}}"></view>{{result.pest_s}}
-      </view>
-      <view class="suggest">
-        <view class="tag" style="background-color:{{colorList[result.qol_i]}}"></view>{{result.qol_s}}
-      </view>
-             
     </view>
-    <view class="suggest_box" style="min-height:{{height}}">
-      <view class="h3">评估建议:</view>
-      <view class="suggest">{{result.suggest}}</view>
-    </view>
+    
+    
+
+
+
+
       
   </view>
   <view class="report_box">

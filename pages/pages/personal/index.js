@@ -1,4 +1,5 @@
 var app = getApp();
+var that;
 Page({
   data: {
     imgheight:150,
@@ -7,15 +8,20 @@ Page({
     headImgHeight:'190rpx',
     topMargin:'80rpx',
     show:false,
-    if_doctor:false
+    if_doctor:false,
+    know:false
   },
   onLoad: function () {
+    that = this;
+    let know = wx.getStorageSync('know')||false;
+    console.log(know);
     console.log("persion-index.js----onload");
     console.log(new Date().getTime() - app.globalData.time)
     var width = wx.getSystemInfoSync().windowWidth;
     console.log(width);
     var userInfo = app.globalData.userInfo;
     this.setData({
+      know:know,
       imgheight: width * 0.62,
       nickName: userInfo.nickname ? userInfo.nickname :"",
       headImg: userInfo.headimgurl ? userInfo.headimgurl : "/pages/image/headimg.png",
@@ -27,6 +33,22 @@ Page({
         if_doctor:true
       })
     }
+  },
+  i_know(){
+    wx.setStorageSync('know', true);
+    that.setData({
+      know:true
+    })
+  },
+  see_next(){
+    that.setData({
+      know:true
+    })
+  },
+  know(){
+    that.setData({
+      know:false
+    })
   },
   go:function(){
     if(this.data.if_doctor){

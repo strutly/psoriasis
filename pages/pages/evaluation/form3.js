@@ -1,6 +1,7 @@
 const app = getApp();
 var domain = app.globalData.host;
 var util = require('../../../utils/util.js');
+var that;
 Page({
   data: {
     result:['','','','','','',''],
@@ -18,6 +19,7 @@ Page({
     promptMsg: ''
   },
   onLoad: function (options) {
+    that = this;
     console.log(app.globalData.data.result2);
     this.setData({
       result: app.globalData.data.result2
@@ -33,9 +35,7 @@ Page({
     })      
     globalData.result2[index] = parseInt(val);
   },
-  submit: function () {
-    var that = this;    
-    
+  submit: function () {   
     var globalData = app.globalData;
     var result = that.data.result;
     for (let i = 0; i < result.length; i++) {
@@ -53,6 +53,9 @@ Page({
       //组装数据
       var datas = {
         'unionid': unionid,
+        'height':globalData.information.height,
+        'weight':globalData.information.weight,
+        'incidenceTime':globalData.information.incidenceTime,
         'datet1': globalData.data.result1[0],//面积
         'datet2': globalData.data.result1[1],//红斑
         'datet3': globalData.data.result1[2],//鳞屑

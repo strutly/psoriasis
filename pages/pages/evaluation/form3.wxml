@@ -3,7 +3,7 @@
   <view class="tag"></view>
   <view class="container">
     <view class="title">
-      <text>关节炎相关情况</text>
+      <text>评估表2</text>
     </view>
     <view class='content'>
       <block wx:for="{{lable_box}}" wx:for-index="index" wx:for-item="item">

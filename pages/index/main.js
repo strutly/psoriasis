@@ -51,6 +51,10 @@ Page({
               app.globalData.userInfo = result.userInfo;
               app.globalData.if_doctor = result.if_doctor;
               app.globalData.if_information = result.if_information;
+
+              if(result.if_information){
+                app.globalData.information = result.information;
+              }
               console.log(app.globalData);
               //是否医生
               if (result.if_doctor) {
@@ -63,8 +67,7 @@ Page({
                 // wx.reLaunch({
                 //   url: '/pages/pages/error/error'
                 // })
-              } else {
-                app.globalData.doctor = result.information;
+              } else {                
                 wx.reLaunch({
                   url: '/pages/pages/personal/index'
                 })
@@ -92,8 +95,8 @@ Page({
   },  
   getDatas: function(e) {
 
-    app.globalData.auth(e);
-    /*
+    //app.globalData.auth(e);
+    
     var that = this;
     var domain = app.globalData.host;
     app.globalData.time= new Date().getTime();
@@ -117,7 +120,7 @@ Page({
                       console.log(res);
                       //发起网络请求
                       wx.request({
-                        url: domain + '/wxs/rest/sign',
+                        url: domain + '/wx/auth',
                         data: JSON.stringify({
                           code: date.code,
                           encryptedData: res.encryptedData,
@@ -141,8 +144,6 @@ Page({
                           console.log(response.data.if_doctor);
                           console.log(response.data.if_information);
                           //这里需要 if_information==true 的时候才会有返回
-
-
                           var result = response.data;
                           if (result.errcode == 0) {
                             app.globalData.unionid = result.unionid;
@@ -180,7 +181,7 @@ Page({
     }else{
       this.prompt("您取消授权了");      
     }
-    */
+    
   },
   cancel:function(){
     //拒绝直接进入自测

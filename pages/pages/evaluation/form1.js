@@ -16,7 +16,12 @@ Page({
     promptMsg:''
   },
   onLoad: function (option) {
+    let information = app.globalData.information;
+    console.log(information)
     this.setData({
+      height:information?information.height:'',
+      weight:information?information.weight:'',
+      incidenceTime:information?information.incidenceTime:'',
       checkvalue1: app.globalData.data.checkvalue1,
       time1: app.globalData.data.time1,
       checkvalue2: app.globalData.data.checkvalue2,
@@ -32,6 +37,13 @@ Page({
         disabled2: true
       })
     }
+  },
+  bindKeyInput(e){
+    var type = e.currentTarget.dataset.type;
+    var val = e.detail.value;
+    this.setData({
+      [type]: val,      
+    })
   },
   radioChoose1: function (e) {
     console.log('picker1发送选择改变，携带值为', e.detail.value)
@@ -70,6 +82,13 @@ Page({
         disabled2: false,        
       })
     }
+  },
+  chooseIncidenceTime:function(e){
+    console.log('picker发送选择改变，携带值为3', e.detail.value)
+    app.globalData.information.incidenceTime = e.detail.value
+    this.setData({
+      incidenceTime: e.detail.value,
+    })
   },  
   chooseTime1: function(e) {
     console.log('picker发送选择改变，携带值为3', e.detail.value)
@@ -88,6 +107,19 @@ Page({
     })
   },
   formSubmit: function () {
+    if(this.data.height == ''){
+      util.prompt(this,"请输入您的身高！");
+      return;
+    }
+    if(this.data.weight == ''){
+      util.prompt(this,"请输入您的体重！");
+      return;
+    }
+    if(this.data.incidenceTime == ''){
+      util.prompt(this,"请选择首次发病日期！");
+      return;
+    }
+
     if (this.data.checkvalue1 == '') {
       util.prompt(this,"请选择是否已经由皮肤科医生诊断为银屑病！");
       return;
