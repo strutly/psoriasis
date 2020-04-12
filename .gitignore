@@ -4,12 +4,12 @@ Thumbs.db
 $RECYCLE.BIN/
 .svn
 .svn/
+utils/api.js
 # macOS
 .DS_Store
 .fseventsd
 .Spotlight-V100
 .TemporaryItems
 .Trashes
-
 # Node.js
 node_modules/
