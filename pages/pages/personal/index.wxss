@@ -211,7 +211,8 @@ page{
 	font-stretch: normal;
 	line-height: 40rpx;	
 	color: #000000;
-	opacity: 0.8;
+  opacity: 0.8;
+  margin-bottom: 10px;
 }
 .title2{ 
   text-align: center;  
@@ -222,4 +223,15 @@ page{
 	opacity: 0.6;
   margin: 15rpx auto;
   padding: 0 25rpx;
+}
+
+.title3{ 
+  text-align: left;  
+  font-size: 30rpx;	
+	font-stretch: normal;
+	line-height: 44rpx;	
+	color: #000000;
+	opacity: 0.6;
+  padding: 0 25rpx;
+  display: block;
 }

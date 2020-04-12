@@ -1,7 +1,8 @@
 // pages/pages/details.js
 const app = getApp();
-var domain = app.globalData.host;
+var api = require('../../../utils/api.js');
 var util = require('../../../utils/util.js');
+var that;
 Page({
   data: {
     opens: [false, false, false, false, false],
@@ -26,13 +27,12 @@ Page({
     this.setData({
       tab: index
     })
-    console.log(this.data);
   },
   kindToggle(e) {
     const index = e.currentTarget.dataset.index;
     const opens = this.data.opens;
     const set_val = 'opens[' + index + ']';
-    this.setData({
+    that.setData({
       [set_val]: !opens[index]
     });
   },  
@@ -40,21 +40,21 @@ Page({
     console.log(e);
     const index = e.currentTarget.dataset.index;
     const set_val = 'handleResult[' + index + ']';
-    this.setData({
+    that.setData({
       [set_val]: parseInt(e.detail.value)
     })
   },
   bindMultiPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
+    that.setData({
       "handleResult[1]": e.detail.value[0] * (e.detail.value[1]+1)
     })
   },
   bindMultiPickerColumnChange: function (e) {
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
+      multiArray: that.data.multiArray,
+      multiIndex: that.data.multiIndex
     };
     if (e.detail.column==0){
       switch (e.detail.value) {
@@ -74,7 +74,6 @@ Page({
     util.back();
   },
   formSubmit:function(){    
-    var that = this;
     var data = JSON.stringify({
       id: that.data.evaluation.id,
       num1: that.data.handleResult[0],
@@ -83,17 +82,15 @@ Page({
       num4: that.data.handleResult[3],
       num5: that.data.handleResult[4],
       num6: that.data.handleResult[5],
-    })
-    wx.request({
-      url: domain + '/wxs/doctor/process?unionid=' + app.globalData.unionid,
-      data: data,
-      method: 'POST',
-      contentType: 'application/json;charset=UTF-8',
-      success: function (data) {
-        console.log(data);
+    });        
+    util.request(api.EvaluationProcess,data,"post").then(function(result){
+      console.log(result);
+      if (result.errcode == 0) {
         wx.showToast({
-          title: data.data.errmsg,
+          title: result.errmsg,
         })
+      } else {
+        util.prompt(that, result.errmsg);
       }
     })
   },
@@ -101,39 +98,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    that = this;
     console.log('doctor-evaluation_detail.js onload');
-    var id = options.id;    
+    var id = options.id;
     var unionid = app.globalData.unionid;    
-    if (unionid==""){
-      app.globalData.check();
-      unionid = app.globalData.unionid; 
-    }
-    wx.request({
-      url: domain + `/wxs/doctor/evaluation_detail/` + id + `?unionid=` + unionid,
-      method: 'get',
-      success: function (result) {
-        console.log(result);        
-        if (result.data.errcode == 0) {
-          var evaluation = result.data.data;
+    util.request(api.DoctorEvaluationDetail + id,{unionid:unionid},"get").then(function(result){
+      console.log(result);
+      if (result.errcode == 0) {
+        var evaluation = result.data;
           that.setData({
             evaluation: evaluation,
-            information: result.data.information,
+            information: result.information,
             handleResult: [evaluation.num1, evaluation.num2, evaluation.num3, evaluation.num4, evaluation.num5, evaluation.num6]
           })
-          if (result.data.doctor) {
+          if (result.doctor) {
             that.setData({
-              doctor: result.data.doctor
+              doctor: result.doctor
             })
           }
-        } else{
-          util.error(that, result.data.errmsg);
-        }
-      },
-      error: function (res){
-        util.error(that, JSON.stringify(res));
+      } else {
+        util.prompt(that, result.errmsg);
       }
-    })
+    })    
   },
   back: function () {
     util.back();

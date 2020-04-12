@@ -1,36 +1,29 @@
-const util = require('../../../utils/util.js')
-const formatLocation = util.formatLocation;
 var app = getApp()
-var domain = app.globalData.host;
+var that;
+var log = require('../../../utils/log.js');
+var api = require('../../../utils/api.js');
+var util = require('../../../utils/util.js');
+const formatLocation = util.formatLocation;
 Page({
   data: {
     mob:"",
   },
   onLoad: function (options) {
+    log.info(options);
     var id = options.id;
-    var unionid = app.globalData.unionid;
-    var that = this;
-    wx.request({
-      url: domain + `/wxs/mob/detail/` + id + `?unionid=` + unionid,
-      method: 'get',
-      success: function (result) {
-        console.log(result);
-        if (result.data.errcode == 0) {
-          that.setData({
-            mob: result.data.data,
-          })
-        } else {
-          wx.navigateTo({
-            url: '/pages/pages/error/error?errmsg=' + result.data.errmsg
-          })
-        }
-      },
-      error: function (res) {
+    that = this;
+    util.request(api.MobDetail+id,{},"get").then(function(result){
+      log.info(result);
+      if (result.errcode == 0) {
+        that.setData({
+          mob: result.data,
+        })
+      } else {
         wx.navigateTo({
-          url: '/pages/pages/error/error?errmsg=' + JSON.stringify(res)
+          url: '/pages/pages/error/error?errmsg=' + result.errmsg
         })
       }
-    })   
+    });  
   },
   prompt: function (msg) {
     this.setData({

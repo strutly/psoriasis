@@ -1,3 +1,4 @@
+var api = require('api.js');
 function formatTime(time) {
   if (typeof time !== 'number' || time < 0) {
     return time
@@ -107,6 +108,150 @@ function back() {
     delta: 1
   })
 };
+/**
+ * 微信登录
+ */
+function login() {
+  return new Promise(function (resolve, reject) {
+    return getCode().then(function(res){
+      wx.request({
+        url: api.WxLogin,
+        method: 'get',
+        data:{code:res},
+        dataType: 'json',
+        success: function (result) {
+          if(result.statusCode==200){
+            resolve(result.data);
+          }else{
+            reject(result);
+          }              
+        }
+      })
+    });
+  })
+};
+
+/**
+ * wx.login
+ * 获取code
+ */
+function getCode() {
+  return new Promise(function (resolve, reject) {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          resolve(res.code);
+        } else {
+          reject(res);
+        }
+      },
+      fail: function (err) {
+        reject(err);
+      }
+    });
+  });
+};
+/**
+ * 获取用户信息
+ */
+function getUserInfo() {
+  return new Promise(function (resolve, reject) {
+    wx.getUserInfo({
+      withCredentials: true,
+      success: function (res) {
+        console.log(res);
+        if (res.errMsg === 'getUserInfo:ok') {
+          resolve(res);
+        } else {
+          reject(res)
+        }
+      },
+      fail: function (err) {
+        reject(err);
+      }
+    })
+  });
+};
+
+/**
+ * 授权
+ */
+function auth(){
+  return new Promise(function (resolve, reject) {
+    let code  = null;
+    return getCode().then((res) => {
+      console.log(res);
+      code = res;
+      return getUserInfo();
+    }).then((userInfo) => {
+        wx.request({
+          url: api.WxAuth,
+          data: JSON.stringify({
+            code: code,
+            encryptedData: userInfo.encryptedData,
+            iv: userInfo.iv,
+            signature: userInfo.signature,
+            rawData: userInfo.rawData
+          }),
+          method: 'POST',
+          contentType: 'application/json;charset=UTF-8',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (result) {
+            if(result.statusCode==200){
+              resolve(result.data);
+            }else{
+              reject(result);
+            }                            
+          }
+        })
+    })
+  })
+};
+
+/**
+ * 封装微信的的request
+ * token过期重新获取
+ */
+function request(url, data = {}, method = "GET") {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: url,
+      data: data,
+      method: method,
+      header: {
+        'Content-Type': 'application/json',
+        'token':wx.getStorageSync('token')
+      },
+      dataType:"json",
+      success: function (res) {
+        if (res.statusCode == 200) {
+          /**/
+          if (res.data.errcode == 401) {
+            console.log("重新获取token 然后在进行")
+            //需要登录后才可以操作
+            return auth().then((result) => {
+              wx.setStorageSync('token', result.token);
+              request(url,data,method).then(function(res){
+                resolve(res);
+              });             
+            })
+          } else {
+            resolve(res.data);
+          }
+        } else {
+          reject(res);
+        }
+      },
+      fail: function (err) {
+        reject(err)
+        console.log("failed")
+      }
+    })
+  });
+}
+
 module.exports = {
   formatTime,
   formatLocation,
@@ -115,5 +260,9 @@ module.exports = {
   compareVersion,
   prompt,
   error,
-  back
+  back,
+  login,
+  auth,
+  getUserInfo,
+  request
 }

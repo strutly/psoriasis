@@ -1,7 +1,9 @@
-const util = require('../../../utils/util.js')
-const formatLocation = util.formatLocation;
 var app = getApp();
-var domain = app.globalData.host;
+var that;
+var log = require('../../../utils/log.js');
+var api = require('../../../utils/api.js');
+var util = require('../../../utils/util.js');
+const formatLocation = util.formatLocation;
 var FSM = wx.getFileSystemManager();
 Page({
   data: {
@@ -27,7 +29,7 @@ Page({
     console.log(this.data)
   }, 
   chooseLocation() {
-    const that = this
+    that = this
     wx.chooseLocation({
       success(res) {
         console.log(res)
@@ -52,7 +54,7 @@ Page({
     })
   },
   formSubmit:function(){
-    var that = this;
+    that = this;
     if(that.data.name==''){
       util.prompt(that,"请输入您的姓名");
       return;
@@ -80,35 +82,27 @@ Page({
       content:this.data.content,
       pics: this.data.imageList.toString()
     })
-    console.log(data)
-    wx.request({
-      url: domain + `/wxs/mob/form?unionid=`+app.globalData.unionid,
-      data: data,
-      method: 'POST',
-      contentType: 'application/json;charset=UTF-8',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (result) {
-        console.log(result);
-        if(result.data.errcode==0){
-          wx.showToast({
-            title: '提交成功',
-            duration: 500
+    console.log(data);
+
+    util.request(api.MobForm,data,"POST").then(function(result){
+      log.info(result);
+      if(result.errcode==0){
+        wx.showToast({
+          title: '提交成功',
+          duration: 500
+        })
+        setTimeout(function(){
+          wx.reLaunch({
+            url: '/pages/pages/map/index'
           })
-          setTimeout(function(){
-            wx.reLaunch({
-              url: '/pages/pages/map/index'
-            })
-          },1000);
-        }else{
-         util.prompt(that,result.data.errmsg);
-        }
+        },1000);
+      }else{
+       util.prompt(that,result.errmsg);
       }
-    })
+    });
   },
   chooseImage:function(){
-    var that = this;
+    that = this;
     wx.chooseImage({
       count: 8-that.data.imageList.length,
       sizeType: ['original', 'compressed'],
@@ -150,7 +144,7 @@ Page({
     })
   },
   uploadFilebase64: function (base64) {
-    var that = this;
+    that = this;
     var imageList = that.data.imageList;
     wx.request({
       url: domain + '/api/upload/put64image',
@@ -172,7 +166,7 @@ Page({
           })
         } 
         wx.showToast({
-          title: "图片上传",
+          title: errmsg,
           icon: 'success',
           duration: 700
         });
@@ -182,7 +176,7 @@ Page({
     })
   },
   uploadFile:function(filePath) {
-    var that = this;
+    that = this;
     var imageList = that.data.imageList;
     wx.uploadFile({
       url: domain+'/api/upload/file',

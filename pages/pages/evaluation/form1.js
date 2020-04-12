@@ -1,6 +1,5 @@
 // pages/pages/EvaluationForm1.js
 var app = getApp();
-var domain = app.globalData.host;
 var util = require('../../../utils/util.js');
 Page({
   data: {

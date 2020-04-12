@@ -1,6 +1,7 @@
 var app = getApp();
 var domain = app.globalData.host;
 var util = require('../../../utils/util.js');
+var api = require('../../../utils/api.js');
 Page({
   data: {
     imgheight: 150,
@@ -69,7 +70,7 @@ Page({
   },
   scan: function () {
     var that = this;
-    var unionid = app.globalData.unionid;
+
     // 允许从相机和相册扫码
     wx.scanCode({
       success: (res) => {
@@ -77,31 +78,23 @@ Page({
         console.log(result)
         var token = result;
         console.log(token)
-        wx.request({
-          url: domain + `/wxs/doctor/bind?unionid=${unionid}&token=${token}`,
-          method: "GET",
-          contentType: 'application/json;charset=UTF-8',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (respond) {
-            console.log(respond.data);
-            if (respond.data.status==500){
-              util.prompt(that, "请扫描病人出示的二维码");
-            }else{
-              if (respond.data.errcode == 0) {
-                wx.navigateTo({
-                  url: '/pages/pages/doctor/evaluation_detail?id=' + respond.data.data.id,
-                })
-              } else {
-                util.prompt(that, result.data.errmsg);
-              }
-            }            
-          },
-          error: function (res) {
-            util.prompt(that, JSON.stringify(res));
+
+        util.request(api.EvaluationBind,{token:token},"GET").then(function(result){
+          console.log(result);
+          if (result.errcode == 0) {
+            wx.navigateTo({
+              url: '/pages/pages/doctor/evaluation_detail?id=' + result.data.id,
+            })
+          } else {
+            util.prompt(that, result.data.errmsg);
           }
-        })
+        }).catch((err) => {
+          if(err.data.status==500){
+            util.prompt(that, "请扫描病人出示的二维码!"); 
+          }else{
+            util.prompt(that, "扫描失败,请稍后再试!"); 
+          }
+        })        
       }
     })
   },

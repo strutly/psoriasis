@@ -1,6 +1,8 @@
 const app = getApp();
-var domain = app.globalData.host;
 var that;
+var log = require('../../../utils/log.js');
+var api = require('../../../utils/api.js');
+var util = require('../../../utils/util.js');
 Page({
   data: {
     colorList:['#98e0b6','#f1cd23','#f6a63f','#eb5555','#ba6161'],
@@ -35,26 +37,20 @@ Page({
       topMargin: width * 0.12, 
        
     });
-    var id = options.id;    
-    var unionid = app.globalData.unionid;    
+    var id = options.id;
     
-    wx.request({
-      url: domain + `/wxs/evaluation/result/` + id + `?unionid=` + unionid,
-      method: 'get',
-      success: function (result) {
-        console.log(result);
-        let data = result.data.data;
+    util.request(api.EvaluationResult+id,{},"get").then(function(result){
+      log.info(result);
+      wx.hideLoading();
+      if (result.errcode == 0) {
+        let data = result.data;
         that.setData({
           result:data
         })
-      },
-      error: function (res) {
-        util.error(that, JSON.stringify(res));
+      } else{
+        util.error(that, result.errmsg);
       }
-    })
-    
-
-
+    });
   },
   share_result:function(){
     console.log(app.globalData.evaluationResult);    

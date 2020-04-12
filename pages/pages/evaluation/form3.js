@@ -1,7 +1,8 @@
 const app = getApp();
-var domain = app.globalData.host;
-var util = require('../../../utils/util.js');
 var that;
+var log = require('../../../utils/log.js');
+var api = require('../../../utils/api.js');
+var util = require('../../../utils/util.js');
 Page({
   data: {
     result:['','','','','','',''],
@@ -74,30 +75,16 @@ Page({
         'checkvalue2': globalData.data.checkvalue2,//是否诊断银屑病关节炎
         'time2': globalData.data.time2,//诊断银屑病关节炎时间
       };
-      wx.showLoading({
-        title: '信息提交中',
-        mask:true
-      })
-      wx.request({
-        url: domain + '/wxs/evaluation/form',
-        data: JSON.stringify(datas),
-        method: 'POST',
-        contentType: 'application/json;charset=UTF-8',
-        success: function (result) {
-          console.log(result);
-          if (result.data.errcode == 0) {
-            wx.navigateTo({
-              url: '/pages/pages/evaluation/result?id='+result.data.data
-            })
-          } else{
-            util.error(that, result.data.errmsg);
-          }
-        },
-        error: function (res) {
-          util.error(that, JSON.stringify(res));
-        },
-        complete:function(){
-          wx.hideLoading();
+      
+      util.request(api.EvaluationForm,JSON.stringify(datas),"POST").then(function(result){
+        log.info(result);
+        
+        if (result.errcode == 0) {
+          wx.navigateTo({
+            url: '/pages/pages/evaluation/result?id='+result.data
+          })
+        } else{
+          util.error(that, result.errmsg);
         }
       })
     }

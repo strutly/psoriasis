@@ -1,5 +1,7 @@
 var app = getApp()
-var domain = app.globalData.host;
+var that;
+var log = require('../../../utils/log.js');
+var api = require('../../../utils/api.js');
 var util = require('../../../utils/util.js');
 Page({
   data: {
@@ -8,37 +10,29 @@ Page({
     pro: false
   },
   onLoad: function (option) {
-    var unionid = app.globalData.unionid;
     console.log('info.js onload');
-    var that = this;
+    that = this;
     var if_information = app.globalData.if_information;
     //获取历史记录判断是否填写个人信息
     if (if_information){
-      wx.request({
-        url: domain + `/wxs/evaluation/list?unionid=` + unionid,
-        method: 'get',
-        success: function (result) {
-          console.log(result);
-          if (result.data.errcode == 0) {
-            var lists = result.data.data;
-            if (lists != null && lists.length > 0) {
-              that.setData({
-                lists: lists,
-                pro: false
-              })
-            } else {
-              that.setData({
-                pro: true
-              })
-            }
-          }else {
-            util.error(that, result.data.errmsg);
+      util.request(api.PersonalEvaluationList,{},"get").then(function(result){
+        log.info(result);
+        if (result.errcode == 0) {
+          var lists = result.data;
+          if (lists != null && lists.length > 0) {
+            that.setData({
+              lists: lists,
+              pro: false
+            })
+          } else {
+            that.setData({
+              pro: true
+            })
           }
-        },
-        error: function (res) {
-          util.error(that, result.data.errmsg);
+        }else {
+          util.error(that, result.errmsg);
         }
-      })
+      });
     }else{
       that.setData({
         show: true
@@ -49,7 +43,6 @@ Page({
     const id = e.currentTarget.id;
     wx.navigateTo({
       url: '/pages/pages/personal/evaluation_detail?id='+id
-      //url: '/pages/pages/evaluation/result?id='+id
     })
   },
   info: function () {

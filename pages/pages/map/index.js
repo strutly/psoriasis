@@ -1,7 +1,9 @@
-const util = require('../../../utils/util.js');
-const formatLocation = util.formatLocation;
 var app = getApp();
-var domain = app.globalData.host;
+var that;
+var log = require('../../../utils/log.js');
+var api = require('../../../utils/api.js');
+var util = require('../../../utils/util.js');
+const formatLocation = util.formatLocation;
 Page({
   data: {
     height:'100%',
@@ -11,7 +13,7 @@ Page({
     longitude: 114.173355 
   },
   onLoad:function(){
-    var that = this;
+    that = this;
     var height = wx.getSystemInfoSync().windowHeight;
     this.setData({
       height:height+"px",
@@ -25,46 +27,33 @@ Page({
           longitude:res.longitude
         })
       }
-    })
-    
-    var unionid = app.globalData.unionid;
-    wx.request({
-      url: domain + `/wxs/mob/all?unionid=` + unionid,
-      method: 'get',
-      success: function (result) {
-        console.log(result)
-        if (result.data.errcode == 0) {
-          var lists = result.data.data;
-          if (lists != '' && lists.length > 0) {
-            var markers = [];
-            for (var i = 0; i < lists.length;i++){
-              markers.push({
-                iconPath: "/pages/image/marker.png",
-                id: lists[i].id,
-                latitude: lists[i].latitude,
-                longitude: lists[i].longitude,
-                width: 32,
-                height: 32
-              })
-            }     
-            console.log(markers);       
-            that.setData({
-              markers: markers,
-              
+    });
+    util.request(api.MobAll,{},"get").then(function(result){
+      log.info(result);
+      if (result.errcode == 0) {
+        var lists = result.data;
+        if (lists != '' && lists.length > 0) {
+          var markers = [];
+          for (var i = 0; i < lists.length;i++){
+            markers.push({
+              iconPath: "/pages/image/marker.png",
+              id: lists[i].id,
+              latitude: lists[i].latitude,
+              longitude: lists[i].longitude,
+              width: 32,
+              height: 32
             })
           }
-        } else {
-          wx.navigateTo({
-            url: '/pages/pages/error/error?errmsg=' + result.data.errmsg
+          that.setData({
+            markers: markers
           })
         }
-      },
-      error: function (res) {
+      } else {
         wx.navigateTo({
-          url: '/pages/pages/error/error?errmsg=' + JSON.stringify(res)
+          url: '/pages/pages/error/error?errmsg=' + result.errmsg
         })
       }
-    })
+    });
   },
   regionchange(e) {
     console.log(e);

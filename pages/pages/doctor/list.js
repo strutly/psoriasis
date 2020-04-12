@@ -1,5 +1,8 @@
-var app = getApp()
-var domain = app.globalData.host;
+var app = getApp();
+var that;
+var log = require('../../../utils/log.js');
+var api = require('../../../utils/api.js');
+var util = require('../../../utils/util.js');
 Page({
   data: {
     lists: [],
@@ -8,43 +11,31 @@ Page({
     errmsg:''
   },
   onLoad: function (options) {
-    console.log(options)
+    console.log(JSON.stringify(options));
     var ifEnd = options.ifEnd ? options.ifEnd : '';
-    console.log(ifEnd)
     var pid = options.pid ? options.pid:"";
-    console.log(pid)
-    var unionid = app.globalData.unionid;
     console.log('doctor-list.js onload');
-    var that = this;
-    wx.request({
-      url: domain + `/wxs/doctor/list?unionid=` + unionid + `&pid=` + pid + `&ifEnd=` + ifEnd,
-      method: 'get',
-      success: function (result) {
-        console.log(result)
-        if (result.data.errcode == 0) {
-          var lists = result.data.data;
-          if (lists != '' && lists.length>0){
-            that.setData({
-              lists: lists,
-              pro: false
-            })
-          }else{
-            that.setData({
-              lists: lists,
-              pro: true
-            })
-          }         
-        } else {
+    that = this;
+    util.request(api.DoctorList,{pid:pid,ifEnd:ifEnd},"get").then(function(result){
+      log.info(result);
+      console.log(result.errcode);
+      if (result.errcode == 0) {
+        var lists = result.data;
+        if (lists != '' && lists.length>0){
           that.setData({
-            error: true,
-            errmsg: result.data.errmsg
+            lists: lists,
+            pro: false
+          })
+        }else{
+          that.setData({
+            lists: lists,
+            pro: true
           })
         }
-      },
-      error: function (res) {
+      } else {
         that.setData({
           error: true,
-          errmsg: JSON.stringify(res)
+          errmsg: result.errmsg
         })
       }
     })
