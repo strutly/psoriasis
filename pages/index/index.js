@@ -5,11 +5,15 @@ var log = require('../../utils/log.js');
 var util = require('../../utils/util.js');
 Page({  
   onLoad: function(options) {
+    wx.showLoading({
+      title: '登录中~~',
+      mask:true
+    })
     console.log("index--onload")
     util.login().then(function(result){
+      wx.hideLoading();
       log.info(result);
-      if(result.errcode==0){
-        app.globalData.unionid = result.unionid;
+      if(result.errcode===0){
         app.globalData.userInfo = result.userInfo;
         app.globalData.if_doctor = result.if_doctor;
         app.globalData.if_information = result.if_information;
@@ -34,6 +38,11 @@ Page({
           url: '/pages/index/main'
         })
       }
+    }).catch(function(res){
+      wx.hideLoading();
+      wx.reLaunch({
+        url: '/pages/index/main'
+      })
     })      
   }
 })

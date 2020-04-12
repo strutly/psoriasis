@@ -84,7 +84,6 @@ Page({
   },
   chooseIncidenceTime:function(e){
     console.log('picker发送选择改变，携带值为3', e.detail.value)
-    app.globalData.information.incidenceTime = e.detail.value
     this.setData({
       incidenceTime: e.detail.value,
     })

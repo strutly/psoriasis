@@ -204,9 +204,16 @@ function auth(){
             }else{
               reject(result);
             }                            
+          },fail: function (err) {
+            reject(err)
+            console.log("failed")
           }
         })
-    })
+    }).catch((err) => {
+      reject(err);
+    }).catch((err) => {
+      reject(err);
+    });
   })
 };
 
@@ -263,6 +270,7 @@ module.exports = {
   back,
   login,
   auth,
+  getCode,
   getUserInfo,
   request
 }

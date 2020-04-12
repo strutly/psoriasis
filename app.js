@@ -1,13 +1,11 @@
 //app.js
-var domain = "http://17240k68p1.51mypc.cn";
-//var domain = "https://tty.tsing-care.com";
 App({
   globalData: {    
     if_doctor:false,//医生信息
     if_information: false,//身份信息
+    information:null,
     unionid: '',
     userInfo: null,//个人信息
-    host: domain,
     time:0,
     //需要上传的数据
     data:{
