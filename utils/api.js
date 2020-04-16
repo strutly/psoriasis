@@ -1,12 +1,13 @@
 //var domain = "http://17240k68p1.51mypc.cn";
+var domain = "https://tty.tsing-care.com";
 
 module.exports = {
   WxLogin: domain + '/wxs/rest/code2Session',//登录接口
   WxAuth: domain + '/wxs/rest/sign',//授权接口
   
   DoctorInfo:domain + '/wxs/doctor/detail',//医生个人信息修改
-  DoctorInfoEdit:domain + '/wxs/doctor/form?unionid=',//医生个人信息修改
-  EvaluationProcess:domain +'/wxs/doctor/process?unionid=',//处理自测信息
+  DoctorInfoEdit:domain + '/wxs/doctor/form',//医生个人信息修改
+  EvaluationProcess:domain +'/wxs/doctor/process',//处理自测信息
   DoctorEvaluationDetail: domain + '/wxs/doctor/evaluation_detail/',//处理详情
   EvaluationBind: domain + '/wxs/doctor/bind',//医生绑定二维码
   DoctorList: domain + '/wxs/doctor/list',//医生获取我的测评列表

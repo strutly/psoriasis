@@ -14,6 +14,7 @@ Page({
       wx.hideLoading();
       log.info(result);
       if(result.errcode===0){
+        app.globalData.if_test = false;
         app.globalData.userInfo = result.userInfo;
         app.globalData.if_doctor = result.if_doctor;
         app.globalData.if_information = result.if_information;

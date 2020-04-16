@@ -16,7 +16,6 @@ Page({
     introduce: '',    
   },
   onLoad: function (option) {
-    var unionid = app.globalData.unionid;
     console.log('info.js onload');
     that = this;
 
@@ -62,7 +61,7 @@ Page({
     })
   },  
   formSubmit: function () {
-    var unionid = app.globalData.unionid;
+    
     var data = JSON.stringify({
       name: this.data.name,
       phone: this.data.phone,
@@ -71,7 +70,7 @@ Page({
       introduce: this.data.introduce,
     });
     console.log(data)
-    util.request(api.DoctorInfoEdit + unionid,data,"post").then(function(result){
+    util.request(api.DoctorInfoEdit,data,"post").then(function(result){
       console.log(result);
       
       if (result.errcode == 0) {

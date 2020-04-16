@@ -72,7 +72,6 @@ Page({
       return;
     }
     var data = JSON.stringify({
-      unionid: app.globalData.unionid,
       name: this.data.name,//用户姓名
       phone: this.data.phone,//用户电话
       num: this.data.num,//暴徒数量

@@ -68,6 +68,7 @@ Page({
       console.log(result)
       wx.hideLoading();
       if(result.errcode==0){
+        app.globalData.if_test = false;
         app.globalData.userInfo = result.userInfo;
         app.globalData.if_doctor = result.if_doctor;
         app.globalData.if_information = result.if_information;
@@ -98,6 +99,7 @@ Page({
     });
   },
   cancel:function(){
+    app.globalData.if_test = true;
     //拒绝直接进入自测
     this.setData({
       show: false

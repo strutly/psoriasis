@@ -4,9 +4,9 @@ App({
     if_doctor:false,//医生信息
     if_information: false,//身份信息
     information:null,
-    unionid: '',
     userInfo: null,//个人信息
     time:0,
+    if_test:true,
     //需要上传的数据
     data:{
       /*面积,红斑,鳞屑,厚度 */

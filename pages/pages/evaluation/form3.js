@@ -45,15 +45,14 @@ Page({
         return;
       }
     };
-    var unionid = globalData.unionid;
-    if (unionid==''){
+    var if_test = app.globalData.if_test;
+    if (if_test){
       wx.navigateTo({
         url: '/pages/pages/test/result'
       })
     }else{
       //组装数据
       var datas = {
-        'unionid': unionid,
         'height':globalData.information.height,
         'weight':globalData.information.weight,
         'incidenceTime':globalData.information.incidenceTime,

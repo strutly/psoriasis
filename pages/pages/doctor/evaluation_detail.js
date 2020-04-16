@@ -101,8 +101,8 @@ Page({
     that = this;
     console.log('doctor-evaluation_detail.js onload');
     var id = options.id;
-    var unionid = app.globalData.unionid;    
-    util.request(api.DoctorEvaluationDetail + id,{unionid:unionid},"get").then(function(result){
+    
+    util.request(api.DoctorEvaluationDetail + id,{},"get").then(function(result){
       console.log(result);
       if (result.errcode == 0) {
         var evaluation = result.data;

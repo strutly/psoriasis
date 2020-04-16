@@ -15,11 +15,10 @@ Page({
     showmodal:false
   },
   prompt: function (msg) {
-    this.setData({
+    that.setData({
       show: true,
       warnmsg: msg
     })
-    that = this;
     setTimeout(function () {
       that.setData({
         show: false,
@@ -28,6 +27,7 @@ Page({
     }, 1500);
   },
   onLoad: function () {
+    that = this;
     console.log("test-result.js----onload");
     var width = wx.getSystemInfoSync().windowWidth;
     var height = wx.getSystemInfoSync().windowHeight;
@@ -80,6 +80,7 @@ Page({
       console.log(result)
       wx.hideLoading();
       if(result.errcode==0){
+        app.globalData.if_test = false;
         app.globalData.userInfo = result.userInfo;
         app.globalData.if_doctor = result.if_doctor;
         app.globalData.if_information = result.if_information;
