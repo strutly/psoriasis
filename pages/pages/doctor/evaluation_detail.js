@@ -119,6 +119,8 @@ Page({
       } else {
         util.prompt(that, result.errmsg);
       }
+    }).catch(function(err){
+      console.log(err);
     })    
   },
   back: function () {

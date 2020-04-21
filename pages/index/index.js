@@ -16,11 +16,13 @@ Page({
       if(result.errcode===0){
         app.globalData.if_test = false;
         app.globalData.userInfo = result.userInfo;
+        wx.setStorageSync('userInfo', result.userInfo);
         app.globalData.if_doctor = result.if_doctor;
         app.globalData.if_information = result.if_information;
         console.log(app.globalData);
         if(result.if_information){
           app.globalData.information = result.information;
+          wx.setStorageSync('information', result.information);
         }
         //是否医生
         if (result.if_doctor) {

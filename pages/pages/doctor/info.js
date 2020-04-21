@@ -34,10 +34,10 @@ Page({
       } else {
         util.prompt(that, result.errmsg);
       }
-    })
-
-
-    
+    }).catch(function(err){
+      console.log(err);
+      console.log(1);
+    });    
   },
   cancel: function () {
     util.back();
@@ -85,6 +85,8 @@ Page({
       } else {
         util.prompt(that, result.data.errmsg);
       }
+    }).catch(function(err){
+      console.log(err);
     })
   },
   onShareAppMessage: function () {

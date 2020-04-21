@@ -163,10 +163,13 @@ function getUserInfo() {
         if (res.errMsg === 'getUserInfo:ok') {
           resolve(res);
         } else {
+          console.log(0);
+          console.log(res);
           reject(res)
         }
       },
       fail: function (err) {
+        console.log(err);
         reject(err);
       }
     })
@@ -184,6 +187,7 @@ function auth(){
       code = res;
       return getUserInfo();
     }).then((userInfo) => {
+      console.log("come here")
         wx.request({
           url: api.WxAuth,
           data: JSON.stringify({
@@ -210,8 +214,12 @@ function auth(){
           }
         })
     }).catch((err) => {
+      console.log(err);
+      console.log(1);
       reject(err);
     }).catch((err) => {
+      console.log(err);
+      console.log(2);
       reject(err);
     });
   })
@@ -243,7 +251,10 @@ function request(url, data = {}, method = "GET") {
               request(url,data,method).then(function(res){
                 resolve(res);
               });             
-            })
+            }).catch(function(err){
+              console.log(4);
+              reject(err);
+            });
           } else {
             resolve(res.data);
           }
