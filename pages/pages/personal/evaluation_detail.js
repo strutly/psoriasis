@@ -6,6 +6,10 @@ var api = require('../../../utils/api.js');
 var util = require('../../../utils/util.js');
 Page({
   data: {
+    spasiList:['完全缓解','轻度','中度','重度','极重度'],
+    pestList:['不太可能','可能性小','有些可能','很有可能','非常可能'],
+    psaList:['无风险','低风险','中风险','高风险','极高风险'],
+    qolList:['无影响','轻微影响','相当影响','严重影响','极重影响'],
     opens:[false,false,false,false,false],
     evaluation:null,
     code:'',
@@ -44,8 +48,10 @@ Page({
     util.request(api.PersonalEvaluationDetail+id,{},"get").then(function(result){
       log.info(result);
       if (result.errcode == 0) {
+        let evaluation = result.data;
+        evaluation.result_map = JSON.parse(evaluation.result||"{}");
         that.setData({
-          evaluation: result.data,
+          evaluation: evaluation,
           code: "data:image/png;base64," + result.code.replace(/[\r\n]/g, ""),
         })
         if (result.doctor){

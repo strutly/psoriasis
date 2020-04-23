@@ -51,11 +51,13 @@ Page({
         url: '/pages/pages/test/result'
       })
     }else{
+      let basic = wx.getStorageSync('basic');
+
       //组装数据
       var datas = {
-        'height':globalData.information.height,
-        'weight':globalData.information.weight,
-        'incidenceTime':globalData.information.incidenceTime,
+        'height':basic.height,
+        'weight':basic.weight,
+        'incidenceTime':basic.incidenceTime,
         'datet1': globalData.data.result1[0],//面积
         'datet2': globalData.data.result1[1],//红斑
         'datet3': globalData.data.result1[2],//鳞屑
@@ -74,15 +76,20 @@ Page({
         'checkvalue2': globalData.data.checkvalue2,//是否诊断银屑病关节炎
         'time2': globalData.data.time2,//诊断银屑病关节炎时间
       };
-      
+      console.log(datas);
+      wx.showLoading({
+        title: '提交中',
+        mask:true
+      })
       util.request(api.EvaluationForm,JSON.stringify(datas),"POST").then(function(result){
         log.info(result);
-        
+        wx.hideLoading();
         if (result.errcode == 0) {
           wx.navigateTo({
             url: '/pages/pages/evaluation/result?id='+result.data
           })
         } else{
+          wx.hideLoading();
           util.error(that, result.errmsg);
         }
       })

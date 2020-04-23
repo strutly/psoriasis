@@ -24,35 +24,36 @@
         <view class="info-item_lable"><text  decode='true'>微信号码:</text></view>
         <input class='info-input' bindblur="bindKeyInput" data-type="wx" data-index="2" placeholder-class='info-placeholder' placeholder="请输入您的微信号码" type='text' value="{{vals[2]}}"></input>
       </view>
-      <view class="info-item">
-        <view class="info-item_lable"><text  decode='true'>身&emsp;&emsp;高:</text></view>
-        <input class='info-input' bindblur="bindKeyInput" data-type="height" data-index="3" type='digit' placeholder-class='info-placeholder' placeholder="请输入您的身高(CM)" value="{{vals[3]}}"/>
-      </view>
-      <view class="info-item">
-        <view class="info-item_lable"><text  decode='true'>体&emsp;&emsp;重:</text></view>
-        <input class='info-input' bindblur="bindKeyInput" data-type="weight" data-index="4" type='digit' placeholder-class='info-placeholder' placeholder="请输入您的体重(KG)" value="{{vals[4]}}"/>
-      </view>
+      
       <view class="info-item">
         <view class="info-item_lable"><text  decode='true'>出生日期:</text></view>
-        <picker class='info-input' style="line-height:88rpx;" mode="date" start="1915-01-01" end="new Date()" bindchange="bindPickerBirthday" data-index="5">
+        <picker class='info-input' style="line-height:88rpx;" mode="date" start="1915-01-01" end="new Date()" bindchange="bindPickerBirthday" data-index="3">
           <text wx:if='{{vals[5]}}'>{{vals[5]}}</text>
           <text class='info-placeholder' wx:else>请选择您的出生日期</text>                          
         </picker>
       </view>
       <view class="info-item">
-        <view class="info-item_lable"><text  decode='true'>发病日期:</text></view>
-        <picker class='info-input' style="line-height:88rpx;" mode="date" start="1915-01-01" end="new Date()" bindchange="bindPickerIncidenceTime" data-index="6">
-          <text wx:if='{{vals[6]}}'>{{vals[6]}}</text>           
-          <text class='info-placeholder' wx:else>请选择您的发病日期</text>
-        </picker>
-      </view>
-      <view class="info-item">
         <view class="info-item_lable"><text  decode='true'>教育程度:</text></view>
-        <picker class='info-input' style="line-height:88rpx;" bindchange="bindPickerEducation" value="{{vals[7]}}" range="{{arrayeducation}}" data-index="7">
+        <picker class='info-input' style="line-height:88rpx;" bindchange="bindPickerEducation" value="{{vals[7]}}" range="{{arrayeducation}}" data-index="4">
           <text wx:if='{{vals[7]}}'>{{arrayeducation[vals[7]]}}</text>
           <text class='info-placeholder' wx:else>请选择您的教育程度</text>
         </picker>
-      </view>      
+      </view>
+      <!-- <view class="info-item">
+        <view class="info-item_lable"><text  decode='true'>身&emsp;&emsp;高:</text></view>
+        <input class='info-input' bindblur="bindKeyInput" data-type="height" data-index="5" type='digit' placeholder-class='info-placeholder' placeholder="请输入您的身高(CM)" value="{{vals[3]}}"/>
+      </view>
+      <view class="info-item">
+        <view class="info-item_lable"><text  decode='true'>体&emsp;&emsp;重:</text></view>
+        <input class='info-input' bindblur="bindKeyInput" data-type="weight" data-index="6" type='digit' placeholder-class='info-placeholder' placeholder="请输入您的体重(KG)" value="{{vals[4]}}"/>
+      </view>
+      <view class="info-item">
+        <view class="info-item_lable"><text  decode='true'>发病日期:</text></view>
+        <picker class='info-input' style="line-height:88rpx;" mode="date" start="1915-01-01" end="new Date()" bindchange="bindPickerIncidenceTime" data-index="7">
+          <text wx:if='{{vals[6]}}'>{{vals[6]}}</text>           
+          <text class='info-placeholder' wx:else>请选择您的发病日期</text>
+        </picker>
+      </view> -->
       <view class='info-btns'>
         <button class='info-cancel_btn' bindtap='cancel'>取消</button>
         <button class='info-primary_btn' bindtap='formSubmit'>保存</button>

@@ -10,8 +10,8 @@ Page({
     warnmsg:'', 
     id:'',
     /*需要提交的数据*/
-    vals:['','','','','','','',''],
-    tipsMsg: ["请输入您的真实姓名", "请选择您的性别", "请输入您的微信号", "请输入您的身高",'请输入您的体重',"请选择您的出生日期","请选择您的发病日期","请选择您的教育程度"],
+    vals:['','','','',''],
+    tipsMsg: ["请输入您的真实姓名", "请选择您的性别", "请输入您的微信号","请选择您的出生日期","请选择您的教育程度"],//, "请输入您的身高",'请输入您的体重',"请选择您的发病日期"
   },
   onLoad: function (option) {
     console.log('info.js onload');
@@ -97,16 +97,13 @@ Page({
       name: this.data.vals[0],
       sex: this.data.vals[1],
       wx: this.data.vals[2],
-      height: this.data.vals[3],
-      weight: this.data.vals[4],
-      birthday: this.data.vals[5],
-      incidenceTime: this.data.vals[6],
-      education: this.data.vals[7],
+      birthday: this.data.vals[3],
+      education: this.data.vals[4],
+      //height: this.data.vals[5],
+      //weight: this.data.vals[6],
+      //incidenceTime: this.data.vals[7],
     })
-    var that = this; 
     console.log(data)
-
-
     util.request(api.InformationForm,data,"POST").then(function(result){
       log.info(result);
       if (result.errcode == 0) {

@@ -19,7 +19,8 @@ Page({
     num: [[0],[1,2]],
     multiIndex:[0,0],
     error:false,
-    errmsg:""
+    errmsg:"",
+    id:0
   },
   changeTab: function (e) {
     /* 左右切换*/
@@ -89,6 +90,7 @@ Page({
         wx.showToast({
           title: result.errmsg,
         })
+        that.onLoad({id:that.data.id});
       } else {
         util.prompt(that, result.errmsg);
       }
@@ -105,17 +107,19 @@ Page({
     util.request(api.DoctorEvaluationDetail + id,{},"get").then(function(result){
       console.log(result);
       if (result.errcode == 0) {
-        var evaluation = result.data;
+        let evaluation = result.data;
+        evaluation.result_map = JSON.parse(evaluation.result||"{}");
+        that.setData({
+          id:id,
+          evaluation: evaluation,
+          information: result.information,
+          handleResult: [evaluation.num1, evaluation.num2, evaluation.num3, evaluation.num4, evaluation.num5, evaluation.num6]
+        })
+        if (result.doctor) {
           that.setData({
-            evaluation: evaluation,
-            information: result.information,
-            handleResult: [evaluation.num1, evaluation.num2, evaluation.num3, evaluation.num4, evaluation.num5, evaluation.num6]
+            doctor: result.doctor
           })
-          if (result.doctor) {
-            that.setData({
-              doctor: result.doctor
-            })
-          }
+        }
       } else {
         util.prompt(that, result.errmsg);
       }

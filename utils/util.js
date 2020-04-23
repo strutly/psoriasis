@@ -162,9 +162,8 @@ function getUserInfo() {
         console.log(res);
         if (res.errMsg === 'getUserInfo:ok') {
           resolve(res);
+          wx.setStorageSync('userInfo', res.userInfo);
         } else {
-          console.log(0);
-          console.log(res);
           reject(res)
         }
       },

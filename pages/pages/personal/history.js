@@ -20,6 +20,9 @@ Page({
         if (result.errcode == 0) {
           var lists = result.data;
           if (lists != null && lists.length > 0) {
+            lists.forEach(item => {
+              item.result_map = JSON.parse(item.result||"{}");
+            });
             that.setData({
               lists: lists,
               pro: false

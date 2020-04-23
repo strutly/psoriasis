@@ -15,12 +15,12 @@ Page({
     promptMsg:''
   },
   onLoad: function (option) {
-    let information = app.globalData.information;
-    console.log(information)
+    let basic = wx.getStorageSync('basic')||{};
+    console.log(basic)
     this.setData({
-      height:information?information.height:'',
-      weight:information?information.weight:'',
-      incidenceTime:information?information.incidenceTime:'',
+      height:basic.height,
+      weight:basic.weight,
+      incidenceTime:basic.incidenceTime||'',
       checkvalue1: app.globalData.data.checkvalue1,
       time1: app.globalData.data.time1,
       checkvalue2: app.globalData.data.checkvalue2,
@@ -38,8 +38,12 @@ Page({
     }
   },
   bindKeyInput(e){
+    let basic = wx.getStorageSync('basic')||{};
     var type = e.currentTarget.dataset.type;
     var val = e.detail.value;
+    basic[type] = val;
+    console.log(basic);
+    wx.setStorageSync('basic', basic);
     this.setData({
       [type]: val,      
     })
@@ -84,6 +88,9 @@ Page({
   },
   chooseIncidenceTime:function(e){
     console.log('picker发送选择改变，携带值为3', e.detail.value)
+    let basic = wx.getStorageSync('basic')||{};
+    basic.incidenceTime = e.detail.value;
+    wx.setStorageSync('basic', basic);
     this.setData({
       incidenceTime: e.detail.value,
     })
@@ -117,7 +124,6 @@ Page({
       util.prompt(this,"请选择首次发病日期！");
       return;
     }
-
     if (this.data.checkvalue1 == '') {
       util.prompt(this,"请选择是否已经由皮肤科医生诊断为银屑病！");
       return;

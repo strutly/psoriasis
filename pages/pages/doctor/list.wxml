@@ -6,9 +6,9 @@
       <block wx:for-items="{{lists}}" wx:key="{{item.id}}">
         <view class="item_box">
           <view class="item title">{{tutil.formatDate(item.cdt ,'yyyy年MM月DD日')}}{{tutil.formatDate(item.cdt,'HH:mm')}}<view class="title_val">{{item.wxUser.name}}</view></view>
-          <view class="item item_lable">严重程度评分：<view class="item_val">{{item.result1}}</view></view>
-          <view class="item item_lable">严重程度评分：<view class="item_val">{{item.result1}}</view></view>
-          <view class="item item_lable">严重程度评分：<view class="item_val">{{item.result1}}</view></view>
+          <view class="item item_lable">严重程度评分：<view class="item_val">{{item.result_map.spasi}}</view></view>
+          <view class="item item_lable">生活质量评分：<view class="item_val">{{item.result_map.qol}}</view></view>
+          <view class="item item_lable">关节炎评分：<view class="item_val">{{item.result_map.psa}}</view></view>
           <view class="item more" id="{{item.id}}" bindtap="detail">查看详情</view>
         </view>
       </block>

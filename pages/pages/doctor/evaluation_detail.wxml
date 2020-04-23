@@ -35,24 +35,6 @@
           </view>
           <view class="weui-cell">
             <view class="weui-cell__bd">
-                身高
-            </view>
-            <view class="weui-cell__ft">{{information.height}}CM</view>
-          </view>
-          <view class="weui-cell">
-            <view class="weui-cell__bd">
-                体重
-            </view>
-            <view class="weui-cell__ft">{{information.weight}}KG</view>
-          </view>
-          <view class="weui-cell">
-            <view class="weui-cell__bd">
-                发病时间
-            </view>
-            <view class="weui-cell__ft">{{tutil.formatDate(information.incidenceTime ,'YY-MM-DD')}}</view>
-          </view>
-          <view class="weui-cell">
-            <view class="weui-cell__bd">
                 教育程度
             </view>
             <view class="weui-cell__ft">{{arrayeducation[information.education]}}</view>
@@ -66,11 +48,23 @@
       <view class="kind-list">
         <view class="kind-list-item">
             <view  class="kind-list-item-hd {{opens[0]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="0">
-              <view class="kind-list-text">就诊记录</view>
+              <view class="kind-list-text">基本情况</view>
               <view class="kind-list-img {{opens[0]?'kind-list-img-show':''}}"></view>              
             </view>
             <view class="kind-list-item-bd {{opens[0]?'kind-list-item-bd-show':''}}">
-              <view class="navigator-box {{opens[0]?'navigator-box-show':''}}">                
+              <view class="navigator-box {{opens[0]?'navigator-box-show':''}}">
+                  <view class="navigator">
+                    <view class="navigator-text">身高</view>
+                    <view class="navigator-arrow">{{evaluation.height}}</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">体重</view>
+                    <view class="navigator-arrow">{{evaluation.weight}}</view>
+                  </view>
+                  <view class="navigator">
+                    <view class="navigator-text">银屑病首次发病日期</view>
+                    <view class="navigator-arrow">{{evaluation.incidenceTime}}</view>
+                  </view>                
                   <view class="navigator">
                     <view class="navigator-text">是否已经由皮肤科医生诊断为银屑病</view>
                     <view class="navigator-arrow">{{evaluation.checkvalue1==1?'是':'否'}}</view>
@@ -94,7 +88,7 @@
           
         <view class="kind-list-item">
             <view  class="kind-list-item-hd {{opens[1]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="1">
-              <view class="kind-list-text">程度评分</view>
+              <view class="kind-list-text">评估表1</view>
               <view class="kind-list-img {{opens[1]?'kind-list-img-show':''}}"></view>              
             </view>
             <view class="kind-list-item-bd {{opens[1]?'kind-list-item-bd-show':''}}">
@@ -125,7 +119,7 @@
           
         <view class="kind-list-item">
           <view  class="kind-list-item-hd {{opens[2]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="2">
-            <view class="kind-list-text">关节炎情况</view>
+            <view class="kind-list-text">评估表2</view>
             <view class="kind-list-img {{opens[2]?'kind-list-img-show':''}}"></view>              
           </view>
           <view class="kind-list-item-bd {{opens[2]?'kind-list-item-bd-show':''}}">
@@ -157,7 +151,8 @@
                 <view class="navigator">
                   <view class="navigator-text">患有虹膜炎,睫状体炎或脉络膜炎</view>
                   <view class="navigator-arrow">{{evaluation.if_7==1?'是':'否'}}</view>
-                </view>                  
+                </view>
+                                
             </view>
           </view>
         </view>
@@ -169,23 +164,48 @@
           </view>
           <view class="kind-list-item-bd {{opens[3]?'kind-list-item-bd-show':''}}">
             <view class="navigator-box {{opens[3]?'navigator-box-show':''}}">                
-                <view class="navigator">
-                  <view class="navigator-text">严重程度评分</view>
-                  <view class="navigator-arrow">{{evaluation.result1}}</view>
+              <view class="navigator">
+                <view class="navigator-text">严重程度评分</view>
+                <view class="navigator-arrow">{{evaluation.result1}}</view>
+              </view>
+              <view class="navigator">
+                <view class="navigator-text">银屑病关节炎得分</view>
+                <view class="navigator-arrow">{{evaluation.result2}}</view>
+              </view>
+              <view class="navigator">
+                <view class="navigator-text">银屑病关节炎风险评估得分</view>
+                <view class="navigator-arrow">{{evaluation.result3}}</view>
+              </view>
+              <view class="weui-article__section">
+                <view class="weui-article__h3">评估结果</view>
+                <view class="weui-article__p">
+                    {{evaluation.result_map.spasi_s}}
                 </view>
-                <view class="navigator">
-                  <view class="navigator-text">银屑病关节炎得分</view>
-                  <view class="navigator-arrow">{{evaluation.result2}}</view>
+                <view class="weui-article__p">
+                    {{evaluation.result_map.qol_s}}
+                </view> 
+                <view class="weui-article__p">
+                    {{evaluation.result_map.pest_s}}
+                </view>                 
+              </view>
+              <view class="weui-article__section">
+                <view class="weui-article__h3">防控建议</view>
+                <view class="weui-article__p">
+                    {{evaluation.result_map.suggest}}
                 </view>
-                <view class="navigator">
-                  <view class="navigator-text">银屑病关节炎风险评估得分</view>
-                  <view class="navigator-arrow">{{evaluation.result3}}</view>
+                <view class="weui-article__p">
+                    {{evaluation.result_map.pest_suggest}}
+                </view>                
+              </view>
+              <view class="weui-article__section">
+                <view class="weui-article__h3">风险提示</view>
+                <view class="weui-article__p">
+                    {{evaluation.result_map.psa_s}}
                 </view>
-                <view class="weui-article__section">
-                  <view class="weui-article__h3">评估建议</view>
-                  <view class="weui-article__p">
-                      {{evaluation.propose}}
-                  </view>              
+                <view class="weui-article__section" wx:if="{{evaluation.result_map.risks.length>0}}">
+                  <view class="weui-article__h3">风险点</view>
+                  <view class="weui-article__p" wx:for="{{evaluation.result_map.risks}}">{{item}}</view>              
+                </view>
               </view>
             </view>
           </view>
@@ -262,8 +282,8 @@
                   </view>
                   <view class="tr" >
                     <view class="td th0">诊断标准</view>
-                      <view class="td th1 align_left">主要标准伴有次要标准3分或3分以上者，即符合CASPAR分类标准。</view>
-                      <view class="td th2">{{evaluation.ifEnd?'已完成':'未完成'}}</view>
+                      <view class="td th1 align_left">主要标准符合伴有次要标准3分或3分以上即符合CASPAR诊断标准。目前诊断符合情况为(得分为次要标准之和):</view>
+                      <view class="td th2">{{evaluation.ifEnd?(evaluation.sum>=3&&evaluation.num1==1)?'符合':'不符合':'未完成'}}</view>
                       <view class="td th3">{{evaluation.sum===null?'未完成':evaluation.sum}}</view>
                   </view>
                 </view>
