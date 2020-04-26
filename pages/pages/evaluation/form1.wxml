@@ -12,7 +12,7 @@
           <text class='lbs'></text>
           <text class="titles">身高(CM):</text>
         </view>
-        <input class='time setData' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="height" placeholder="请输入您的身高" type='text' value="{{height}}"></input>
+        <input class='time setData' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="height" placeholder="请输入您的身高" type='number' value="{{height}}"></input>
       </view>
       
       <view class="info-item">
@@ -20,7 +20,7 @@
           <text class='lbs'></text>
           <text class="titles">体重(KG):</text>
         </view>
-        <input class='time setData' bindblur="bindKeyInput" data-type="weight" data-index="2" placeholder-class='info-placeholder' placeholder="请输入您的体重" type='number' value="{{weight}}"></input>
+        <input class='time setData' bindblur="bindKeyInput" data-type="weight" data-index="2" placeholder-class='info-placeholder' placeholder="请输入您的体重" type='digit' value="{{weight}}"></input>
       </view>
       <view class="item">
         <text class='lbs'></text>

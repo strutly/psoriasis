@@ -23,7 +23,7 @@ Page({
           var information = result.data;            
           that.setData({
             id: information.id,
-            vals: [information.name, information.sex, information.wx, information.height, information.weight, information.birthday, information.incidenceTime, information.education]
+            vals: [information.name, information.sex, information.wx,  information.birthday, information.education]
           })            
         } else {
           util.error(that, result.errmsg);

@@ -5,7 +5,7 @@
     <view class="info-content">
       <view class="info-item">
         <view class="info-item_lable"><text  decode='true'>姓&emsp;&emsp;名:</text></view>
-        <input class='info-input' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="name" data-index="0" auto-focus placeholder="请输入您的真实姓名" type='text' value="{{name}}"></input>
+        <input class='info-input' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="name" data-index="0" placeholder="请输入您的真实姓名" type='text' value="{{name}}"></input>
       </view>
       
       <view class="info-item">

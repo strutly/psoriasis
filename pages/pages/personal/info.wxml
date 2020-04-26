@@ -5,7 +5,7 @@
     <view class="info-content">
       <view class="info-item">
         <view class="info-item_lable"><text  decode='true'>姓&emsp;&emsp;名:</text></view>
-        <input class='info-input' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="name" data-index="0" auto-focus placeholder="请输入您的真实姓名" type='text' value="{{vals[0]}}"></input>
+        <input class='info-input' placeholder-class='info-placeholder' bindblur="bindKeyInput" data-type="name" data-index="0" placeholder="请输入您的真实姓名" type='text' value="{{vals[0]}}"></input>
       </view>
       <view class="info-item">
         <view class="info-item_lable"><text  decode='true'>性&emsp;&emsp;别:</text></view>
@@ -28,14 +28,14 @@
       <view class="info-item">
         <view class="info-item_lable"><text  decode='true'>出生日期:</text></view>
         <picker class='info-input' style="line-height:88rpx;" mode="date" start="1915-01-01" end="new Date()" bindchange="bindPickerBirthday" data-index="3">
-          <text wx:if='{{vals[5]}}'>{{vals[5]}}</text>
+          <text wx:if='{{vals[3]}}'>{{vals[3]}}</text>
           <text class='info-placeholder' wx:else>请选择您的出生日期</text>                          
         </picker>
       </view>
       <view class="info-item">
         <view class="info-item_lable"><text  decode='true'>教育程度:</text></view>
-        <picker class='info-input' style="line-height:88rpx;" bindchange="bindPickerEducation" value="{{vals[7]}}" range="{{arrayeducation}}" data-index="4">
-          <text wx:if='{{vals[7]}}'>{{arrayeducation[vals[7]]}}</text>
+        <picker class='info-input' style="line-height:88rpx;" bindchange="bindPickerEducation" value="{{vals[4]}}" range="{{arrayeducation}}" data-index="4">
+          <text wx:if='{{vals[4]}}'>{{arrayeducation[vals[4]]}}</text>
           <text class='info-placeholder' wx:else>请选择您的教育程度</text>
         </picker>
       </view>
