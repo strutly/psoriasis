@@ -229,6 +229,10 @@ function auth(){
  * token过期重新获取
  */
 function request(url, data = {}, method = "GET") {
+  wx.showLoading({
+    title: '请稍后',
+    mask:true
+  })
   return new Promise(function (resolve, reject) {
     wx.request({
       url: url,
@@ -240,6 +244,7 @@ function request(url, data = {}, method = "GET") {
       },
       dataType:"json",
       success: function (res) {
+        wx.hideLoading();
         if (res.statusCode == 200) {
           /**/
           if (res.data.errcode == 401) {
@@ -262,6 +267,7 @@ function request(url, data = {}, method = "GET") {
         }
       },
       fail: function (err) {
+        wx.hideLoading();
         reject(err)
         console.log("failed")
       }
