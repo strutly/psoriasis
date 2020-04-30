@@ -44,7 +44,13 @@
     </view>
   </view>  
 </view>
-<view class="copyright">技术支持：清华大学网络行为研究所</view>
+<view class="footer">
+  <view class="copyright">技术支持</view>
+  <view class="copyright">清华大学附属北京清华长庚医院皮肤科</view>
+  <view class="copyright">清华大学人工智能研究院</view>
+  <view class="copyright">清华大学网络行为研究所</view>
+</view>
+
 
 
 

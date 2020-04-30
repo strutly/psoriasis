@@ -156,22 +156,31 @@ function getCode() {
  */
 function getUserInfo() {
   return new Promise(function (resolve, reject) {
-    wx.getUserInfo({
-      withCredentials: true,
-      success: function (res) {
-        console.log(res);
-        if (res.errMsg === 'getUserInfo:ok') {
-          resolve(res);
-          wx.setStorageSync('userInfo', res.userInfo);
-        } else {
-          reject(res)
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (res) {
+              console.log(res);
+              if (res.errMsg === 'getUserInfo:ok') {
+                resolve(res);
+                wx.setStorageSync('userInfo', res.userInfo);
+              } else {
+                reject(res)
+              }
+            },
+            fail: function (err) {
+              console.log(err);
+              reject(err);
+            }
+          })
+        }else{
+          reject({errcode:-1,errMsg:"用户未进行授权,无法获取权限"});
         }
-      },
-      fail: function (err) {
-        console.log(err);
-        reject(err);
       }
     })
+    
   });
 };
 
@@ -182,43 +191,36 @@ function auth(){
   return new Promise(function (resolve, reject) {
     let code  = null;
     return getCode().then((res) => {
-      console.log(res);
       code = res;
       return getUserInfo();
     }).then((userInfo) => {
-      console.log("come here")
-        wx.request({
-          url: api.WxAuth,
-          data: JSON.stringify({
-            code: code,
-            encryptedData: userInfo.encryptedData,
-            iv: userInfo.iv,
-            signature: userInfo.signature,
-            rawData: userInfo.rawData
-          }),
-          method: 'POST',
-          contentType: 'application/json;charset=UTF-8',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (result) {
-            if(result.statusCode==200){
-              resolve(result.data);
-            }else{
-              reject(result);
-            }                            
-          },fail: function (err) {
-            reject(err)
-            console.log("failed")
-          }
-        })
+      wx.request({
+        url: api.WxAuth,
+        data: JSON.stringify({
+          code: code,
+          encryptedData: userInfo.encryptedData,
+          iv: userInfo.iv,
+          signature: userInfo.signature,
+          rawData: userInfo.rawData
+        }),
+        method: 'POST',
+        contentType: 'application/json;charset=UTF-8',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (result) {
+          if(result.statusCode==200){
+            resolve(result.data);
+          }else{
+            reject(result);
+          }                            
+        },fail: function (err) {
+          reject(err)
+          console.log("failed")
+        }
+      })
     }).catch((err) => {
       console.log(err);
-      console.log(1);
-      reject(err);
-    }).catch((err) => {
-      console.log(err);
-      console.log(2);
       reject(err);
     });
   })
@@ -273,7 +275,7 @@ function request(url, data = {}, method = "GET") {
       }
     })
   });
-}
+};
 
 module.exports = {
   formatTime,

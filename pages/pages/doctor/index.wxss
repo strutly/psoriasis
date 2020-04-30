@@ -137,9 +137,14 @@ page{
   color:#000;
   opacity: 0.8;
 }
-.copyright{
-  position:relative;
-  bottom:60rpx;
+.footer{
+  position: fixed;
+  bottom: 30rpx;
+  height: fit-content;
+  right: 0;
+  left: 0;
+}
+.copyright{  
   text-align: center;
   font-size: 24rpx;
   color: #000;

@@ -78,7 +78,7 @@ page{
 .btn {
   color: #fff; 
   position: fixed;
-  bottom:150rpx;
+  bottom:250rpx;
   width:350rpx;
 }
 .btncolor {  
@@ -112,9 +112,15 @@ page{
   background-color: rgba(0,0,0,0.4);
   z-index: 9999;
 }
-.copyright{
-  position:relative;
-  bottom:60rpx;
+
+.footer{
+  position: fixed;
+  bottom: 30rpx;
+  height: fit-content;
+  right: 0;
+  left: 0;
+}
+.copyright{  
   text-align: center;
   font-size: 24rpx;
   color: #000;

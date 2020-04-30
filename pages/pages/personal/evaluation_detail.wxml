@@ -245,10 +245,10 @@
             <view class="weui-cell__bd">姓名</view>
             <view class="weui-cell__ft">{{doctor.name?doctor.name:'医生很懒,还未填写'}}</view>
           </view>
-          <view class="weui-cell">
+          <!-- <view class="weui-cell">
             <view class="weui-cell__bd">电话</view>
             <view class="weui-cell__ft">{{doctor.phone?doctor.phone:'医生很懒,还未填写'}}</view>
-          </view>
+          </view> -->
           <view class="weui-cell">
             <view class="weui-cell__bd">擅长</view>
             <view class="weui-cell__ft">{{doctor.goodAt?doctor.goodAt:'医生很懒,还未填写'}}</view>
