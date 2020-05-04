@@ -1,4 +1,5 @@
 var api = require('api.js');
+var log = require('log.js');
 function formatTime(time) {
   if (typeof time !== 'number' || time < 0) {
     return time
@@ -231,6 +232,7 @@ function auth(){
  * token过期重新获取
  */
 function request(url, data = {}, method = "GET") {
+  log.info(data);
   wx.showLoading({
     title: '请稍后',
     mask:true
@@ -246,6 +248,7 @@ function request(url, data = {}, method = "GET") {
       },
       dataType:"json",
       success: function (res) {
+        log.info(res);
         wx.hideLoading();
         if (res.statusCode == 200) {
           /**/

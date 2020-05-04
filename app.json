@@ -2,7 +2,6 @@
   "pages": [    
     "pages/index/index",
     "pages/index/main",
-    "pages/logs/logs",
     "pages/pages/doctor/evaluation_detail",
     "pages/pages/doctor/index",
     "pages/pages/doctor/list",
@@ -17,10 +16,7 @@
     "pages/pages/personal/index",
     "pages/pages/personal/info",
     "pages/pages/test/result",
-    "pages/pages/error/error",
-    "pages/pages/map/index",
-    "pages/pages/map/add",
-    "pages/pages/ifram/index"
+    "pages/pages/error/error"
   ],
   "window": {
     "backgroundTextStyle": "light",
