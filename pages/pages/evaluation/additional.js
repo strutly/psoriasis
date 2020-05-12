@@ -1,66 +1,89 @@
 const app = getApp();
 var that;
+var that;
 var log = require('../../../utils/log.js');
 var api = require('../../../utils/api.js');
 var util = require('../../../utils/util.js');
 Page({
   data: {
-    result:['','','','','','',''],
-    tipsMsg: ['', '', '', '', '', '', ''],
-    lable_box: [
-      '您曾经有过一个或多个关节肿胀?',
-      '有医生告诉过您您有关节炎?',
-      '您的指(趾)甲上有凹点?',
-      '您的足后跟疼?',
-      '您有一个手指(足趾)不明原因肿痛?',
-      '口服阿维A、他扎罗汀等维A酸类药物?',
-      '患有虹膜炎、睫状体炎或脉络膜炎?'
-    ],
-    prompt: false,
-    promptMsg: '',
-    show:false
+    tab:0,
+    opens:[false,false,false],
+    treat:{}
   },
-  onLoad: function (options) {
+  onLoad: function (option) {
     that = this;
-    console.log(app.globalData.data.result2);
-    this.setData({
-      result: app.globalData.data.result2
-    })
-  },
-  radioChoose:function(e){
-    var globalData = app.globalData.data;    
-    var index = e.currentTarget.dataset.index;
-    var val = e.detail.value;    
-    var result1 = 'result[' + index + ']';
-    this.setData({
-      [result1]: parseInt(val)
-    })      
-    globalData.result2[index] = parseInt(val);
-  },
-  pre(){
+    let vals = wx.getStorageSync('treat')||{};
     that.setData({
-      show:true
+      treat:vals
     })
   },
-  add(){
-    wx.navigateTo({
-      url: '/pages/pages/evaluation/additional'
+  changeTab: function (e) {
+    /* 左右切换*/
+    const index = e.currentTarget.dataset.index;
+    this.setData({
+      tab: index
     })
   },
+  kindToggle(e) {
+    const index = e.currentTarget.dataset.index;
+    const opens = this.data.opens;
+    const set_val = 'opens[' + index + ']';
+    that.setData({
+      [set_val]: !opens[index]
+    });
+  },
+  other(e){
+    console.log(e);
+    let vals = wx.getStorageSync('treat')||{};
+    let title = e.target.dataset.title;
+    let level = e.target.dataset.level;
+    let val = e.detail.value;
+    console.log(level===1)
+    if(level==1){
+      vals.other = val;
+    }else{
+      if(vals[title]==undefined){
+        vals[title] = {};
+      }
+      vals[title].other = val
+    }    
+    that.setData({
+      treat: vals
+    })
+    wx.setStorageSync('treat', vals);
+  },
+  treat(e){
+    console.log(e);
+    let vals = wx.getStorageSync('treat')||{};
+    let title = e.target.dataset.title;
+    console.log(title)
+    let val = e.detail.value;
+    if(vals[title]==undefined){
+      vals[title] = {};
+    }
+    vals[title].check = val
+    that.setData({
+      treat: vals
+    })
+    wx.setStorageSync('treat', vals);
+  },
+  textarea(e){
+    console.log(e);
+    let vals = wx.getStorageSync('treat')||{};
+    let type = e.target.dataset.type;
+    vals[type] = e.detail.value;
+    that.setData({
+      treat: vals
+    })
+    wx.setStorageSync('treat', vals);
+  },  
   submit: function () {   
     var globalData = app.globalData;
-    var result = that.data.result;
-    for (let i = 0; i < result.length; i++) {
-      if (result[i] === '') {
-        util.prompt(that, "请选择" + that.data.lable_box[i]);
-        return;
-      }
-    };
     var if_test = app.globalData.if_test;
     if (if_test){
       wx.navigateTo({
         url: '/pages/pages/test/result'
-      })
+      });
       wx.removeStorageSync('treat');
     }else{
       let basic = wx.getStorageSync('basic');
@@ -108,18 +131,5 @@ Page({
         }
       })
     }
-  },
-  back(){
-    that.setData({
-      error: false,
-      errmsg: ''
-    });
-  },
-  onShareAppMessage: function () {
-    return {
-      title: '银屑病智能风险管理',
-      imageUrl: '/pages/image/share_img.png',
-      path: '/pages/index/index',
-    }
-  }  
+  }, 
 })

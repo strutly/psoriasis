@@ -1,13 +1,15 @@
 {
   "pages": [    
+    
     "pages/index/index",
     "pages/index/main",
     "pages/pages/doctor/evaluation_detail",
     "pages/pages/doctor/index",
     "pages/pages/doctor/list",
+    "pages/pages/evaluation/additional",
     "pages/pages/doctor/patient",
     "pages/pages/doctor/info",
-    "pages/pages/evaluation/form1",
+    "pages/pages/evaluation/form1",    
     "pages/pages/evaluation/form2",
     "pages/pages/evaluation/form3",
     "pages/pages/evaluation/result",
@@ -17,6 +19,7 @@
     "pages/pages/personal/info",
     "pages/pages/test/result",
     "pages/pages/error/error"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -25,10 +25,24 @@
            
       <view class="item">
         <view class='btn'>
-          <button class='btncolor' bindtap="submit"> 提交 </button>
+          <button class='btncolor' bindtap="pre"> 提交 </button>
         </view>
       </view>
       
+    </view>
+  </view>
+</view>
+
+<view class='mask' wx:if='{{show}}'>
+  <view class='modal-content'>
+    <view class="logo-box">
+      <image class="logo" src="/pages/image/logo.png"></image>
+    </view>
+    <view class='title1'>记录与反馈</view>
+    <view class='title2'>建议您记录下目前的治疗情况，以及目前的病情，这样会有利于更好的诊治。也可以为小程序提一些意见</view>    
+    <view class='modal-btn-wrapper'>
+        <button class='cancel-btn'  bindtap='submit'>跳过</button>
+        <button class='confirm-btn' bindtap="add">前往</button>
     </view>
   </view>
 </view>
