@@ -107,15 +107,18 @@ page{position: relative;}
   color: #fff; 
   position: absolute;
   bottom: 0;
-  width: 50%;
-  left: 25%;
+  width: 100%;
   padding-bottom: 90px;
+  display: flex;
 }
 
 .btncolor {  
   background: #5369fd;
   color: #fff;
-  border-radius: 55rpx;
+  border-radius: 50rpx;
+  width: 40%;
+  font-size: 16px;
+  padding: 6px 0;
 }
 .report_box{
   position: absolute;

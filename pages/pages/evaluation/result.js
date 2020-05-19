@@ -38,19 +38,25 @@ Page({
        
     });
     var id = options.id;
-    
+
     util.request(api.EvaluationResult+id,{},"get").then(function(result){
       log.info(result);
       wx.hideLoading();
       if (result.errcode == 0) {
         let data = result.data;
         that.setData({
-          result:data
+          result:data,
+          id:id
         })
       } else{
         util.error(that, result.errmsg);
       }
     });
+  },
+  reply:function(){
+    wx.navigateTo({
+      url: '/pages/pages/evaluation/additional?id='+that.data.id
+    })
   },
   share_result:function(){
     console.log(app.globalData.evaluationResult);    
@@ -101,6 +107,7 @@ Page({
     })
   },
   onUnload:function(){
+    wx.removeStorageSync('treat');
     wx.reLaunch({
       url: '/pages/pages/personal/index'
     })
@@ -111,6 +118,7 @@ Page({
     })
   },
   home:function(){
+    wx.removeStorageSync('treat');
     wx.reLaunch({
       url: '/pages/pages/personal/index'
     })

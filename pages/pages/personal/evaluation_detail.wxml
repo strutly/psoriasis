@@ -164,21 +164,53 @@
                     {{evaluation.result_map.psa_s}}
                 </view>
                 <view class="weui-article__section" wx:if="{{evaluation.result_map.risks.length>0}}">
-                  <view class="weui-article__h3">风险点</view>
+                  <view class="weui-article__h4">风险点</view>
                   <view class="weui-article__p" wx:for="{{evaluation.result_map.risks}}">{{item}}</view>              
                 </view>              
               </view>
             </view>
           </view>
         </view>
-        <!--Caspar表-->
-        <view class="kind-list-item">
+        <!--用药反馈-->
+        <view class="kind-list-item" wx:if="{{evaluation.treats.length>0}}">
           <view  class="kind-list-item-hd {{opens[4]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="4">
-            <view class="kind-list-text">Caspar表</view>
+            <view class="kind-list-text">用药反馈</view>
             <view class="kind-list-img {{opens[4]?'kind-list-img-show':''}}"></view>              
           </view>
           <view class="kind-list-item-bd {{opens[4]?'kind-list-item-bd-show':''}}">
-            <view class="navigator-box {{opens[4]?'navigator-box-show':''}}">                
+            <view class="navigator-box {{opens[4]?'navigator-box-show':''}}">
+              <view class="weui-article__section" wx:for="{{evaluation.treats}}" wx:for-item="treat">
+                <view class="weui-article__h3">{{treat.title}}</view>
+                <view class="weui-article__p" wx:for="{{treat.check}}" wx:for-item="check">
+                    {{check}}
+                </view>            
+              </view>
+            </view>         
+          </view>
+        </view>
+        <!--病情记录-->
+        <view class="kind-list-item" wx:if="{{evaluation.illness!=null}}">
+          <view  class="kind-list-item-hd {{opens[5]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="5">
+            <view class="kind-list-text">病情记录</view>
+            <view class="kind-list-img {{opens[5]?'kind-list-img-show':''}}"></view>              
+          </view>
+          <view class="kind-list-item-bd {{opens[5]?'kind-list-item-bd-show':''}}">
+            <view class="navigator-box {{opens[5]?'navigator-box-show':''}}">
+              <view class="weui-article__section">
+                {{evaluation.illness}}
+              </view>
+            </view>         
+          </view>
+        </view>
+
+        <!--Caspar表-->
+        <view class="kind-list-item">
+          <view  class="kind-list-item-hd {{opens[6]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="6">
+            <view class="kind-list-text">Caspar表</view>
+            <view class="kind-list-img {{opens[6]?'kind-list-img-show':''}}"></view>              
+          </view>
+          <view class="kind-list-item-bd {{opens[6]?'kind-list-item-bd-show':''}}">
+            <view class="navigator-box {{opens[6]?'navigator-box-show':''}}">                
               <view class='history-table-wrap'>
                 <view class="table">
                   <view class="tr">
@@ -233,7 +265,23 @@
               </view>  
             </view>
           </view>
-        </view>          
+        </view>
+
+        <!--意见建议-->
+        <view class="kind-list-item" wx:if="{{evaluation.suggest!=null}}">
+          <view  class="kind-list-item-hd {{opens[7]?'kind-list-item-hd-show':''}}" bindtap="kindToggle" data-index="7">
+            <view class="kind-list-text">意见建议</view>
+            <view class="kind-list-img {{opens[7]?'kind-list-img-show':''}}"></view>              
+          </view>
+          <view class="kind-list-item-bd {{opens[7]?'kind-list-item-bd-show':''}}">
+            <view class="navigator-box {{opens[7]?'navigator-box-show':''}}">
+              <view class="weui-article__section">
+                {{evaluation.suggest}}
+              </view>
+            </view>         
+          </view>
+        </view>
+
       </view>
     </view>  
   </view>

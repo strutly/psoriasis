@@ -94,7 +94,7 @@
               <view class="item">
                 <view class="other">
                   <label>其他</label>
-                  <input type="text"  bindblur="other" data-level="1" data-title="生物制剂" placeholder="请输入其他生物制剂" placeholder-class='info-placeholder' value="{{tutil.value(treat,'other',1)}}"></input>
+                  <input type="text"  bindblur="other" data-level="1" data-title="生物制剂" placeholder="请输入其他生物制剂" placeholder-class='info-placeholder' value="{{tutil.value(treat,'其他生物制剂',0)}}"></input>
                 </view>
               </view>
             </view>
@@ -195,33 +195,39 @@
                   <label class="check-lable-box">
                     <view class="check-lable">糖皮质激素</view>
                     <view class="">
-                      <checkbox class="checkbox" value="糖皮质激素" checked="{{tutil.checked(treat,'光疗','UVA1治疗')}}"/>
+                      <checkbox class="checkbox" value="糖皮质激素" checked="{{tutil.checked(treat,'外用药物','糖皮质激素')}}"/>
                     </view>
                   </label>
                   <label class="check-lable-box">
                     <view class="check-lable">卡泊三醇</view>
                     <view class="">
-                      <checkbox class="checkbox" value="卡泊三醇" checked="{{tutil.checked(treat,'光疗','卡泊三醇')}}"/>
+                      <checkbox class="checkbox" value="卡泊三醇" checked="{{tutil.checked(treat,'外用药物','卡泊三醇')}}"/>
                     </view>
                   </label>
                   <label class="check-lable-box">
                     <view class="check-lable">他卡西醇</view>
                     <view class="">
-                      <checkbox class="checkbox" value="他卡西醇" checked="{{tutil.checked(treat,'光疗','他卡西醇')}}"/>
+                      <checkbox class="checkbox" value="他卡西醇" checked="{{tutil.checked(treat,'外用药物','他卡西醇')}}"/>
                     </view>
                   </label>
                   <label class="check-lable-box">
                     <view class="check-lable">他克莫司</view>
                     <view class="">
-                      <checkbox class="checkbox" value="他克莫司" checked="{{tutil.checked(treat,'光疗','他克莫司')}}"/>
+                      <checkbox class="checkbox" value="他克莫司" checked="{{tutil.checked(treat,'外用药物','他克莫司')}}"/>
                     </view>
                   </label>
                   <label class="check-lable-box">
                     <view class="check-lable">吡美莫司</view>
                     <view class="">
-                      <checkbox class="checkbox" value="吡美莫司" checked="{{tutil.checked(treat,'光疗','吡美莫司')}}"/>
+                      <checkbox class="checkbox" value="吡美莫司" checked="{{tutil.checked(treat,'外用药物','吡美莫司')}}"/>
                     </view>
-                  </label>                             
+                  </label>
+                  <label class="check-lable-box">
+                    <view class="check-lable">卡泊三醇倍他米松复方制剂</view>
+                    <view class="">
+                      <checkbox class="checkbox" value="卡泊三醇倍他米松复方制剂" checked="{{tutil.checked(treat,'外用药物','卡泊三醇倍他米松复方制剂')}}"/>
+                    </view>
+                  </label>                               
                 </checkbox-group>
                 <view class="other">
                   <label>其他</label>

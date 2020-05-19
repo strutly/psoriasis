@@ -8,7 +8,7 @@ Page({
     opens: [false, false, false, false, false],
     evaluation: null,
     information: null,
-    arraylife: ['毫无影响', '有轻微影响', '有相当程度影响', '有十分严重的影响', '有极度影响，几乎病痛不欲生'],
+    arraylife: ['毫无影响', '有轻微影响', '有相当程度影响', '有十分严重的影响', '有极度影响，几乎痛不欲生'],
     arrayeducation: ['文盲', '小学', '初中', '高中', '大学', '研究生以上'],
     show: false,
     tab: 0,
@@ -131,10 +131,6 @@ Page({
     util.back();
   },
   onShareAppMessage: function () {
-    return {
-      title: '银屑病智能风险管理',
-      imageUrl: '/pages/image/share_img.png',
-      path: '/pages/index/index',
-    }
+    return app.globalData.shareMessage
   }
 })

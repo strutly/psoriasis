@@ -47,15 +47,15 @@ Page({
       url: '/pages/pages/evaluation/additional'
     })
   },
-  submit: function () {   
-    var globalData = app.globalData;
+  submit: function () { 
     var result = that.data.result;
     for (let i = 0; i < result.length; i++) {
       if (result[i] === '') {
         util.prompt(that, "请选择" + that.data.lable_box[i]);
         return;
       }
-    };
+    };  
+    var globalData = app.globalData;
     var if_test = app.globalData.if_test;
     if (if_test){
       wx.navigateTo({
@@ -88,7 +88,7 @@ Page({
         'checkvalue2': globalData.data.checkvalue2,//是否诊断银屑病关节炎
         'time2': globalData.data.time2,//诊断银屑病关节炎时间
       };
-      datas.treat = ""+JSON.stringify(treat)+"";
+      datas.treat = ""+JSON.stringify({})+"";
       console.log(datas);
       wx.showLoading({
         title: '提交中',

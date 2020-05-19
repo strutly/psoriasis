@@ -3,6 +3,7 @@ page{
  }
  .main{
    width:100%;
+   padding-bottom: 50px;
  } 
  .navbar{
    position: fixed;
@@ -159,11 +160,9 @@ page{
   position: absolute;
   content: "";
   border: 2rpx solid #eee;
-  width: 80%;
-  left:10%;
-  bottom: 0;
-
-  
+  width: calc(100% - 60rpx);
+  left: 30rpx;
+  bottom: 0;  
 }
 
  .kind-list-item-bd {
@@ -172,6 +171,7 @@ page{
  }
  .kind-list-item-bd-show {
    height: auto;
+   padding-bottom: 30rpx;
  }
  .weui-article__section{
    padding: 20rpx 30rpx;

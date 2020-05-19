@@ -72,6 +72,7 @@
       <image src="/pages/image/report.png" class="report"></image>
     </view>    
     <view class='btn'>
+      <button class='btncolor' bindtap='reply'> 病情记录及反馈</button>
       <button class='btncolor' bindtap='share_result'> 分享结果给医生</button>
     </view> 
 </view>

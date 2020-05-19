@@ -62,7 +62,7 @@
         </view>
         <block wx:for="{{imageBox}}" wx:for-item="index" wx:for-item="item">
           <view class='pic' bindtap='choosePic' data-index="{{index}}">
-            <image mode='widthFix' src="/pages/image/{{item[0]}}"></image>
+            <image mode='widthFix' src="http://gridpic.tsing-tec.com/{{item[0]}}"></image>
             <text class="grade">{{item[1]}}</text>
           </view>        
         </block>

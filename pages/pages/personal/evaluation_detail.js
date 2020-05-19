@@ -14,7 +14,7 @@ Page({
     evaluation:null,
     code:'',
     doctor:null,
-    arraylife: ['毫无影响', '有轻微影响', '有相当程度影响', '有十分严重的影响', '有极度影响，几乎病痛不欲生'],
+    arraylife: ['毫无影响', '有轻微影响', '有相当程度影响', '有十分严重的影响', '有极度影响，几乎痛不欲生'],
     show:false,
     tab:0,
     codeHeight:'100%',
@@ -46,6 +46,7 @@ Page({
     console.log('evaluation_detail.js onload');
     var id = options.id;    
     util.request(api.PersonalEvaluationDetail+id,{},"get").then(function(result){
+      console.log(result)
       log.info(result);
       if (result.errcode == 0) {
         let evaluation = result.data;

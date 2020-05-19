@@ -19,6 +19,11 @@ App({
       'time2': '',//诊断银屑病关节炎时间
     },
     evaluationResult:'',
+    shareMessage: {
+      title: '银屑病智能风险管理',
+      imageUrl: '/pages/image/share_img.png',
+      path: '/pages/index/index',
+    } 
   },
   onLaunch: function() {
     let userInfo = wx.getStorageSync('userInfo')||{};

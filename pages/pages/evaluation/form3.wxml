@@ -25,7 +25,7 @@
            
       <view class="item">
         <view class='btn'>
-          <button class='btncolor' bindtap="pre"> 提交 </button>
+          <button class='btncolor' bindtap="submit"> 提交 </button>
         </view>
       </view>
       
