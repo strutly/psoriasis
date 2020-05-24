@@ -1,5 +1,5 @@
-//var domain = "http://17240k68p1.51mypc.cn";
-var domain = "https://tty.tsing-care.com";
+var domain = "http://17240k68p1.51mypc.cn";
+
 
 module.exports = {
   
