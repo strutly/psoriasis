@@ -1,0 +1,9 @@
+
+<view class="warn" wx:if='{{prompt}}'>{{promptMsg}}</view>
+<view class="no-data-box"  wx:if="{{error}}">
+  <view class="no-data_icon" wx:if="{{pro}}">
+      <image src="/images/error.png"></image>
+  </view>
+  <view class="no-data_msg">{{errmsg}}</view>
+  <view bindtap="back" class="no-data_btn">返回</view>
+</view>

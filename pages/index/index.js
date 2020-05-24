@@ -33,11 +33,11 @@ Page({
               if (result.if_doctor) {
                 app.globalData.doctor = result.doctor;
                 wx.reLaunch({
-                  url: '/pages/pages/doctor/index'
+                  url: '/pages/doctor/index'
                 })
               } else {
                 wx.reLaunch({
-                  url: '/pages/pages/personal/index'
+                  url: '/pages/personal/index'
                 })
               };
               wx.setStorageSync('token', result.token);      

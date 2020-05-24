@@ -1,6 +1,10 @@
 //app.js
 App({
-  globalData: {    
+  onLaunch: function () {
+    
+  },
+  globalData: {
+    
     if_doctor:false,//医生信息
     if_information: false,//身份信息
     information:{},
@@ -33,5 +37,5 @@ App({
       console.log(e);
     }
     console.log(this.globalData)
-  },
+  }
 })

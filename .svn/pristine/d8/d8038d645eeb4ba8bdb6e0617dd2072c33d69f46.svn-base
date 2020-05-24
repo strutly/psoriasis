@@ -1,8 +1,0 @@
-<!--index.wxml-->
-<view class="container">
- <view class="userinfo">
-  <view class='btn'>
-    <button class='btncolor' bindtap='getDatas'> 开始测试 </button>
-  </view>
-</view>
- </view>

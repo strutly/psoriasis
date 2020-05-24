@@ -1,25 +1,23 @@
 {
-  "pages": [  
+  "pages": [
     
-    "pages/index/index",
-    "pages/index/main",
-    "pages/pages/doctor/evaluation_detail",
-    "pages/pages/doctor/index",
-    "pages/pages/doctor/list",
-    "pages/pages/evaluation/additional",
-    "pages/pages/doctor/patient",
-    "pages/pages/doctor/info",
-    "pages/pages/evaluation/form1",    
-    "pages/pages/evaluation/form2",
-    "pages/pages/evaluation/form3",
-    "pages/pages/evaluation/result",
-    "pages/pages/personal/evaluation_detail",
-    "pages/pages/personal/history",
-    "pages/pages/personal/index",
-    "pages/pages/personal/info",
-    "pages/pages/test/result",
-    "pages/pages/error/error"
-    
+    "pages/index/index",  
+    "pages/index/main",    
+    "pages/doctor/evaluation_detail",
+    "pages/doctor/index",
+    "pages/doctor/list",
+    "pages/evaluation/additional",
+    "pages/doctor/patient",
+    "pages/doctor/info",
+    "pages/evaluation/form1",    
+    "pages/evaluation/form2",
+    "pages/evaluation/form3",
+    "pages/evaluation/result",
+    "pages/personal/evaluation_detail",
+    "pages/personal/history",
+    "pages/personal/index",
+    "pages/personal/info",
+    "pages/test/result"    
   ],
   "window": {
     "backgroundTextStyle": "light",

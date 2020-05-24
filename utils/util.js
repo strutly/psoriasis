@@ -1,4 +1,4 @@
-var api = require('api.js');
+var api = require('../config/api.js');
 var log = require('log.js');
 function formatTime(time) {
   if (typeof time !== 'number' || time < 0) {

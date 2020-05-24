@@ -1,45 +1,57 @@
-//main.js
-//获取应用实例
 const app = getApp();
+var that;
 var log = require('../../utils/log.js');
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
-var that;
 Page({
-  data:{
-    height:'30%',
-    show: false,
+  data: {
+    imgheight:200,
+    headImgHeight: '190rpx',
+    topMargin: '80rpx',
+    top:350,
+    height:'100%',
     warnmsg: '',
-    showerr:false
+    show:false,
+    showmodal:false
   },
   prompt: function (msg) {
-    var that = this;
     that.setData({
-      showerr: true,
+      show: true,
       warnmsg: msg
-    });
-    
+    })
     setTimeout(function () {
       that.setData({
         show: false,
         warnmsg: ""
       })
-    }, 2500);
+    }, 1500);
   },
-  onLoad: function(options) {
+  onLoad: function () {
     that = this;
-    console.log("main.js----onload");   
-  },  
-  showAuthorize:function (){
-    this.setData ({
-      show:true
+    console.log("test-result.js----onload");
+    var width = wx.getSystemInfoSync().windowWidth;
+    var height = wx.getSystemInfoSync().windowHeight;
+    console.log(width);
+    this.setData({
+      imgheight: width * 0.62,
+      headImgHeight: width * 0.24,
+      topMargin: width * 0.12,
+      height: (height - width*1.2)+"px"
+    })     
+  },
+  onReady:function(){
+
+  },
+  showbutton:function(){
+    this.setData({
+      showmodal:true
     })
   },
-  hiddenAuthorize:function(){
-    this.setData({
-      show: false
+  cancel:function(){
+    wx.reLaunch({
+      url: '/pages/index/main',
     })
-  },  
+  },
   getDatas: function(e) {
     log.info(e);
     console.log(e);
@@ -50,7 +62,7 @@ Page({
     if (e.detail.errMsg !== 'getUserInfo:ok') {
       wx.hideLoading();
       if (e.detail.errMsg === 'getUserInfo:fail auth deny') {
-        util.prompt(that,"授权失败");
+        that.prompt("授权失败");
         return false;
       }
       return false;
@@ -73,9 +85,6 @@ Page({
         app.globalData.if_doctor = result.if_doctor;
         app.globalData.if_information = result.if_information;
         console.log(app.globalData);
-        if(result.if_information){
-          app.globalData.information = result.information;
-        }
         //是否医生
         if (result.if_doctor) {
           app.globalData.doctor = result.doctor;
@@ -98,21 +107,11 @@ Page({
       wx.hideLoading();
     });
   },
-  cancel:function(){
-    app.globalData.if_test = true;
-    //拒绝直接进入自测
-    this.setData({
-      show: false
-    });
-    wx.navigateTo({
-      url: '/pages/evaluation/form1',
-    })
-  },
   onShareAppMessage: function () {
-      return {
-        title: '银屑病智能风险管理',
-        imageUrl: '/images/share_img.png',
-        path: '/pages/index/index',
-      }
-   }
+    return {
+      title: '银屑病智能风险管理',
+      imageUrl: '/images/share_img.png',
+      path: '/pages/index/index',
+    }
+  }
 })
