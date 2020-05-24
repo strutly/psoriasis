@@ -84,12 +84,8 @@ Page({
     wx.navigateTo({
       url: '/pages/evaluation/form3'
     })    
-  },  
+  },
   onShareAppMessage: function () {
-    return {
-      title: '银屑病智能风险管理',
-      imageUrl: '/images/share_img.png',
-      path: '/pages/index/index',
-    }
-  }
+    return app.globalData.shareMessage
+  } 
 })

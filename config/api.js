@@ -1,6 +1,5 @@
 var domain = "http://17240k68p1.51mypc.cn";
 
-
 module.exports = {
   
   WxLogin: domain + '/wxs/rest/code2Session',//登录接口

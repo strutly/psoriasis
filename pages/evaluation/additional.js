@@ -1,6 +1,5 @@
 const app = getApp();
 var that;
-var that;
 var log = require('../../utils/log.js');
 var api = require('../../config/api.js');
 var util = require('../../utils/util.js');
@@ -105,5 +104,8 @@ Page({
         util.error(that, result.errmsg);
       }
     })
-  }, 
+  },
+  onShareAppMessage: function () {
+    return app.globalData.shareMessage
+  } 
 })

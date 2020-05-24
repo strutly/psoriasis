@@ -91,10 +91,6 @@ Page({
     util.back();
   },
   onShareAppMessage: function () {
-    return {
-      title: '银屑病智能风险管理',      
-      path: '/pages/index/index',
-      imageUrl: '/images/share_img.png',
-    }
+    return app.globalData.shareMessage
   }
 })
