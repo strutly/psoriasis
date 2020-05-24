@@ -16,12 +16,12 @@ Page({
     console.log("doctor-index.js----onload");
     var width = wx.getSystemInfoSync().windowWidth;
     console.log(width);
-    var userInfo = app.globalData.userInfo;
-    var doctor = app.globalData.doctor;
+    var userInfo = app.globalData.userInfo||{};
+    var doctor = app.globalData.doctor||{};
     console.log(doctor)
     this.setData({
       imgheight: width * 0.64,
-      nickName: doctor ? (doctor.name ? userInfo.name : doctor.name) ? doctor.name : userInfo.name: "",
+      nickName: doctor.name ?  doctor.name : userInfo.name,
       headImg: userInfo.headimgurl ? userInfo.headimgurl : "/images/headimg.png",
       headImgHeight: width * 0.24,
       topMargin: width * 0.12,

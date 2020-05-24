@@ -17,7 +17,7 @@ Page({
     console.log(know);
     var width = wx.getSystemInfoSync().windowWidth;
     console.log(width);
-    var userInfo = app.globalData.userInfo;
+    var userInfo = app.globalData.userInfo||{};
     this.setData({
       know:know,
       imgheight: width * 0.62,
