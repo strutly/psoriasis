@@ -1,6 +1,6 @@
 <include src ="../template/error.wxml"/>
 <view class="main" style="background-size:100% {{imgheight}}px">
-  <view bindtap="go" style="position:fixed;top:20rpx;left:20rpx;"><image style="width:40rpx;height:32rpx;" mode="scaleToFill" src="http://gridpic.tsing-tec.com/fde94337eb874f5ab755c539988d4259?v=1"></image></view>
+  <view bindtap="go" style="position:fixed;top:20rpx;left:20rpx;"><image style="width:1.6rem;height:1.28rem;" mode="scaleToFill" src="http://gridpic.tsing-tec.com/fde94337eb874f5ab755c539988d4259?v=1"></image></view>
   <view class="personal" style="height:{{imgheight}}px">
     <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;" src='{{headImg}}'></image>
     <view class="nickname">{{nickName}}</view>
