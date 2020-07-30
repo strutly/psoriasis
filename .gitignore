@@ -10,7 +10,7 @@ $RECYCLE.BIN/
 .Spotlight-V100
 .TemporaryItems
 .Trashes
-config/
-../api.js
+config/*
+api.js
 # Node.js
 node_modules/
