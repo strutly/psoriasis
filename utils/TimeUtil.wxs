@@ -1,45 +1,51 @@
-var formatDate = function (timestamp, option) {
-  
-  if (timestamp == '' || timestamp == null || timestamp== undefined){
-    return '';
-  };
-  var reg = getRegExp("-", "g");
-  
-  var date = getDate(timestamp.replace(reg, '/'));
-  
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  var hour = function () {
-    return date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+var formatNumber = function (n) {
+  n = n.toString();
+  return n[1] ? n : "0" + n
+};
+var regYear = getRegExp("(y+)", "i");
+var dateFormat = function (timestamp, format) {
+  if(null==timestamp||''==timestamp) return '';
+  if (!format) {
+      format = "yyyy-MM-dd hh:mm:ss"
   }
-  var minute = function () {
-    return date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+  if (typeof timestamp === "string") {
+    var reg = getRegExp("-", "g"); // 获取正则表达式，全局替换
+    var str = timestamp.replace(reg, '/');
+
+    var time = getDate(str);
+    if(!time || time.toUTCString() == "Invalid Date"){
+      return '';
+    }
+    timestamp = time.getTime();
   }
-  var second = function () {
-    return date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+  timestamp = parseInt(timestamp);
+  
+  var realDate = getDate(timestamp);
+  
+  var date = [
+      ["M+", formatNumber(realDate.getMonth() + 1)],
+      ["d+", formatNumber(realDate.getDate())],
+      ["D+", formatNumber(realDate.getDate())],
+      ["h+", formatNumber(realDate.getHours())],
+      ["H+", formatNumber(realDate.getHours())],
+      ["m+", formatNumber(realDate.getMinutes())],
+      ["s+", formatNumber(realDate.getSeconds())],
+      ["q+", Math.floor((realDate.getMonth() + 3) / 3)],
+      ["S+", realDate.getMilliseconds()],
+  ];
+  var reg1 = regYear.exec(format);
+  if (reg1) {
+      format = format.replace(reg1[1], (realDate.getFullYear() + "").substring(4 - reg1[1].length))
   }
-
-  if (option == 'YY-MM-DD') return " " + year + "-" + month + "-" + day;
-
-  if (option == 'YY-MM') return " " + year + "-" + month;
-
-  if (option == 'YY') return " " + year;
-
-  if (option == 'MM') return " " + month;
-
-  if (option == 'DD') return " " + day;
-
-  if (option == 'yesterday') return " " + day - 1;
-
-  if (option == 'hh-mm-ss') return " " + hour() + ":" + minute() + ":" + second();
-  if (option == 'hh-mm') return " " + hour() + ":" + minute();
-  if (option == 'mm-ss') return minute() + ":" + second();
-  if (option == 'mm') return minute();
-  if (option == 'ss') return second();
-  if (option == 'yyyy年MM月DD日') return " " + year + "年" + month + "月" + day+"日";
-  if (option == 'HH:mm') return " " + hour() + ":" + minute();
-  return year + '-' + month + '-' + day + ' ' + hour() + ':' + minute() + ":" + second();
+  for (var i = 0; i < date.length; i++) {
+      var k = date[i][0];
+      var v = date[i][1];
+      var reg2 = getRegExp("(" + k + ")").exec(format);
+      if (reg2) {
+          format = format.replace(reg2[1], reg2[1].length == 1 ? v : ("00" + v).substring(("" + v).length))
+      }
+  }
+  return format
 };
 function checked(obj, par,val){
   var p = obj[par];
@@ -72,7 +78,7 @@ function value(obj, par,i){
   return '';
 }
 module.exports = {
-  formatDate: formatDate,
+  formatDate: dateFormat,
   checked:checked,
   value:value
 };

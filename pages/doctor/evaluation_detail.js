@@ -20,7 +20,10 @@ Page({
     multiIndex:[0,0],
     error:false,
     errmsg:"",
-    id:0
+    id:0,
+    val:0,
+    val1:0,
+    arr:[{key:'未查',val:0},{key:'否',val:0},{key:'是',val:1}]
   },
   changeTab: function (e) {
     /* 左右切换*/
@@ -43,6 +46,17 @@ Page({
     const set_val = 'handleResult[' + index + ']';
     that.setData({
       [set_val]: parseInt(e.detail.value)
+    })
+  },
+  pickerChange(e){
+    console.log(e);
+    const index = e.currentTarget.dataset.index;
+    const val =  e.currentTarget.dataset.val;
+    const set_val = 'handleResult[' + index + ']';
+    const set_val2 = 'val'+val;
+    that.setData({
+      [set_val]: parseInt(e.detail.value),
+      [set_val2]:parseInt(e.detail.value)
     })
   },
   bindMultiPickerChange: function (e) {

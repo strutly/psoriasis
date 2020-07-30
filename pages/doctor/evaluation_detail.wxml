@@ -290,10 +290,11 @@
                   <view class="td w1 no_boder">次要标准</view>
                   <view class="td w3 align_left">3. 类风湿因子检查结果为阴性。（类风湿因子可用除凝胶法外的其他方法检测，但最好采用酶联免疫吸附试验或比浊法，按当地实验室检查的参考值范围）</view>
                   <view class="td w1">
-                    <picker bindchange='handle' data-index='3' range="{{handleArray}}">
-                      <view>{{handleResult[3]===null?'请选择':handleResult[3]===1?'是':'否'}}</view>                                                              </picker>
+                    <picker bindchange='pickerChange' data-index='3' data-val="" range="{{arr}}" range-key="key" value="{{val}}">
+                      <view>{{handleResult[3]===null?'请选择':arr[handleResult[3]].key}}</view>                                                              
+                    </picker>
                   </view>
-                  <view class="td w1">{{handleResult[3]===null?'':handleResult[3]}}</view>
+                  <view class="td w1">{{handleResult[3]===null?'':arr[handleResult[3]].val}}</view>
                 </view>
                 <view class="tr" >
                 <view class="td w1 no_boder"></view>
@@ -308,10 +309,10 @@
                 <view class="td w1"></view>
                     <view class="td w3 align_left">5. 影像学证据显示关节周围新骨形成，表现为手足平片可见关节周围异常骨化(而非骨赘形成)。 </view>
                     <view class="td w1">
-                    <picker bindchange='handle' data-index='5' range="{{handleArray}}">
-                      <view>{{handleResult[2]===null?'请选择':handleResult[5]===1?'是':'否'}}</view>                                                              </picker>
+                    <picker bindchange='pickerChange' data-index='5' data-val="1" range="{{arr}}" range-key="key" value="{{val1}}">
+                      <view>{{handleResult[5]===null?'请选择':arr[handleResult[5]].key}}</view>                                                              </picker>
                   </view>
-                  <view class="td w1">{{handleResult[5]===null?'':handleResult[5]}}</view>
+                  <view class="td w1">{{handleResult[5]===null?'':arr[handleResult[5]].val}}</view>
                 </view>
                 <view class="tr" >
                   <view class="td w1">诊断标准</view>
