@@ -115,23 +115,18 @@ function back() {
 function login() {
   return new Promise(function (resolve, reject) {
     return getCode().then(function(res){
-      wx.request({
-        url: api.WxLogin,
-        method: 'get',
-        data:{code:res},
-        dataType: 'json',
-        success: function (result) {
-          if(result.statusCode==200){
-            resolve(result.data);
-          }else{
-            reject(result);
-          }              
-        }
+      return request(api.WxLogin,{code:res,scene:wx.getStorageSync('scene')},"GET").then(res=>{
+        console.log(res);
+        resolve(res);
+      }).catch(err=>{
+        reject(err);
       })
+    }).catch((err) => {
+      console.log(err);
+      reject(err);
     });
   })
 };
-
 /**
  * wx.login
  * 获取code
@@ -190,36 +185,23 @@ function getUserInfo() {
  */
 function auth(){
   return new Promise(function (resolve, reject) {
-    let code  = null;
-    return getCode().then((res) => {
-      code = res;
-      return getUserInfo();
-    }).then((userInfo) => {
-      wx.request({
-        url: api.WxAuth,
-        data: JSON.stringify({
-          code: code,
+    return getCode().then((res) => {      
+      return getUserInfo().then(userInfo=>{
+        return request(api.WxAuth,JSON.stringify({
+          code: res,
           encryptedData: userInfo.encryptedData,
           iv: userInfo.iv,
           signature: userInfo.signature,
-          rawData: userInfo.rawData
-        }),
-        method: 'POST',
-        contentType: 'application/json;charset=UTF-8',
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (result) {
-          if(result.statusCode==200){
-            resolve(result.data);
-          }else{
-            reject(result);
-          }                            
-        },fail: function (err) {
-          reject(err)
-          console.log("failed")
-        }
-      })
+          rawData: userInfo.rawData,
+          scene:wx.getStorageSync('scene')
+        }),"POST").then(res=>{
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        })
+      }).catch(err=>{
+        reject(err);
+      });
     }).catch((err) => {
       console.log(err);
       reject(err);

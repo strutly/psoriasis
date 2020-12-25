@@ -47,3 +47,16 @@
     </view>
   </view>
 </view>
+<view class='mask' wx:if='{{show}}'>
+  <view class='modal-content'>
+    <view class="logo-box">
+      <image class="logo" src="/images/logo.png"></image>
+    </view>
+    <view class='title1'>温馨提示</view>
+    <view class='title2'>您尚未提交个人信息,是否现在填写?</view>
+    <view class='modal-btn-wrapper'>
+        <button class='cancel-btn'  bindtap='cancel'>否</button>
+        <button class='confirm-btn' bindtap="info">是</button>
+    </view>    
+  </view>
+</view>

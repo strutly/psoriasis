@@ -12,6 +12,7 @@
 .personal{
   width: 100%;
   display: inline-block;
+  text-align: center;
 }
 
 .headimg{

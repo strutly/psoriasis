@@ -4,7 +4,7 @@
   <view bindtap="know" style="position:fixed;top:20rpx;right:20rpx;"><image style="width:1.5rem;height:1.5rem;" src="/images/know.png"></image></view>
   <view class="personal" style="height:{{imgheight}}px">
     <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;" src='{{headImg}}'></image>
-    <view class="nickname">{{nickName}}</view>
+    <button plain="true" style="border:none;color:#fff;display: inline-block;" class="nickname" open-type="getUserInfo" bindgetuserinfo="getDatas">{{nickName}}</button>
   </view>
   <view class="container">    
     <view class="grid_box">
@@ -86,6 +86,20 @@
         <button class='modal-btn btn_cancel'  bindtap='see_next'>下次再看</button>
         <button class='modal-btn btn_primary' bindtap="i_know">已知晓</button>
     </view>
+  </view>
+</view>
+
+<view class='mask' wx:if='{{auth}}'>
+  <view class='modal-content'>
+    <view class="modal-logo">
+      <image class="logo" src="/images/logo.png"></image>
+    </view>
+    <view class='modal-title'>您还未授权</view>
+    <view class='modal-des'>此功能需要您进行微信授权,是否微信授权?</view>
+    <view class='modal-btns'>
+        <button class='modal-btn btn_cancel'  bindtap='no'>否</button>
+        <button class='modal-btn btn_primary' open-type="getUserInfo" bindgetuserinfo="getDatas">是</button>
+    </view>    
   </view>
 </view>
 

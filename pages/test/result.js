@@ -49,7 +49,7 @@ Page({
   },
   cancel:function(){
     wx.reLaunch({
-      url: '/pages/index/main',
+      url: '/pages/personal/index',
     })
   },
   getDatas: function(e) {
@@ -74,7 +74,8 @@ Page({
         encryptedData: e.detail.encryptedData,
         iv: e.detail.iv,
         signature: e.detail.signature,
-        rawData: e.detail.rawData
+        rawData: e.detail.rawData,
+        scene:wx.getStorageSync('scene')
       }),"post");
     }).then(function(result){
       console.log(result)
@@ -85,6 +86,7 @@ Page({
         app.globalData.if_doctor = result.if_doctor;
         app.globalData.if_information = result.if_information;
         console.log(app.globalData);
+        wx.setStorageSync('token', result.token);
         //是否医生
         if (result.if_doctor) {
           app.globalData.doctor = result.doctor;
@@ -95,8 +97,7 @@ Page({
           wx.reLaunch({
             url: '/pages/personal/index'
           })
-        }
-        wx.setStorageSync('token', result.token);
+        }        
       }else{
         console.log(1)
         that.prompt("授权失败,请稍后再试!");

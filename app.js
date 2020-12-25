@@ -1,6 +1,7 @@
 //app.js
 App({
   globalData: {
+    first:true,
     if_doctor:false,//医生信息
     if_information: false,//身份信息
     information:{},
@@ -22,7 +23,7 @@ App({
     shareMessage: {
       title: '银屑病智能风险管理',
       imageUrl: '/images/share_img.png',
-      path: '/pages/index/index',
+      path: '/pages/personal/index',
     } 
   },
   onLaunch: function() {
