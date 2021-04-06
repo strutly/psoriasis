@@ -7,6 +7,7 @@ App({
     information:{},
     userInfo: {},//个人信息
     time:0,
+    know:wx.getStorageSync('know')||false,
     if_test:true,
     //需要上传的数据
     data:{
@@ -23,7 +24,7 @@ App({
     shareMessage: {
       title: '银屑病智能风险管理',
       imageUrl: '/images/share_img.png',
-      path: '/pages/personal/index',
+      path: '/pages/personal/index?sence='+wx.getStorageSync('scene')+'&appOpenid='+wx.getStorageSync('appOpenid'),
     } 
   },
   onLaunch: function() {

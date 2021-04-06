@@ -7,22 +7,21 @@
     "pages/evaluation/additional",
     "pages/doctor/patient",
     "pages/doctor/info",
-    "pages/evaluation/form1",    
+    "pages/evaluation/form1",
     "pages/evaluation/form2",
     "pages/evaluation/form3",
     "pages/evaluation/result",
     "pages/personal/evaluation_detail",
     "pages/personal/history",
-    
     "pages/personal/info",
-    "pages/test/result"    
+    "pages/test/result"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "清云银屑病慢病管理",
     "navigationBarTextStyle": "black"
-  },  
+  },
   "networkTimeout": {
     "request": 10000,
     "connectSocket": 10000,
@@ -31,7 +30,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
   "sitemapLocation": "sitemap.json"

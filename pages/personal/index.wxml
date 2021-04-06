@@ -1,12 +1,18 @@
-<include src ="../template/error.wxml"/>
+<include src="../template/error.wxml" />
 <view class="main" style="background-size:100% {{imgheight}}px">
-  <view wx:if='{{if_doctor}}' bindtap="go" style="position:fixed;top:20rpx;left:20rpx;"><image style="width:1.6rem;height:1.28rem;" mode="scaleToFill" src="http://gridpic.tsing-tec.com/fde94337eb874f5ab755c539988d4259?v=1"></image></view>
-  <view bindtap="know" style="position:fixed;top:20rpx;right:20rpx;"><image style="width:1.5rem;height:1.5rem;" src="/images/know.png"></image></view>
+  <view wx:if='{{if_doctor}}' bindtap="go" style="position:fixed;top:20rpx;left:20rpx;">
+    <image style="width:1.6rem;height:1.28rem;" mode="scaleToFill"
+      src="http://gridpic.tsing-tec.com/fde94337eb874f5ab755c539988d4259?v=1"></image>
+  </view>
+  <view bindtap="know" style="position:fixed;top:20rpx;right:20rpx;">
+    <image style="width:1.5rem;height:1.5rem;" src="/images/know.png"></image>
+  </view>
   <view class="personal" style="height:{{imgheight}}px">
-    <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;" src='{{headImg}}'></image>
+    <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;"
+      src='{{headImg}}'></image>
     <button plain="true" style="border:none;color:#fff;display: inline-block;" class="nickname" open-type="getUserInfo" bindgetuserinfo="getDatas">{{nickName}}</button>
   </view>
-  <view class="container">    
+  <view class="container">
     <view class="grid_box">
       <view class="grid" bindtap='info' style="border-right:2rpx dashed #ababab;">
         <image class="grid-icon" src="/images/information.png"></image>
@@ -17,11 +23,11 @@
         <view class="grid-text">历史记录</view>
       </view>
     </view>
-    
+
   </view>
 </view>
 <view class="footer">
-  
+
   <view class='go-test' bindtap='go_test'>继续测试</view>
 
   <view class="copyright">技术支持</view>
@@ -38,9 +44,9 @@
     <view class='modal-title'>温馨提示</view>
     <view class='modal-des'>您尚未提交个人信息,是否现在填写?</view>
     <view class='modal-btns'>
-        <button class='modal-btn btn_cancel'  bindtap='cancel'>否</button>
-        <button class='modal-btn btn_primary' bindtap="info">是</button>
-    </view>    
+      <button class='modal-btn btn_cancel' bindtap='cancel'>否</button>
+      <button class='modal-btn btn_primary' bindtap="info">是</button>
+    </view>
   </view>
 </view>
 
@@ -49,42 +55,98 @@
     <view class="modal-logo">
       <image class="logo" src="/images/logo.png"></image>
     </view>
-    <view class='modal-title'>知情书</view>
-    <scroll-view scroll-y="true" style="max-height: 16rem;min-height: 12rem;">
-          <text class='explain'>银屑病智能风险管理小程序的主要设计由清华大学附属清华长庚医院皮肤科完成。主要目的是为了银病患者能够自主的对自己的病情进行认知，并主动的防控银屑病所带来的重要临床风险因素，包括疾病加重、银屑病性关节炎等重要风险，以帮助患者降低发生关节畸形等重要并发症的发生机率。设计原理是基于大规模的临床研究成果。并在国际知名银屑病专家的主持指导下完成。</text>
-          <text class='explain'>使用小程序的益处：
+    <view class='modal-title tab'>
+      <view class="title-tab {{tab==1?'tab-active':''}}" bindtap="tab" data-index="1">知情书</view>
+      <view class="title-tab {{tab==2?'tab-active':''}}" bindtap="tab" data-index="2">隐私协议</view>
+    </view>
+    <scroll-view scroll-y="true" style="max-height: 16rem;min-height: 12rem;" wx:if="{{tab==1}}">
+      <text
+        class='explain'>银屑病智能风险管理小程序的主要设计由清华大学附属清华长庚医院皮肤科完成。主要目的是为了银病患者能够自主的对自己的病情进行认知，并主动的防控银屑病所带来的重要临床风险因素，包括疾病加重、银屑病性关节炎等重要风险，以帮助患者降低发生关节畸形等重要并发症的发生机率。设计原理是基于大规模的临床研究成果。并在国际知名银屑病专家的主持指导下完成。</text>
+      <text class='explain'>使用小程序的益处：
 
-</text><text class='explain'>1. 对自己的病情有正确的评价和认知。
+      </text><text class='explain'>1. 对自己的病情有正确的评价和认知。
 
-</text><text class='explain'>2. 早期发现银屑病性关节炎，有助于获得及时正确的治疗（不少未及时发现银屑病性关节炎可以在短期内导致不可逆的关节畸形）。
+      </text><text class='explain'>2. 早期发现银屑病性关节炎，有助于获得及时正确的治疗（不少未及时发现银屑病性关节炎可以在短期内导致不可逆的关节畸形）。
 
-</text><text class='explain'>3. 早期发现银屑病的关节炎风险，并对疾病风险因素进行管控。可以降低发生严重并发症的可能性。
+      </text><text class='explain'>3. 早期发现银屑病的关节炎风险，并对疾病风险因素进行管控。可以降低发生严重并发症的可能性。
 
-</text><text class='explain'>使用小程序的方法及注意事项：
+      </text><text class='explain'>使用小程序的方法及注意事项：
 
-</text><text class='explain'>1. 建议你每隔一段时间重复评估一下自己的风险，至少半年一次。
+      </text><text class='explain'>1. 建议你每隔一段时间重复评估一下自己的风险，至少半年一次。
 
-</text><text class='explain'>2.评分在一定范围内波动是可以理解的。如果出现较大的波动，就可能是病情发生了变化。应及时到专业医生处就诊。
+      </text><text class='explain'>2.评分在一定范围内波动是可以理解的。如果出现较大的波动，就可能是病情发生了变化。应及时到专业医生处就诊。
 
-</text><text class='explain'>3. 如果并发症风险因素评分较高，应该引起重视，并对重要的风险因素进行管控。如风险因素是肥胖，则应该进行减肥减重。风险因素是疾病严重程度较重，则应该积极进行疾病治疗。
+      </text><text class='explain'>3. 如果并发症风险因素评分较高，应该引起重视，并对重要的风险因素进行管控。如风险因素是肥胖，则应该进行减肥减重。风险因素是疾病严重程度较重，则应该积极进行疾病治疗。
 
-</text><text class='explain'>4. 您提供的数据的准确性至关重要。请根据您的实际情况进行合理的填写。如果您不知道有些数据怎么填写，请咨询您的医生，请求专业帮助。
+      </text><text class='explain'>4. 您提供的数据的准确性至关重要。请根据您的实际情况进行合理的填写。如果您不知道有些数据怎么填写，请咨询您的医生，请求专业帮助。
 
-</text><text class='explain'>5. 请注意，高风险意味着您可能需要对风险进行管控，这样可以减少并发症真正发生的可能性。但您需要正确的理解这样做的原理及局限性（见下文）。
+      </text><text class='explain'>5. 请注意，高风险意味着您可能需要对风险进行管控，这样可以减少并发症真正发生的可能性。但您需要正确的理解这样做的原理及局限性（见下文）。
 
-</text><text class='explain'>6. 您需要保持和专业医生的正确合理沟通。
+      </text><text class='explain'>6. 您需要保持和专业医生的正确合理沟通。
 
-</text><text class='explain'>局限性及免责申明：
+      </text><text class='explain'>局限性及免责申明：
 
-</text><text class='explain'>本小程序的制作，是为了帮助银屑病患者防控风险，其初心是出于对患者的关爱和善意，其方法是基于科学实证的证据。但即便如此，由于医学实践的复杂性，风险因素防控的复杂性、评价模型的局限性等不可控因素，本程序只为患者提供医疗保健的建议，最终患者是否获益有赖于正确的理解认识，更有赖于患者正确的诊疗行为，包括和专业医生的医疗配合。本开发团队对患者遵循或者不遵循建议所导致的临床结果不承担法律或赔偿责任。
+      </text><text
+        class='explain'>本小程序的制作，是为了帮助银屑病患者防控风险，其初心是出于对患者的关爱和善意，其方法是基于科学实证的证据。但即便如此，由于医学实践的复杂性，风险因素防控的复杂性、评价模型的局限性等不可控因素，本程序只为患者提供医疗保健的建议，最终患者是否获益有赖于正确的理解认识，更有赖于患者正确的诊疗行为，包括和专业医生的医疗配合。本开发团队对患者遵循或者不遵循建议所导致的临床结果不承担法律或赔偿责任。
 
-</text><text class='explain'>其他声明：
+      </text><text class='explain'>其他声明：
 
-</text><text class='explain'>为进行必要的分析并提供相应服务，您所提供的数据及身份信息将被存储及分析。您同意使用该小程序表示您授权上传这些数据到云服务器供开发团队使用，您上传的数据将会保存在中华人民共和国境内。</text>  
+      </text><text
+        class='explain'>为进行必要的分析并提供相应服务，您所提供的数据及身份信息将被存储及分析。您同意使用该小程序表示您授权上传这些数据到云服务器供开发团队使用，您上传的数据将会保存在中华人民共和国境内。</text>
     </scroll-view>
+    <scroll-view scroll-y="true" style="max-height: 16rem;min-height: 12rem;" wx:else>
+      <text class='explain bold'>
+天通苑智慧社区隐私保护说明</text><text class='explain'>
+本指引是天通苑智慧社区小程序开发者手机、使用和存储你的信息而制定。
+</text><text class='explain'>
+
+开发者手机的信息 根据法律规定，开发者仅收集实现小程序功能所必要的信息。
+</text><text class='explain'>
+
+收集你的用户信息（微信昵称、头像、性别、地区），用于基本信息展示
+</text><text class='explain'>
+存储你在系统使用过程中提交的与银屑病慢病管理相关的症状数据、治疗数据、量表筛查、反馈结果等数据
+</text><text class='explain bold'>
+
+开发者对信息的存储
+</text><text class='explain'>
+
+存储地点    境内
+</text><text class='explain'>
+存储期限	小程序停止运营后及时删除
+</text><text class='explain bold'>
+
+信息的使用规则
+</text><text class='explain'>
+开发者将会在本指引所涵盖的用途内使用收集的信息。
+</text><text class='explain'>
+如开发者使用你的信息超出本指引的或合理范围，会及时更新本指引，同时，开发者在使用你的信息前，再次以小程序浮窗等方式告知并征得你的明示同意。
+</text><text class='explain bold'>
+
+信息对外提供
+</text><text class='explain bold'>
+开发者承诺
+</text><text class='explain'>
+-不会主动共享或转让你的信息至开发者及其技术支持单位以外的任何第三方，如存在确需共享或转化时，开发者应当直接或确认第三方征得你的明示同意。
+</text><text class='explain'>
+-不会对外公开披露你的信息，如必须公开披露时，开发者应当向你告知公开披露的目的、披露信息的类型及可能涉及的信息，并征得你的明示同意
+</text><text class='explain'>
+
+若你认为开发者为遵守上述约定，或由其他的投诉建议、未成年人信息相关问题，可通过以下方式与开发者联系；或者向微信进行投诉。
+</text><text class='explain bold'>
+
+邮箱：290616329@qq.com</text>
+
+
+
+
+
+
+    </scroll-view>
+
     <view class='modal-btns bt'>
-        <button class='modal-btn btn_cancel'  bindtap='see_next'>下次再看</button>
-        <button class='modal-btn btn_primary' bindtap="i_know">已知晓</button>
+      <button class='modal-btn btn_cancel' bindtap='see_next'>下次再看</button>
+      <button class='modal-btn btn_primary' bindtap="i_know">已知晓</button>
     </view>
   </view>
 </view>
@@ -97,11 +159,8 @@
     <view class='modal-title'>您还未授权</view>
     <view class='modal-des'>此功能需要您进行微信授权,是否微信授权?</view>
     <view class='modal-btns'>
-        <button class='modal-btn btn_cancel'  bindtap='no'>否</button>
-        <button class='modal-btn btn_primary' open-type="getUserInfo" bindgetuserinfo="getDatas">是</button>
-    </view>    
+      <button class='modal-btn btn_cancel' bindtap='no'>否</button>
+      <button wx:if="{{canIUse}}" class='modal-btn btn_primary' open-type="getUserInfo" bindgetuserinfo="getDatas">是</button>
+    </view>
   </view>
 </view>
-
-
-

@@ -1,7 +1,6 @@
 var app = getApp();
 var that;
 var util = require('../../utils/util.js');
-var api = require('../../config/api.js');
 Page({
   data: {
     imgheight:150,
@@ -12,19 +11,33 @@ Page({
     show:false,
     if_doctor:false,
     know:false,
+    tab:1,
+    canIUse:wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function (query) {
     that = this;
+    console.log(query);
     let locscene = wx.getStorageSync('scene')||0;
     let scene = decodeURIComponent(query.scene);
+    let openId = decodeURIComponent(query.openId);
+
+    let appOpenid = wx.getStorageSync('appOpenid');
+    
     if(locscene==0){
       if(scene=="undefined"){
         scene = 0;
       }
       wx.setStorageSync('scene', scene);
     }
+
+    if(openId != "undefined"){
+      if(appOpenid ==''){
+        appOpenid = openId;
+        wx.setStorageSync('appOpenid', appOpenid);
+      }
+    }
     console.log(scene);
-    let know = wx.getStorageSync('know')||false;
+    let know = app.globalData.know;
     console.log(know);
     var width = wx.getSystemInfoSync().windowWidth;
     console.log(width);
@@ -40,6 +53,7 @@ Page({
   },
   onShow(){
     var userInfo = app.globalData.userInfo||{};
+    console.log(userInfo)
     that.setData({
       nickName: userInfo.nickname ? userInfo.nickname :"微信授权",
       headImg: userInfo.headimgurl ? userInfo.headimgurl : "/images/headimg.png",
@@ -102,7 +116,7 @@ Page({
     };
     util.auth().then(function(result){
       console.log(result);
-      wx.hideLoading();
+      
       that.setData({
         auth:false
       })
@@ -128,15 +142,21 @@ Page({
           })
         }  
       }   
+    }).catch((err) => {
+      wx.hideLoading();
+      console.log(err);
+      util.prompt(that,err.errMsg)
     })
   },
   i_know(){
     wx.setStorageSync('know', true);
+    app.globalData.know = true;
     that.setData({
       know:true
     })
   },
   see_next(){
+    app.globalData.know = true;
     that.setData({
       know:true
     })
@@ -159,8 +179,9 @@ Page({
   },
   no(){
     that.setData({
-      auth:false
-    })
+      auth:false,
+      callBack:null
+    });
   },
   info:function(){
     if(app.globalData.if_test){
@@ -168,15 +189,13 @@ Page({
         auth:true,
         callBack:function(){
           that.info();
-        },
-
+        }
       })
     }else{
       wx.navigateTo({
         url: '/pages/personal/info'
       })
-    } 
-    
+    }    
   },
   history:function(){
     if(app.globalData.if_test){
@@ -228,6 +247,12 @@ Page({
   map(){
     wx.navigateTo({
       url: '/pages/ifram/index'
+    })
+  },
+  tab(e){
+    console.log(e);
+    that.setData({
+      tab:e.currentTarget.dataset.index
     })
   },
   onShareAppMessage: function () {

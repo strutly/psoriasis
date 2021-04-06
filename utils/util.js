@@ -115,7 +115,7 @@ function back() {
 function login() {
   return new Promise(function (resolve, reject) {
     return getCode().then(function(res){
-      return request(api.WxLogin,{code:res,scene:wx.getStorageSync('scene')},"GET").then(res=>{
+      return request(api.WxLogin,{code:res,scene:wx.getStorageSync('scene'),appOpenid:wx.getStorageSync('appOpenid')||""},"GET").then(res=>{
         console.log(res);
         resolve(res);
       }).catch(err=>{
@@ -193,7 +193,8 @@ function auth(){
           iv: userInfo.iv,
           signature: userInfo.signature,
           rawData: userInfo.rawData,
-          scene:wx.getStorageSync('scene')
+          scene:wx.getStorageSync('scene'),
+          appOpenid:wx.getStorageSync('appOpenid')
         }),"POST").then(res=>{
           resolve(res);
         }).catch((err) => {
@@ -239,7 +240,7 @@ function request(url, data = {}, method = "GET") {
             //需要登录后才可以操作
             return auth().then((result) => {
               wx.setStorageSync('token', result.token);
-              request(url,data,method).then(function(res){
+              return request(url,data,method).then(function(res){
                 resolve(res);
               });             
             }).catch(function(err){
