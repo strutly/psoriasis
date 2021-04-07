@@ -69,13 +69,14 @@ Page({
     };
     util.getCode().then(function(res){
       wx.hideLoading();
-      return util.request(api.WxAuth,JSON.stringify({
+      util.request(api.WxAuth,JSON.stringify({
         code: res,
         encryptedData: e.detail.encryptedData,
         iv: e.detail.iv,
         signature: e.detail.signature,
         rawData: e.detail.rawData,
-        scene:wx.getStorageSync('scene')
+        scene:wx.getStorageSync('scene'),
+        appOpenid:wx.getStorageSync('appOpenid')
       }),"post");
     }).then(function(result){
       console.log(result)

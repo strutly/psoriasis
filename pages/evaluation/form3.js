@@ -93,46 +93,39 @@ Page({
       wx.showLoading({
         title: '提交中',
         mask:true
-      })
-      wx.getSetting({
-        withSubscriptions:true,
-        success(res) {
-          if (res.subscriptionsSetting == undefined || res.subscriptionsSetting.itemSettings == undefined || res.subscriptionsSetting.itemSettings['tJwa2CVRB9mK-15715bcHafW80iIakTLqBHDY4tVYVM'] !== 'accept'){
-            if (wx.requestSubscribeMessage) {
-              wx.requestSubscribeMessage({
-                tmplIds: ['tJwa2CVRB9mK-15715bcHafW80iIakTLqBHDY4tVYVM'],
-                success(res) {
-                  if (res['tJwa2CVRB9mK-15715bcHafW80iIakTLqBHDY4tVYVM'] === 'accept') {
-                    wx.showToast({
-                      title: '订阅成功!'
-                    })
-                  }
-                },
-                complete(){
-                  util.request(api.EvaluationForm,JSON.stringify(datas),"POST").then(function(result){
-                    log.info(result);
-                    wx.hideLoading();
-                    if (result.errcode == 0) {
-                      wx.removeStorageSync('treat');
-                      wx.navigateTo({
-                        url: '/pages/evaluation/result?id='+result.data
-                      })
-                    } else{
-                      wx.hideLoading();
-                      util.error(that, result.errmsg);
-                    }
-                  })
-                }
+      });
+      if (wx.requestSubscribeMessage) {
+        wx.requestSubscribeMessage({
+          tmplIds: ['tJwa2CVRB9mK-15715bcHafW80iIakTLqBHDY4tVYVM'],
+          success(res) {
+            if (res['tJwa2CVRB9mK-15715bcHafW80iIakTLqBHDY4tVYVM'] === 'accept') {
+              wx.showToast({
+                title: '订阅成功!'
               })
-            }else{
-              wx.showModal({
-                title: '提示',
-                content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-              })
-            }  
+            }
+          },
+          complete(){
+            util.request(api.EvaluationForm,JSON.stringify(datas),"POST").then(function(result){
+              log.info(result);
+              wx.hideLoading();
+              if (result.errcode == 0) {
+                wx.removeStorageSync('treat');
+                wx.navigateTo({
+                  url: '/pages/evaluation/result?id='+result.data
+                })
+              } else{
+                wx.hideLoading();
+                util.error(that, result.errmsg);
+              }
+            })
           }
-        }
-      })      
+        })
+      }else{
+        wx.showModal({
+          title: '提示',
+          content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+        })
+      }    
     }
   },
   back(){

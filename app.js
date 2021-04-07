@@ -27,7 +27,8 @@ App({
       path: '/pages/personal/index?sence='+wx.getStorageSync('scene')+'&appOpenid='+wx.getStorageSync('appOpenid'),
     } 
   },
-  onLaunch: function() {
+  onLaunch: function(e) {
+    console.log(e);
     let userInfo = wx.getStorageSync('userInfo')||{};
     try {
       this.globalData.userInfo = userInfo;
