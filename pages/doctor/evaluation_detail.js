@@ -144,6 +144,14 @@ Page({
   back: function () {
     util.back();
   },
+  chat(e){
+    const id = e.currentTarget.dataset.id;
+    util.request(api.ChatByIid+id,{},"get").then(res=>{
+      wx.navigateTo({
+        url: '/pages/chat/chat?type=pc&id='+res.data
+      })
+    })
+  },
   onShareAppMessage: function () {
     return app.globalData.shareMessage
   }

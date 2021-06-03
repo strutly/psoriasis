@@ -18,7 +18,14 @@ Page({
     console.log(width);
     var userInfo = app.globalData.userInfo||{};
     var doctor = app.globalData.doctor||{};
-    console.log(doctor)
+    console.log(doctor);
+    if(userInfo.appOpenid){
+      wx.setStorageSync('appOpenid', userInfo.appOpenid);
+      wx.setStorageSync('scene', userInfo.appOpenid);
+    }
+    if(doctor.aid){
+      wx.setStorageSync('scene', doctor.aid);
+    }
     this.setData({
       imgheight: width * 0.64,
       nickName: doctor.name ?  doctor.name : userInfo.name,
@@ -26,6 +33,7 @@ Page({
       headImgHeight: width * 0.24,
       topMargin: width * 0.12,
       des: doctor.description ? doctor.description : "暂未填写个人简介",
+      codeHeight: width * 0.8 * 0.8 + "px",
     })
   },
   go(){
@@ -52,6 +60,11 @@ Page({
     app.globalData.if_information =true;
     wx.navigateTo({
       url: '/pages/personal/index'
+    })
+  },
+  cancle(){
+    this.setData({
+      show:false
     })
   },
   scan: function () {
@@ -82,9 +95,14 @@ Page({
       }
     })
   },
-  map() {
+  chat() {
     wx.navigateTo({
-      url: '/pages/map/index'
+      url: '/pages/chat/list?type=pc'
+    })
+  },
+  spread(){
+    wx.navigateTo({
+      url: '/pages/doctor/statistics'
     })
   },
   onShareAppMessage: function () {

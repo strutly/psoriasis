@@ -16,7 +16,21 @@ function formatTime(time) {
     return n[1] ? n : '0' + n
   }).join(':')
 }
+const newTime = () => {
+  const date = new Date();
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
 
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+const formatNumber = n => {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
 function formatLocation(longitude, latitude) {
   if (typeof longitude === 'string' && typeof latitude === 'string') {
     longitude = parseFloat(longitude)
@@ -115,9 +129,12 @@ function back() {
 function login() {
   return new Promise(function (resolve, reject) {
     return getCode().then(function(res){
-      return request(api.WxLogin,{code:res,scene:wx.getStorageSync('scene'),appOpenid:wx.getStorageSync('appOpenid')||""},"GET").then(res=>{
-        console.log(res);
-        resolve(res);
+      return request(api.WxLogin,{code:res,
+          scene:wx.getStorageSync('scene'),
+          appOpenid:wx.getStorageSync('appOpenid')||""},"GET")
+        .then(res=>{
+          console.log(res);
+          resolve(res);
       }).catch(err=>{
         reject(err);
       })
@@ -160,8 +177,8 @@ function getUserInfo() {
             success: function (res) {
               console.log(res);
               if (res.errMsg === 'getUserInfo:ok') {
-                resolve(res);
                 wx.setStorageSync('userInfo', res.userInfo);
+                resolve(res);                
               } else {
                 reject(res)
               }
@@ -276,5 +293,6 @@ module.exports = {
   auth,
   getCode,
   getUserInfo,
-  request
+  request,
+  newTime
 }

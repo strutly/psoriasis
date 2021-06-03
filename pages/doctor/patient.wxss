@@ -133,13 +133,21 @@
   line-height: 1.5;
   font-size: 24rpx;
 }
-.weui-badge {  
-  min-width: 18px;
-  border-radius: 18rpx;
+.weui-badge {
   position: absolute;
   right: 30rpx;
   display: block;
-  top: 30%;  
+  top: 30%;
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  min-width: 8px;
+  border-radius: 18rpx;
+  background-color: #fa5151;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  font-size: 12px;
+  vertical-align: middle;
 }
 .weui-media-box {
   padding: 15px;

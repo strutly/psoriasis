@@ -24,7 +24,7 @@ App({
     shareMessage: {
       title: '银屑病智能风险管理',
       imageUrl: '/images/share_img.png',
-      path: '/pages/personal/index?sence='+wx.getStorageSync('scene')+'&appOpenid='+wx.getStorageSync('appOpenid'),
+      path: '/pages/personal/index?sence='+wx.getStorageSync('scene')||wx.getStorageSync('appOpenid'),
     } 
   },
   onLaunch: function(e) {

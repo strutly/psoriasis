@@ -311,7 +311,13 @@
             详细介绍
           </view>
           <view class="cell_content">{{doctor.introduce?doctor.introduce:'医生很懒,还未填写'}}</view>
+          <view class="btns">        
+            <view class='btn btn_primary' data-id="{{doctor.id}}"  bindtap='chat'>
+              联系医生
+            </view>
+          </view>  
         </view>
+        
       </view>
       <view class="no-data-box" wx:else>
         <view class="no-data_icon">

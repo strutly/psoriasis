@@ -38,7 +38,12 @@
                 教育程度
             </view>
             <view class="cell_val">{{arrayeducation[information.education]}}</view>
-          </view>       
+          </view>
+          <view class="btns">        
+            <view class='btn btn_primary' data-id="{{information.id}}"  bindtap='chat'>
+              联系病人
+            </view>
+          </view>        
         </view>
       </view>
     </view>

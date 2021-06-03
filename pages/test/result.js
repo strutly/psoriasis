@@ -53,7 +53,6 @@ Page({
     })
   },
   getDatas: function(e) {
-    log.info(e);
     console.log(e);
     wx.showLoading({
       mask:true,
@@ -62,52 +61,41 @@ Page({
     if (e.detail.errMsg !== 'getUserInfo:ok') {
       wx.hideLoading();
       if (e.detail.errMsg === 'getUserInfo:fail auth deny') {
-        that.prompt("授权失败");
+        util.prompt(that,"授权失败");
         return false;
       }
       return false;
     };
-    util.getCode().then(function(res){
-      wx.hideLoading();
-      util.request(api.WxAuth,JSON.stringify({
-        code: res,
-        encryptedData: e.detail.encryptedData,
-        iv: e.detail.iv,
-        signature: e.detail.signature,
-        rawData: e.detail.rawData,
-        scene:wx.getStorageSync('scene'),
-        appOpenid:wx.getStorageSync('appOpenid')
-      }),"post");
-    }).then(function(result){
-      console.log(result)
-      wx.hideLoading();
-      if(result.errcode==0){
-        app.globalData.if_test = false;
-        app.globalData.userInfo = result.userInfo;
-        app.globalData.if_doctor = result.if_doctor;
-        app.globalData.if_information = result.if_information;
-        console.log(app.globalData);
-        wx.setStorageSync('token', result.token);
-        //是否医生
-        if (result.if_doctor) {
-          app.globalData.doctor = result.doctor;
-          wx.reLaunch({
-            url: '/pages/doctor/index'
-          })
-        } else {
-          wx.reLaunch({
-            url: '/pages/personal/index'
-          })
-        }        
-      }else{
-        console.log(1)
-        that.prompt("授权失败,请稍后再试!");
+    util.auth().then(function(result){
+      console.log(result);
+      
+      that.setData({
+        auth:false
+      })
+      app.globalData.if_test = false;
+      app.globalData.userInfo = result.userInfo;
+      app.globalData.if_doctor = result.if_doctor;
+      app.globalData.if_information = result.if_information;
+      console.log(app.globalData);
+      if(result.if_information){
+        app.globalData.information = result.information;
       }
-    }).catch(function(err){
-      console.log(2)
-      that.prompt("授权失败,请稍后再试!");
+      wx.setStorageSync('token', result.token);     
+      if (result.if_doctor) {
+        app.globalData.doctor = result.doctor;
+        wx.reLaunch({
+          url: '/pages/doctor/index'
+        })
+      } else {
+        wx.reLaunch({
+          url: '/pages/personal/index'
+        })
+      } 
+    }).catch((err) => {
       wx.hideLoading();
-    });
+      console.log(err);
+      util.prompt(that,err.errMsg)
+    })
   },
   onShareAppMessage: function () {
     return app.globalData.shareMessage

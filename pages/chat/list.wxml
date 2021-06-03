@@ -1,0 +1,25 @@
+<wxs src="../../utils/Tools.wxs" module="utils"/>
+<include src ="../template/error.wxml"/>
+<view class="main">
+  <view class="item-box"  wx:for='{{lists}}'>
+    <view class="item" bindtap="chat" data-id="{{item.id}}" data-index="{{index}}">
+      <view class="item-head">
+        <image src="{{item.avatar}}"></image>
+      </view>
+      <view class="item-content">
+        <view class="item-username">{{item.username}}<view class="item-time" wx:if="{{item.historyTime}}">{{utils.timeago(item.historyTime)}}</view></view>
+        <view class="item-desc" wx:if="{{item.content}}">{{item.content}}</view>
+      </view>
+      <view class="item-badge" wx:if="{{item.unRead>0}}">{{item.unRead}}</view>
+    </view>
+  </view>
+
+  <view class="no-data-box" wx:if="{{noData}}">
+    <view class="no-data_icon">
+      <image src="/images/no-data.png"></image>
+    </view>
+    <view class="no-data_msg">您暂无可直接联系的对象</view>
+    <view bindtap="back" class="no-data_btn">返回</view>
+  </view>
+
+</view>

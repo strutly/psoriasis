@@ -65,6 +65,15 @@ Page({
       }
     });   
   },
+  chat(e){
+    const id = e.currentTarget.dataset.id;
+    util.request(api.ChatByDid+id,{},"get").then(res=>{
+      console.log(res);
+      wx.navigateTo({
+        url: '/pages/chat/chat?type=mobile&id='+res.data
+      })
+    })
+  },
   share_result:function(){
     that.setData({
       show: true,      

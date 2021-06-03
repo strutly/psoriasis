@@ -1,0 +1,43 @@
+<wxs src="../../utils/Tools.wxs" module="utils"/>
+<include src ="../template/error.wxml"/>
+<view class="main">
+  <view class="item-box" bindtap="spread">
+    <view class="item">
+      <view class="item-content">
+        <view class="item-username">
+          推广总数
+          <view class="item-time spread">
+            {{total}}
+          </view>
+        </view>
+      </view>
+      <view class="item-badge" wx:if="{{item.unRead>0}}">{{item.unRead}}</view>
+    </view>
+  </view>
+  <view class="item-box"  wx:for='{{lists}}'  wx:key="{{index}}">
+    <view class="item">
+      <view class="item-head">
+        <image src="{{item.headimgurl}}"></image>
+      </view>
+      <view class="item-content">
+        <view class="item-username">{{item.nickname}}<view class="item-time">{{item.v_time}}</view></view>
+        
+      </view>
+      
+    </view>
+  </view>
+</view>
+<view class='mask' wx:if='{{show}}'>
+  <view class='modal-content'>
+    <view class="modal-logo">
+      <image class="logo" src="/images/logo.png"></image>
+    </view>
+    <view class='modal-title'>请将此二维码出示给用户扫描</view>
+    <view class="code-img" style="width:80%;margin:0 auto;height:{{codeHeight}};background-color: #f5f5f5;">
+      <image style="width:90%;padding:5%;height:90%" src="{{base64ImgUrl}}"></image>
+    </view>
+    <view class='modal-btns bt'>
+        <button class='modal-btn btn_primary' bindtap="cancle">取消</button>
+    </view>    
+  </view>
+</view>

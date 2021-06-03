@@ -17,17 +17,16 @@ Page({
   onLoad: function (query) {
     that = this;
     console.log(query);
-    let locscene = wx.getStorageSync('scene')||0;
+    let locscene = wx.getStorageSync('scene');
     let scene = decodeURIComponent(query.scene);
     let openId = decodeURIComponent(query.openId);
 
     let appOpenid = wx.getStorageSync('appOpenid');
-    
-    if(locscene==0){
-      if(scene=="undefined"){
-        scene = 0;
+    if(scene != "undefined"){
+      if(locscene == ""){      
+        locscene = scene;
+        wx.setStorageSync('scene', locscene);
       }
-      wx.setStorageSync('scene', scene);
     }
 
     if(openId != "undefined"){
@@ -210,6 +209,28 @@ Page({
       if (if_information) {
         wx.navigateTo({
           url: '/pages/personal/history'
+        })
+      } else {
+        //弹出信息
+        this.setData({
+          show: true
+        })
+      }
+    }    
+  },
+  chat(){
+    if(app.globalData.if_test){
+      that.setData({
+        auth:true,
+        callBack:function(){
+          that.chat();
+        }
+      })
+    }else{
+      let if_information = app.globalData.if_information;
+      if (if_information) {
+        wx.navigateTo({
+          url: '/pages/chat/list?type=mobile'
         })
       } else {
         //弹出信息
