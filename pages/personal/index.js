@@ -99,23 +99,20 @@ Page({
       }
     })  
   },
-  getDatas: function(e) {
-    console.log(e);
-    wx.showLoading({
-      mask:true,
-      title: '授权中~~',
-    })
-    if (e.detail.errMsg !== 'getUserInfo:ok') {
-      wx.hideLoading();
-      if (e.detail.errMsg === 'getUserInfo:fail auth deny') {
-        util.prompt(that,"授权失败");
-        return false;
-      }
-      return false;
+  async getDatas(e) {
+    let res = {};
+    try {
+      res = await wx.getUserProfile({
+        desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      })
+    } catch (error) {
+      return util.prompt(that,"授权失败,请重试~");
+    }
+    if(res.errMsg !=="getUserProfile:ok"){
+        return util.prompt(that,"授权失败");
     };
     util.auth().then(function(result){
       console.log(result);
-      
       that.setData({
         auth:false
       })

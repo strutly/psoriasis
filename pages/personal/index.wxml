@@ -10,7 +10,7 @@
   <view class="personal" style="height:{{imgheight}}px">
     <image class="headimg" style="height:{{headImgHeight}}px;width:{{headImgHeight}}px;margin:{{topMargin}}px auto 0;"
       src='{{headImg}}'></image>
-    <button plain="true" style="border:none;color:#fff;display: inline-block;" class="nickname" open-type="getUserInfo" bindgetuserinfo="getDatas">{{nickName}}</button>
+    <button plain="true" style="border:none;color:#fff;display: inline-block;" class="nickname" bindtap="getDatas">{{nickName}}</button>
   </view>
   <view class="container">
     <view class="grid_box">
