@@ -255,7 +255,7 @@ function request(url, data = {}, method = "GET") {
           if (res.data.errcode == 401) {
             console.log("重新获取token 然后在进行")
             //需要登录后才可以操作
-            return auth().then((result) => {
+            return login().then((result) => {
               wx.setStorageSync('token', result.token);
               return request(url,data,method).then(function(res){
                 resolve(res);
