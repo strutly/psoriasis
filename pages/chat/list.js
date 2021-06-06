@@ -5,7 +5,8 @@ var util = require('../../utils/util.js');
 Page({
   data: {
     lists: {},
-    type:""
+    type:"",
+    noData:false
   },
   onLoad: function (options) {
     console.log('info.js onload');
@@ -23,8 +24,17 @@ Page({
           noData:true
         })
       }
+    })           
+  },
+  tip(){
+    that.setData({
+      tips:true
     })
-           
+    setTimeout(function () {
+      that.setData({
+        tips: false
+      })
+    }, 3000);
   },  
   chat:function(e){
     console.log(e);

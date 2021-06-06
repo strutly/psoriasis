@@ -94,14 +94,48 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   color: #fff;
 }
 /*无数据提示*/
-.no-data-box{
-  padding: 10rem 0 2rem;
-  text-align: center;
+.no-data-box{  
+  text-align: center;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.no-data-help{
+  position: absolute;
+  display: inline-block;
+  top:30rpx;
+  right: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.no-data-tips{
+  background-color: #515151;
+  color: #fff;
+  font-size: 28rpx;
+  position: absolute;
+  width: 70%;
+  text-align: left;
+  padding: 15rpx 20rpx;
+  border-radius: 10rpx;
+}
+.no-data-tips::after{
+  content: '';
+  position: absolute;
+  right: -0.75rem;
+  top: 0.75rem;
+  width: 0;
+  height: 0;
+  border-style: solid dashed dashed;
+  border-color: #515151 transparent transparent;
+  overflow: hidden;
+  border-width: 0.75rem;
 }
 .no-data_icon{
   width: 10rem;
   height: 10rem;
-  margin: 0 auto;
+  padding-top: 10rem;
 }
 .no-data_icon image{
   width: 100%;
@@ -122,7 +156,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   font-weight: normal;
   font-stretch: normal;
   line-height: 3rem;
-  margin: 10rem auto 0;
+  margin: 5rem auto 0;
 }
 .tag{
   width:1rem;
