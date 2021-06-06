@@ -134,6 +134,7 @@ function login() {
           appOpenid:wx.getStorageSync('appOpenid')||""},"GET")
         .then(res=>{
           console.log(res);
+          
           resolve(res);
       }).catch(err=>{
         reject(err);
