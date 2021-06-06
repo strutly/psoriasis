@@ -19,7 +19,6 @@
       联系对象请进入绑定了医生的病历,点击联系医生即可.
     </view>
     <image class="no-data-help" src="/images/help.png" bindtap="tip"></image>
-    
     <view class="no-data_icon">
       <image src="/images/no-data.png"></image>
     </view>
