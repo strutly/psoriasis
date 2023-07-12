@@ -105,9 +105,12 @@ Page({
       res = await wx.getUserProfile({
         desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       })
+      console.log(res);
     } catch (error) {
+      console.log(error);
       return util.prompt(that,"授权失败,请重试~");
     }
+    console.log(res)
     if(res.errMsg !=="getUserProfile:ok"){
         return util.prompt(that,"授权失败");
     };

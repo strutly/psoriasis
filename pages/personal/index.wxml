@@ -164,7 +164,7 @@
     <view class='modal-des'>此功能需要您进行微信授权,是否微信授权?</view>
     <view class='modal-btns'>
       <button class='modal-btn btn_cancel' bindtap='no'>否</button>
-      <button wx:if="{{canIUse}}" class='modal-btn btn_primary' open-type="getUserInfo" bindgetuserinfo="getDatas">是</button>
+      <button wx:if="{{canIUse}}" class='modal-btn btn_primary' bindtap="getDatas">是</button>
     </view>
   </view>
 </view>
