@@ -12,5 +12,10 @@
         }
       ]
     }
+  },
+  "projectname": "银屑病",
+  "libVersion": "3.4.10",
+  "setting": {
+    "compileHotReLoad": true
   }
 }

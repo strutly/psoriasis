@@ -84,6 +84,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   height: auto;
   padding: 0.625rem 0;
   max-width: 12rem;
+  line-height: inherit;
 }
 .btn_cancel{
   border: 0.06rem solid #9a9a9a;

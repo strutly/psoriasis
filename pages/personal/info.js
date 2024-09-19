@@ -3,34 +3,76 @@ var that;
 var log = require('../../utils/log.js');
 var api = require('../../config/api.js');
 var util = require('../../utils/util.js');
+import WxValidate from '../../utils/WxValidate.js';
 Page({  
   data:{
     arrayeducation: ['文盲', '小学','初中','高中','大学','研究生以上'],
     show: false,
     warnmsg:'', 
+    infomation:{},
     id:'',
     /*需要提交的数据*/
-    vals:['','','','',''],
-    tipsMsg: ["请输入您的真实姓名", "请选择您的性别", "请输入您的微信号","请选择您的出生日期","请选择您的教育程度"],//, "请输入您的身高",'请输入您的体重',"请选择您的发病日期"
+    vals:['','','','','',''],
+    tipsMsg: ["请输入您的真实姓名", "请选择您的性别","请授权您的微信号","请选择您的出生日期","请选择您的教育程度"],//, "请输入您的身高",'请输入您的体重',"请选择您的发病日期"
   },
   onLoad: function (option) {
     console.log('info.js onload');
-    that = this;
-    if (app.globalData.if_information){
-      util.request(api.InformationDetail,{},"get").then(function(result){
-        log.info(result);
-        if (result.errcode == 0) {
-          var information = result.data;            
-          that.setData({
-            id: information.id,
-            vals: [information.name, information.sex, information.wx,  information.birthday, information.education]
-          })            
-        } else {
-          util.error(that, result.errmsg);
-        }
-      })
-    }    
+    that = this;    
+    that.initValidate(); 
   },
+  onShow(){
+    util.request(api.InformationDetail,{},"get").then(function(result){
+      log.info(result);
+      that.setData({
+        information: result.data||{}
+      });
+    })
+  },
+  initValidate() {
+    let rules = {
+      id:{
+        required: true
+      },
+      name: {
+        required: true
+      },
+      sex: {
+        required: true
+      },
+      phoneNum: {
+        tel:true,
+        required: true
+      },
+      birthday: {
+        required: true
+      },
+      education: {
+        required: true
+      }
+    }, messages = {
+      id:{
+        required: "参数错误"
+      },
+      name: {
+        required: "请输入姓名"
+      },      
+      phoneNum: {
+        tel:"请输入正确的手机号",
+        required: "请输入正确的手机号"
+      },
+      
+      birthday: {
+        required: "请选择生日"
+      },
+      education: {
+        required: "请选择学历"
+      },
+      
+    };
+    that.WxValidate = new WxValidate(rules, messages);
+  },
+
+
   cancel:function(){
     util.back();
   },
@@ -52,21 +94,14 @@ Page({
     this.setData({     
       [set_vals]: val
     })
-    console.log(this.data);
-    console.log(e);
   },
-  bindPickerBirthday: function (e) {
-    console.log("bindPickerBirthday");
-    console.log(e);
-    var index = e.currentTarget.dataset.index;
-    var set_vals = 'vals[' + index + ']';
+  pickerChange(e) {
+    var type = e.currentTarget.dataset.type;    
     this.setData({
-      [set_vals]: e.detail.value
+      ['information.'+type]: e.detail.value
     })
   },
   bindPickerIncidenceTime: function (e) {
-    console.log("bindPickerIncidenceTime");
-    console.log(e);
     var index = e.currentTarget.dataset.index;
     var set_vals = 'vals[' + index + ']';
     this.setData({
@@ -74,36 +109,20 @@ Page({
     })
   },
   bindPickerEducation: function (e) {
-    console.log("bindPickerEducation");
-    console.log(e);
     var index = e.currentTarget.dataset.index;
     var set_vals = 'vals[' + index + ']';
     this.setData({
       [set_vals]: e.detail.value
     });
-    console.log(this.data)
   }, 
-  formSubmit: function () {
-    var vals = this.data.vals;
-    console.log()
-    for(var i=0;i<vals.length;i++){
-      if (vals[i] == '' || vals[i] == null){
-        util.prompt(this, this.data.tipsMsg[i]);
-        return;
-      }
+  submit(e) {
+    let data = e.detail.value;
+    if (!that.WxValidate.checkForm(data)) {
+      console.log(that.WxValidate)
+      let error = that.WxValidate.errorList[0];
+      util.prompt(that, error.msg);        
+      return false;
     }
-    var data = JSON.stringify({
-      id: this.data.id,
-      name: this.data.vals[0],
-      sex: this.data.vals[1],
-      wx: this.data.vals[2],
-      birthday: this.data.vals[3],
-      education: this.data.vals[4],
-      //height: this.data.vals[5],
-      //weight: this.data.vals[6],
-      //incidenceTime: this.data.vals[7],
-    })
-    console.log(data)
     util.request(api.InformationForm,data,"POST").then(function(result){
       log.info(result);
       if (result.errcode == 0) {
@@ -131,5 +150,24 @@ Page({
   },
   onShareAppMessage: function () {
     return app.globalData.shareMessage
-  }  
+  },
+  getPhoneNumber(e) {
+    let that = this;
+    console.log(e);
+    if (e.detail.errMsg === "getPhoneNumber:ok") {
+      util.request(api.PhoneNumber,JSON.stringify({"code":e.detail.code}),"POST").then(res=>{
+        console.log(res);
+        if(res.errcode==0){
+          that.setData({
+            ["information.phoneNum"]:res.phone_info.phoneNumber
+          })
+        }else{
+          util.prompt(that, "手机号获取失败");
+        }        
+      },err=>{
+        console.log(err);
+        util.prompt(that, "手机号获取失败");
+      })
+    }
+  },  
 })

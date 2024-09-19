@@ -43,7 +43,7 @@
     "condition": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.10.4",
+  "libVersion": "3.5.8",
   "appid": "wxffbd431d1affeacc",
   "projectname": "psoriasis",
   "simulatorType": "wechat",

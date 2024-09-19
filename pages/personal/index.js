@@ -14,7 +14,7 @@ Page({
     tab:1,
     canIUse:wx.canIUse('button.open-type.getUserInfo')
   },
-  onLoad: function (query) {
+  onLoad: function (query={}) {
     that = this;
     console.log(query);
     let locscene = wx.getStorageSync('scene');
